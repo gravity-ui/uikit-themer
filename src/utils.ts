@@ -13,6 +13,12 @@ import {
 import {cloneDeep} from 'lodash-es';
 import {generatePrivateColors} from './private-colors/generatePrivateColors.js';
 
+/**
+ * Creates an internal reference to a private color.
+ * @param mainColorToken - The main color token name
+ * @param privateColorToken - The private color token
+ * @returns Internal private color reference string (example: private.brand.200-solid)
+ */
 export function createInternalPrivateColorReference(
     mainColorToken: string,
     privateColorToken: string,
@@ -20,6 +26,11 @@ export function createInternalPrivateColorReference(
     return `private.${mainColorToken}.${privateColorToken}`;
 }
 
+/**
+ * Checks if a string is an internal private color reference.
+ * @param privateColorReference - The reference string to check
+ * @returns True if the string is a valid internal private color reference
+ */
 export function isInternalPrivateColorReference(privateColorReference?: string) {
     if (!privateColorReference) {
         return false;
@@ -34,6 +45,16 @@ export function isInternalPrivateColorReference(privateColorReference?: string) 
     return true;
 }
 
+/**
+ * Parses an internal private color reference into its components.
+ * @param privateColorReference - The internal private color reference string
+ * @returns Parsed components or undefined if invalid
+ * @example
+ * parseInternalPrivateColorReference('private.brand.200-solid') === {
+ *      "mainColorToken": "brand",
+ *      "privateColorCode": "200-solid"
+ * }
+ */
 export function parseInternalPrivateColorReference(privateColorReference: string) {
     const parts = privateColorReference.split('.');
 
@@ -55,44 +76,44 @@ export function parseInternalPrivateColorReference(privateColorReference: string
 }
 
 /**
- * Проверяет принадлежность CSS-переменной к цветовым переменным.
+ * Checks if a CSS variable belongs to color variables.
  *
  * @example
  * isColorCssVariable('--g-color-text-link-visited') === true
  * isColorCssVariable('--g-color-private-brand-200') === true
  * isColorCssVariable('--g-spacing-0') === false
  *
- * @param variable string
- * @returns boolean
+ * @param variable - CSS variable name
+ * @returns True if the variable is a color CSS variable
  */
 export function isColorCssVariable(variable: string) {
     return variable.startsWith(THEME_COLOR_VARIABLE_PREFIX);
 }
 
 /**
- * Проверяет принадлежность CSS-переменной к приватным цветовым переменным.
+ * Checks if a CSS variable belongs to private color variables.
  *
  * @example
  * isPrivateColorCssVariable('--g-color-private-brand-200') === true
  * isPrivateColorCssVariable('--g-color-text-link-visited') === false
  *
- * @param variable string
- * @returns boolean
+ * @param variable - CSS variable name
+ * @returns True if the variable is a private color CSS variable
  */
 export function isPrivateColorCssVariable(variable: string) {
     return variable.startsWith(THEME_PRIVATE_COLOR_VARIABLE_PREFIX);
 }
 
 /**
- * Создаёт приватную CSS-переменную.
+ * Creates a private CSS variable.
  *
  * @example
  * createPrivateColorCssVariable('brand', '200-solid') === '--g-color-private-brand-200-solid'
  * createPrivateColorCssVariable('white', '100') === '--g-color-private-white-100'
  *
- * @param mainColorToken string
- * @param privateColorToken AnyPrivateColorToken
- * @returns string
+ * @param mainColorToken - Main color token name
+ * @param privateColorToken - Private color token
+ * @returns CSS variable string
  */
 export function createPrivateColorCssVariable(
     mainColorToken: string,
@@ -103,12 +124,17 @@ export function createPrivateColorCssVariable(
 
 const PRIVATE_COLOR_TOKENS = new Set(ALL_PRIVATE_VARIABLES);
 
+/**
+ * Checks if a token is a valid private color token.
+ * @param token - Token to check
+ * @returns True if the token is a valid private color token
+ */
 function isPrivateColorToken(token: string): token is AnyPrivateColorToken {
     return PRIVATE_COLOR_TOKENS.has(token as AnyPrivateColorToken);
 }
 
 /**
- * Извлекает название цвета и приватный токен из CSS-переменной приватного цвета.
+ * Extracts color name and private token from a private color CSS variable.
  *
  * @example
  * parsePrivateColorCssVariable('--g-color-private-brand-200-solid') === {
@@ -116,7 +142,8 @@ function isPrivateColorToken(token: string): token is AnyPrivateColorToken {
  *      "privateColorToken": "200-solid"
  * }
  *
- * @param variable string
+ * @param variable - CSS variable string
+ * @returns Parsed color components
  */
 export function parsePrivateColorCssVariable(variable: string) {
     if (!variable.startsWith(THEME_PRIVATE_COLOR_VARIABLE_PREFIX)) {
@@ -150,13 +177,13 @@ export function parsePrivateColorCssVariable(variable: string) {
 }
 
 /**
- * Создаёт приватную CSS-переменную для утилитарного цвета.
+ * Creates a CSS variable for utility color.
  *
  * @example
  * createUtilityColorCssVariable('base-brand-hover') === '--g-color-base-brand-hover'
  *
- * @param colorName UtilityColor
- * @returns string
+ * @param colorName - Utility color name
+ * @returns CSS variable string
  */
 export function createUtilityColorCssVariable(colorName: UtilityColor) {
     return `${THEME_COLOR_VARIABLE_PREFIX}-${colorName}`;
@@ -164,18 +191,27 @@ export function createUtilityColorCssVariable(colorName: UtilityColor) {
 
 const UTILITY_COLOR_CSS_VARIABLES = new Set(UTILITY_COLORS.map(createUtilityColorCssVariable));
 
+/**
+ * Checks if a CSS variable is a utility color variable.
+ *
+ * @example
+ * isUtilityColorCssVariable('--g-color-base-brand-hover') === true
+ *
+ * @param variable - CSS variable to check
+ * @returns True if the variable is a utility color CSS variable
+ */
 export function isUtilityColorCssVariable(variable: string) {
     return UTILITY_COLOR_CSS_VARIABLES.has(variable);
 }
 
 /**
- * Извлекает тип утилитарного цвета из CSS-переменной.
+ * Extracts utility color type from a CSS variable.
  *
  * @example
  * getUtilityColorTypeFromCssVariable('--g-color-base-brand-hover') === 'base-brand-hover'
  *
- * @param variable string
- * @returns UtilityColor
+ * @param variable - CSS variable string
+ * @returns Utility color type or undefined if invalid
  */
 export function getUtilityColorTypeFromCssVariable(variable: string): UtilityColor | undefined {
     return isUtilityColorCssVariable(variable)
@@ -183,6 +219,12 @@ export function getUtilityColorTypeFromCssVariable(variable: string): UtilityCol
         : undefined;
 }
 
+/**
+ * Replaces internal references in utility colors with actual values from private colors.
+ * @param utilityColors - Utility colors with potential internal references
+ * @param privateColors - Private colors to resolve references against
+ * @returns Utility colors with resolved references
+ */
 export const replaceReferencesInUtilityColors = (
     utilityColors: UtilityColors,
     privateColors: PrivateColors,
@@ -216,6 +258,12 @@ export const replaceReferencesInUtilityColors = (
     return result;
 };
 
+/**
+ * Restores base colors from private colors by extracting base values.
+ * @param initialBaseColors - Initial base colors structure
+ * @param privateColors - Private colors to extract base values from
+ * @returns Restored base colors
+ */
 export const restoreBaseColorsFromPrivateColors = (
     initialBaseColors: BaseColors,
     privateColors: PrivateColors,
@@ -245,6 +293,13 @@ export const restoreBaseColorsFromPrivateColors = (
     return baseColors;
 };
 
+/**
+ * Generates private colors for all base colors.
+ * @param baseColors - Base colors to generate private colors for
+ * @param lightBackgroundColor - Light theme background color
+ * @param darkBackgroundColor - Dark theme background color
+ * @returns Generated private colors
+ */
 export const generatePrivateColorsForBaseColors = (
     baseColors: BaseColors,
     lightBackgroundColor: string,
@@ -292,8 +347,9 @@ export const generatePrivateColorsForBaseColors = (
 };
 
 /**
- *
- * @param value
+ * Parses a CSS variable reference from a value string.
+ * @param value - Value string that may contain a CSS variable reference
+ * @returns The CSS variable name or undefined if not found
  */
 export function parseCssReferenceVariable(value: string) {
     const VAR_REGEXP = /var\((.*)\)/;

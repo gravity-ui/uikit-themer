@@ -184,7 +184,7 @@ const applyBorderRadiusVariable = (theme: GravityTheme, cssVariable: string, val
 };
 
 /*
-На входе строка вида:
+Input CSS string format:
 .g-root_theme_light {
     --g-color-private-brand-50: rgba(203,255,92,0.1);
     --g-color-base-brand-hover: var(--g-color-private-brand-600-solid);
@@ -195,6 +195,11 @@ const applyBorderRadiusVariable = (theme: GravityTheme, cssVariable: string, val
     --g-color-base-brand-hover: var(--g-color-private-brand-650-solid);
 }
 */
+/**
+ * Parses a CSS string into a GravityTheme object.
+ * @param cssString - The CSS string to parse
+ * @returns Parsed GravityTheme object
+ */
 export function parseCSS(cssString: string): GravityTheme {
     const themeTokens = parseThemeTokens(cssString);
     const theme = cloneDeep(DEFAULT_THEME);
@@ -210,13 +215,13 @@ export function parseCSS(cssString: string): GravityTheme {
                     console.error(`Unsupported css variable ${variable}. Skip`);
                 }
             } else if (isFontCssVariable(variable)) {
-                // TODO переменная должна парситься из глобальных стилей .g-root, а не из light/dark
+                // TODO variable should be parsed from global styles .g-root, not from light/dark
                 applyFontVariable(theme, variable, value);
             } else if (isTextCssVariable(variable)) {
-                // TODO переменная должна парситься из глобальных стилей .g-root, а не из light/dark
+                // TODO variable should be parsed from global styles .g-root, not from light/dark
                 applyTextVariable(theme, variable, value);
             } else if (isBorderRadiusCssVariable(variable)) {
-                // TODO переменная должна парситься из глобальных стилей .g-root, а не из light/dark
+                // TODO variable should be parsed from global styles .g-root, not from light/dark
                 applyBorderRadiusVariable(theme, variable, value);
             } else {
                 console.error(`Unsupported css variable ${variable}. Skip`);

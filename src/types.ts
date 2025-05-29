@@ -13,10 +13,20 @@ export type ColorOptions = {
 
 export type ThemizedColorOptions = Record<Theme, ColorOptions>;
 
+/**
+ * Checks if an object is a valid ColorOptions.
+ * @param obj - The object to check
+ * @returns True if the object is a valid ColorOptions
+ */
 export const isColorOptions = (obj: unknown): obj is ColorOptions => {
     return typeof obj === 'object' && obj !== null && 'value' in obj;
 };
 
+/**
+ * Checks if an object is a valid ThemizedColorOptions.
+ * @param obj - The object to check
+ * @returns True if the object is a valid ThemizedColorOptions
+ */
 export const isThemizedColorOptions = (obj: unknown): obj is ThemizedColorOptions => {
     return (
         typeof obj === 'object' &&

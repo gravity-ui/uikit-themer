@@ -108,7 +108,7 @@ const applyTextVariable = (
         theme.typography.variants[variant][property] = parameters.value;
     } else {
         const {property, group} = parseResult;
-        // TODO парсить ref для font family
+        // TODO parse ref for font family
         theme.typography.groups[group][property] = parameters.value;
     }
 };
@@ -129,17 +129,22 @@ const applyBorderRadiusVariable = (
 };
 
 /*
-На входе объект вида: {
-    ‘-—g-color-brand-heavy’: {
-        dark: { value: ‘’, ref: '' }
-        light: { value: ‘’, ref: '' }
+Input object format: {
+    '--g-color-brand-heavy': {
+        dark: { value: '', ref: '' }
+        light: { value: '', ref: '' }
     },
-    ‘—-g-color-text-base’: {
-        dark: { value: ‘’, ref: '' }
-        light: { value: ‘’, ref: '' }
+    '--g-color-text-base': {
+        dark: { value: '', ref: '' }
+        light: { value: '', ref: '' }
     },
 }
 */
+/**
+ * Parses a JSON theme into a GravityTheme object.
+ * @param input - The JSON theme to parse
+ * @returns Parsed GravityTheme object
+ */
 export function parseJSON(input: JsonTheme): GravityTheme {
     const theme = cloneDeep(DEFAULT_THEME);
 

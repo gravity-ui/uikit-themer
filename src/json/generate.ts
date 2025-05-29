@@ -17,18 +17,11 @@ import {
 import {createPrivateColorCssVariable, createUtilityColorCssVariable} from '../utils.js';
 import {isValueWithReference, type JsonTheme, type ThemizedValueWithReference} from './types.js';
 
-/*
-На выходе объект вида: {
-    ‘-—g-color-brand-heavy’: {
-        dark: { value: ‘’ }
-        light: { value: ‘’ }
-    },
-    ‘—-g-color-text-base’: {
-        dark: { value: ‘’ }
-        light: { value: ‘’ }
-    },
-}
-*/
+/**
+ * Generates a JSON theme from a GravityTheme object.
+ * @param theme - The GravityTheme to convert to JSON
+ * @returns JSON theme representation
+ */
 export function generateJSON(theme: GravityTheme): JsonTheme {
     const result: JsonTheme = {};
 

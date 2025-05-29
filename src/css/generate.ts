@@ -61,6 +61,13 @@ Output example:
     --g-color-base-brand-hover: var(--g-color-private-brand-650-solid);
 }
 */
+/**
+ * Generates CSS string from a GravityTheme object.
+ * @param theme - The GravityTheme to convert to CSS
+ * @param ignoreDefaultValues - Whether to ignore default values when generating CSS
+ * @param forPreview - Whether to add !important to values for preview mode
+ * @returns CSS string representation of the theme
+ */
 export function generateCSS(
     theme: GravityTheme,
     ignoreDefaultValues: boolean = false,

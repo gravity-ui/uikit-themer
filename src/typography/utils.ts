@@ -22,11 +22,9 @@ type FontFamilyDetails = {
 };
 
 /**
- * Парсит CSS свойство font-family и возвращает объект с основным шрифтом,
- * альтернативными шрифтами и типом семьи шрифтов.
- *
- * @param {string} fontFamilyValue - строка font-family из CSS
- * @returns {FontFamilyDetails}
+ * Parses a CSS font-family value into components.
+ * @param fontFamilyValue - The CSS font-family value to parse
+ * @returns Parsed font family details or undefined if invalid
  */
 export function parseCssFontFamily(fontFamilyValue: string): FontFamilyDetails | undefined {
     const regex = /(?:["']([^"']+)["']|([^,'" \n]+))/g;
@@ -34,7 +32,7 @@ export function parseCssFontFamily(fontFamilyValue: string): FontFamilyDetails |
     const fonts = [];
     let match;
     while ((match = regex.exec(fontFamilyValue)) !== null) {
-        // Названия шрифтов могут иметь переносы или пробелы в начале/конце
+        // Font names may have line breaks or spaces at the beginning/end
         const font = (match[1]! || match[2]!).trim();
         if (font) {
             fonts.push(font);
@@ -45,7 +43,7 @@ export function parseCssFontFamily(fontFamilyValue: string): FontFamilyDetails |
         return undefined;
     }
 
-    // Последний шрифт предполагается типом семейства (sans-serif / monospace)
+    // The last font is assumed to be the family type (sans-serif / monospace)
     const lastFont = fonts[fonts.length - 1]?.toLowerCase();
     let type: FontFamilyType | undefined;
     if (lastFont?.includes('mono')) {
@@ -63,52 +61,62 @@ export function parseCssFontFamily(fontFamilyValue: string): FontFamilyDetails |
     };
 }
 
+/**
+ * Generates a CSS font-family value from font options.
+ * @param value - The font options to convert
+ * @returns CSS font-family string
+ */
 export function generateCssFontFamily(value: FontOptions) {
     return [value.mainFont, ...value.fallbackFonts].map((el) => `'${el}'`).join(', ');
 }
 
 /**
- * Проверяет принадлежность CSS-переменной к текстовым переменным.
+ * Checks if a CSS variable belongs to text variables.
  *
  * @example
  * isTextCssVariable('--g-text-body-font-weight') === true
  * isTextCssVariable('--g-color-text-link-visited') === false
  *
- * @param variable string
- * @returns boolean
+ * @param variable - CSS variable name
+ * @returns True if the variable is a text CSS variable
  */
 export function isTextCssVariable(variable: string) {
     return variable.startsWith(THEME_TEXT_VARIABLE_PREFIX);
 }
 
 /**
- * Проверяет принадлежность CSS-переменной к шрифтовым переменным.
+ * Checks if a CSS variable belongs to font variables.
  *
  * @example
  * isFontCssVariable('--g-font-family-sans') === true
  * isFontCssVariable('--g-font-family-additional-font-1') === true
  * isFontCssVariable('--g-text-body-font-weight') === false
  *
- * @param variable string
- * @returns boolean
+ * @param variable - CSS variable name
+ * @returns True if the variable is a font CSS variable
  */
 export function isFontCssVariable(variable: string) {
     return variable.startsWith(THEME_FONT_VARIABLE_PREFIX);
 }
 
+/**
+ * Creates a font CSS variable from a key.
+ * @param key - The font key
+ * @returns CSS variable string
+ */
 export function createFontCssVariable(key: string) {
     return `${THEME_FONT_VARIABLE_PREFIX}-${key}`;
 }
 
 /**
- * Извлекает ключ из шрифтовой CSS-переменной.
+ * Extracts key from a font CSS variable.
  *
  * @example
- * getKeyFromCssVariable('--g-font-family-sans') === 'sans'
- * getKeyFromCssVariable('--g-font-family-additional-font-1') === 'additional-font-1'
+ * getKeyFromCssFontVariable('--g-font-family-sans') === 'sans'
+ * getKeyFromCssFontVariable('--g-font-family-additional-font-1') === 'additional-font-1'
  *
- * @param variable string
- * @returns string
+ * @param variable - CSS variable string
+ * @returns The extracted key
  */
 export function getKeyFromCssFontVariable(variable: string) {
     return variable.replace(`${THEME_FONT_VARIABLE_PREFIX}-`, '');
@@ -126,7 +134,7 @@ type ParseTextCssVariableResult =
       };
 
 /**
- * Извлекает группу текстов, вариант отображения и параметр.
+ * Extracts text group, variant, and property from a text CSS variable.
  *
  * @example
  * parseTextCssVariable('--g-text-body-1-font-size') === {
@@ -152,7 +160,8 @@ type ParseTextCssVariableResult =
  *      "property": "font-weight"
  * }
  *
- * @param variable string
+ * @param variable - CSS variable string
+ * @returns Parsed text CSS variable components or undefined if invalid
  */
 export function parseTextCssVariable(variable: string): ParseTextCssVariableResult | undefined {
     if (!isTextCssVariable(variable)) {
@@ -169,12 +178,12 @@ export function parseTextCssVariable(variable: string): ParseTextCssVariableResu
 
     const group = groupCandidate as TextGroup;
 
-    // Сначала пытаемся сопоставить один из вариантов ГРУППЫ, учитывая ГРУППУ в названии варианта
+    // First, try to match one of the GROUP variants, considering the GROUP in the variant name
     for (const variant of TEXT_VARIANTS[group]) {
         const variantParts = variant.split('-');
         const variantLength = variantParts.length;
 
-        // Вариант должен совпасть полностью, затем должны остаться еще части с названием свойства
+        // The variant must match completely, then there should still be parts with the property name
         if (parts.length <= variantLength) {
             continue;
         }
@@ -194,7 +203,7 @@ export function parseTextCssVariable(variable: string): ParseTextCssVariableResu
         }
     }
 
-    // Если варианты не подошли — проверим свойства самой группы (например: font-weight или font-family)
+    // If variants didn't match - check the group's own properties (e.g. font-weight or font-family)
     const restPartsAfterGroup = parts.slice(1).join('-');
     if (TEXT_GROUP_PROPERTIES.includes(restPartsAfterGroup as TextGroupProperty)) {
         return {
@@ -218,6 +227,11 @@ type CreateTextCssVariableArgs =
           property: TextGroupProperty | TextVariantProperty;
       };
 
+/**
+ * Creates a text CSS variable from the provided arguments.
+ * @param args - Arguments containing group, variant, and property
+ * @returns CSS variable string
+ */
 export function createTextCssVariable({group, variant, property}: CreateTextCssVariableArgs) {
     if (variant) {
         return `${THEME_TEXT_VARIABLE_PREFIX}-${variant}-${property}`;

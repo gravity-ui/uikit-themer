@@ -18,6 +18,16 @@ type GeneratePrivateColorsArgs = {
     darkBg: string;
 };
 
+/**
+ * Generates private color variations for a given color.
+ * @param options - Configuration options for generating private colors
+ * @param options.theme - The theme variant ('light' or 'dark')
+ * @param options.colorToken - The color token name
+ * @param options.colorValue - The base color value
+ * @param options.lightBg - Light theme background color
+ * @param options.darkBg - Dark theme background color
+ * @returns Record of private color tokens and their values
+ */
 export const generatePrivateColors = ({
     theme,
     colorToken,

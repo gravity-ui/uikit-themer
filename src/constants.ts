@@ -125,7 +125,10 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
     },
 };
 
-export const DEFAULT_THEME_UTILITY_COLORS = replaceReferencesInUtilityColors(DEFAULT_UTILITY_COLORS, DEFAULT_PRIVATE_COLORS);
+export const DEFAULT_THEME_UTILITY_COLORS = replaceReferencesInUtilityColors(
+    DEFAULT_UTILITY_COLORS,
+    DEFAULT_PRIVATE_COLORS,
+);
 
 export const DEFAULT_THEME: GravityTheme = {
     baseColors: DEFAULT_BASE_COLORS,

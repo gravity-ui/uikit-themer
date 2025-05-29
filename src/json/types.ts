@@ -9,10 +9,20 @@ export type ValueWithReference = {
 
 export type ThemizedValueWithReference = Record<Theme, ValueWithReference>;
 
+/**
+ * Checks if an object is a valid ValueWithReference.
+ * @param obj - The object to check
+ * @returns True if the object is a valid ValueWithReference
+ */
 export const isValueWithReference = (obj: unknown): obj is ValueWithReference => {
     return typeof obj === 'object' && obj !== null && 'value' in obj;
 };
 
+/**
+ * Checks if an object is a valid ThemizedValueWithReference.
+ * @param obj - The object to check
+ * @returns True if the object is a valid ThemizedValueWithReference
+ */
 export const isThemizedValueWithReference = (obj: unknown): obj is ThemizedValueWithReference => {
     return (
         typeof obj === 'object' &&
@@ -24,4 +34,4 @@ export const isThemizedValueWithReference = (obj: unknown): obj is ThemizedValue
     );
 };
 
-export type JsonTheme = Record<string, ThemizedValueWithReference | ValueWithReference>;
+export type JsonTheme = Record<string, ValueWithReference | ThemizedValueWithReference>;
