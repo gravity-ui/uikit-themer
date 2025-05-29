@@ -359,7 +359,3 @@ const typographyOnlyTheme = generateCSS({
   }
 });
 ```
-
-## License
-
-MIT © [Gravity UI](https://github.com/gravity-ui)
