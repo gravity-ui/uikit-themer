@@ -55,6 +55,8 @@ export type {BorderSize} from './borders/types.js';
 export {BORDER_SIZES} from './borders/types.js';
 export {isBorderRadiusCssVariable, createBorderRadiusCssVariable} from './borders/utils.js';
 
+export {DEFAULT_THEME} from './constants.js';
+
 export type {
     GravityTheme,
     PrivateColorOptions,
