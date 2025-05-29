@@ -64,7 +64,7 @@ export const DEFAULT_BASE_COLORS: BaseColors = {
     },
 };
 
-const DEFAULT_PRIVATE_COLORS = generatePrivateColorsForBaseColors(
+export const DEFAULT_PRIVATE_COLORS = generatePrivateColorsForBaseColors(
     DEFAULT_BASE_COLORS,
     DEFAULT_BACKGROUND.light,
     DEFAULT_BACKGROUND.dark,
@@ -125,10 +125,12 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
     },
 };
 
+export const DEFAULT_THEME_UTILITY_COLORS = replaceReferencesInUtilityColors(DEFAULT_UTILITY_COLORS, DEFAULT_PRIVATE_COLORS);
+
 export const DEFAULT_THEME: GravityTheme = {
     baseColors: DEFAULT_BASE_COLORS,
     privateColors: DEFAULT_PRIVATE_COLORS,
-    utilityColors: replaceReferencesInUtilityColors(DEFAULT_UTILITY_COLORS, DEFAULT_PRIVATE_COLORS),
+    utilityColors: DEFAULT_THEME_UTILITY_COLORS,
     typography: DEFAULT_TYPOGRAPHY_OPTIONS,
     borders: DEFAULT_BORDERS,
 };

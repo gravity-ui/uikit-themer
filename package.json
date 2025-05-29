@@ -7,7 +7,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.build.json",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && npm run generate-constants",
+    "generate-constants": "node scripts/build-constants.js",
     "watch": "npm run build -- --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

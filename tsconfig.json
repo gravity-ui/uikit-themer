@@ -7,7 +7,7 @@
         "noEmit": true,
         "downlevelIteration": true,
         "declaration": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "baseUrl": "./",
         "esModuleInterop": true,
         "importHelpers": true,
