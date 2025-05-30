@@ -83,3 +83,11 @@ export type GravityTheme = {
     /** Borders (radius, etc.) */
     borders: BordersOptions;
 };
+
+export type GenerateOptions = {
+    theme: GravityTheme;
+    /** Ignore export values that are equal to default values (from DEFAULT_THEME) */
+    ignoreDefaultValues?: boolean;
+    /** Add !important to values for preview mode */
+    forPreview?: boolean;
+};

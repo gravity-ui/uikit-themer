@@ -23,32 +23,39 @@ npm install @gravity-ui/gravity-themer
 
 Theme generation functions require a complete theme object. For convenience, you can use `DEFAULT_THEME` and override the necessary parameters.
 
-```typescript
-import { generateCSS, generateJSON, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+⚠️ **Note**: When modifying base colors, use `updateBaseColor` instead of direct manipulation to ensure private colors are properly regenerated.
 
-// Generate CSS theme using DEFAULT_THEME as base
-const cssTheme = generateCSS({
-  ...DEFAULT_THEME,
-  baseColors: {
-    ...DEFAULT_THEME.baseColors,
-    brand: {
-      dark: { value: '#007AFF' },
-      light: { value: '#007AFF' }
-    }
+```typescript
+import { generateCSS, generateJSON, updateBaseColor, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+
+// Recommended: Use updateBaseColor for modifying colors
+const themeWithCustomColors = updateBaseColor({
+  theme: DEFAULT_THEME,
+  colorToken: 'brand',
+  value: {
+    dark: '#007AFF',
+    light: '#007AFF'
   }
 });
 
-// Generate JSON theme
+// Generate CSS theme
+const cssTheme = generateCSS({
+  theme: themeWithCustomColors
+});
+
+// Generate JSON theme with typography changes
 const jsonTheme = generateJSON({
-  ...DEFAULT_THEME,
-  typography: {
-    ...DEFAULT_THEME.typography,
-    fontFamilies: {
-      ...DEFAULT_THEME.typography.fontFamilies,
-      sans: {
-        mainFont: 'SF Pro Text',
-        fallbackFonts: ['Arial'],
-      },
+  theme: {
+    ...DEFAULT_THEME,
+    typography: {
+      ...DEFAULT_THEME.typography,
+      fontFamilies: {
+        ...DEFAULT_THEME.typography.fontFamilies,
+        sans: {
+          mainFont: 'SF Pro Text',
+          fallbackFonts: ['Arial'],
+        },
+      }
     }
   }
 });
@@ -84,43 +91,31 @@ const cssFromJson = convertJSONtoCSS(jsonTheme);
 
 The library provides a `DEFAULT_THEME` constant that contains all the default values for a complete Gravity UI theme. This is the recommended starting point for creating custom themes.
 
+⚠️ **Important**: When modifying `baseColors`, use the `updateBaseColor` function instead of direct manipulation to ensure private colors are properly regenerated.
+
 ```typescript
-import { DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { DEFAULT_THEME, updateBaseColor } from '@gravity-ui/gravity-themer';
 import type { GravityTheme } from '@gravity-ui/gravity-themer';
 
-// Use DEFAULT_THEME as base for your custom theme
-const customTheme: GravityTheme = {
-  ...DEFAULT_THEME,
-  // Override specific parts
-  baseColors: {
-    ...DEFAULT_THEME.baseColors,
-    brand: {
-      dark: { value: '#FF3B30' },
-      light: { value: '#FF3B30' }
-    }
+// Recommended: Use updateBaseColor for base color changes
+const customTheme: GravityTheme = updateBaseColor({
+  theme: DEFAULT_THEME,
+  colorToken: 'brand',
+  value: {
+    dark: '#FF3B30',
+    light: '#FF3B30'
+  }
+});
+
+// For other theme parts, direct modification is fine
+const themeWithCustomTypography: GravityTheme = {
+  ...customTheme,
+  typography: {
+    ...customTheme.typography,
+    // typography modifications...
   }
 };
 ```
-
-### Working with Private Colors
-
-Private colors are internal theme colors used to generate the final palette.
-
-```typescript
-import { generatePrivateColors } from '@gravity-ui/gravity-themer';
-import type { PrivateColorToken, PrivateSolidColorToken } from '@gravity-ui/gravity-themer';
-
-// Generate private colors
-const privateColors = generatePrivateColors({
-  // private colors configuration
-});
-```
-
-**Types:**
-
-- `PrivateColorToken` - private color token
-- `PrivateSolidColorToken` - solid private color token  
-- `AnyPrivateColorToken` - any type of private color
 
 ### Color Utilities
 
@@ -132,7 +127,8 @@ import {
   parsePrivateColorCssVariable,
   createPrivateColorCssVariable,
   createUtilityColorCssVariable,
-  getUtilityColorTypeFromCssVariable
+  getUtilityColorTypeFromCssVariable,
+  updateBaseColor
 } from '@gravity-ui/gravity-themer';
 
 // Check CSS variable type
@@ -144,12 +140,65 @@ const isPrivate = isPrivateColorCssVariable('--g-private-color-red-500');
 const {mainColorToken, privateColorToken} = parsePrivateColorCssVariable('--g-private-color-red-500');
 
 // Create color variables
-const privateVar = createPrivateColorCssVariable('red', '500');
-const utilityVar = createUtilityColorCssVariable('text', 'primary');
+createPrivateColorCssVariable('brand', '200-solid') === '--g-color-private-brand-200-solid'
+createUtilityColorCssVariable('text-link-visited') === '--g-color-text-link-visited'
 
 // Get utility color type
-const colorType = getUtilityColorTypeFromCssVariable('--g-color-text-primary');
+getUtilityColorTypeFromCssVariable('--g-color-text-link-hover') === 'text-link-hover'
 ```
+
+#### Updating Base Colors
+
+⚠️ **Important**: Always use `updateBaseColor` when modifying base colors to ensure proper regeneration of private colors.
+
+```typescript
+import { updateBaseColor, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+
+// Update base color for a single theme variant
+const updatedTheme = updateBaseColor({
+  theme: DEFAULT_THEME,
+  colorToken: 'brand',
+  themeVariant: 'light',
+  value: '#007AFF',
+});
+
+// Update base color for both theme variants
+const updatedBothThemes = updateBaseColor({
+  theme: DEFAULT_THEME,
+  colorToken: 'brand',
+  value: {
+    light: '#007AFF',
+    dark: '#0056CC',
+  },
+});
+
+// Create a new color token
+const newColorTheme = updateBaseColor({
+  theme: DEFAULT_THEME,
+  colorToken: 'custom-accent',
+  value: {
+    light: '#FF6B35',
+    dark: '#FF8C5A',
+  },
+});
+```
+
+The `updateBaseColor` function:
+
+- Updates the base color in `baseColors`
+- Automatically regenerates corresponding private colors
+- Maintains theme immutability (returns a new theme object)
+- Handles both existing and new color tokens
+- Supports updating single theme variant or both variants simultaneously
+
+**Why use `updateBaseColor`?**
+
+Direct modification of `baseColors` without regenerating private colors can lead to inconsistent themes. Private colors are calculated from base colors and are used throughout the UI components. The `updateBaseColor` function ensures that:
+
+1. Base colors are properly updated
+2. Private colors are regenerated with the new base color
+3. The theme remains internally consistent
+4. All color dependencies are maintained
 
 ### Typography
 
@@ -180,13 +229,26 @@ const isText = isTextCssVariable('--g-text-body-1-font-size');
 const isFont = isFontCssVariable('--g-font-family-sans');
 
 // Create typography variables
-const fontVar = createFontCssVariable('family', 'sans');
-const textVar = createTextCssVariable('body-1', 'font-size');
+createFontCssVariable('additional') === '--g-font-family-additional';
+
+createTextCssVariable({
+    variant: 'body-1',
+    property: 'font-size'
+}) === '--g-text-body-1-font-size'
 
 // Utilities
-const fontKey = getKeyFromCssFontVariable('--g-font-family-sans');
-const textParsed = parseTextCssVariable('--g-text-body-1-font-size');
-const fontFamily = generateCssFontFamily(['Arial', 'sans-serif']);
+getKeyFromCssFontVariable('--g-font-family-sans') === 'sans'
+
+parseTextCssVariable('--g-text-body-1-font-size') === {
+    "group": "body",
+    "variant": "body-1",
+    "property": "font-size"
+}
+
+generateCssFontFamily({
+    "mainFont": "SF Pro Text",
+    "fallbackFonts": ["Arial", "sans-serif"]
+}) === "'SF Pro Text', 'Arial', 'sans-serif'"
 
 // Constants
 console.log(TEXT_VARIANTS); // All available text variants
@@ -277,31 +339,36 @@ import type {
 ### Creating a Custom Theme
 
 ```typescript
-import { generateCSS, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { generateCSS, updateBaseColor, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+
+// Recommended: Use updateBaseColor to modify base colors
+const themeWithCustomBrand = updateBaseColor({
+  theme: DEFAULT_THEME,
+  colorToken: 'brand',
+  value: {
+    dark: '#007AFF',
+    light: '#007AFF'
+  }
+});
 
 const customTheme = generateCSS({
-  ...DEFAULT_THEME,
-  baseColors: {
-    ...DEFAULT_THEME.baseColors,
-    brand: {
-      dark: { value: '#007AFF' },
-      light: { value: '#007AFF' }
-    }
-  },
-  typography: {
-    ...DEFAULT_THEME.typography,
-    fontFamilies: {
-      ...DEFAULT_THEME.typography.fontFamilies,
-      sans: {
-        mainFont: 'SF Pro Text',
-        fallbackFonts: ['Arial'],
+  theme: {
+    ...themeWithCustomBrand,
+    typography: {
+      ...themeWithCustomBrand.typography,
+      fontFamilies: {
+        ...themeWithCustomBrand.typography.fontFamilies,
+        sans: {
+          mainFont: 'SF Pro Text',
+          fallbackFonts: ['Arial'],
+        },
       },
-    },
-    variants: {
-      ...DEFAULT_THEME.typography.variants,
-      'body-1': {
-        'font-size': '13px',
-        'line-height': '18px',
+      variants: {
+        ...themeWithCustomBrand.typography.variants,
+        'body-1': {
+          'font-size': '13px',
+          'line-height': '18px',
+        }
       }
     }
   }
@@ -311,25 +378,23 @@ const customTheme = generateCSS({
 ### Parsing and Modifying Existing Theme
 
 ```typescript
-import { parseCSS, generateCSS, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { parseCSS, generateCSS, updateBaseColor } from '@gravity-ui/gravity-themer';
 
 // Parse existing theme
 const existingTheme = parseCSS(cssString);
 
-// Modify brand color
-const modifiedTheme = {
-  ...existingTheme,
-  baseColors: {
-    ...existingTheme.baseColors,
-    brand: {
-      dark: { value: '#FF3B30' },
-      light: { value: '#FF3B30' }
-    }
+// Recommended: Use updateBaseColor to modify brand color
+const modifiedTheme = updateBaseColor({
+  theme: existingTheme,
+  colorToken: 'brand',
+  value: {
+    dark: '#FF3B30',
+    light: '#FF3B30'
   }
-};
+});
 
 // Generate new CSS
-const newCSS = generateCSS(modifiedTheme);
+const newCSS = generateCSS({theme: modifiedTheme});
 ```
 
 ### Working with Specific Theme Parts
@@ -339,22 +404,24 @@ import { generateCSS, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
 
 // Override only typography
 const typographyOnlyTheme = generateCSS({
-  ...DEFAULT_THEME,
-  typography: {
-    ...DEFAULT_THEME.typography,
-    fontFamilies: {
-      ...DEFAULT_THEME.typography.fontFamilies,
-      'custom-font': {
-        mainFont: 'SF Pro Text',
-        fallbackFonts: ['Arial'],
+  theme: {
+    ...DEFAULT_THEME,
+    typography: {
+      ...DEFAULT_THEME.typography,
+      fontFamilies: {
+        ...DEFAULT_THEME.typography.fontFamilies,
+        'custom-font': {
+          mainFont: 'SF Pro Text',
+          fallbackFonts: ['Arial'],
+        },
       },
-    },
-    groups: {
-      ...DEFAULT_THEME.typography.groups,
-      body: {
-        'font-family': 'custom-font',
-        'font-weight': 400,
-      },
+      groups: {
+        ...DEFAULT_THEME.typography.groups,
+        body: {
+          'font-family': 'custom-font',
+          'font-weight': 400,
+        },
+      }
     }
   }
 });

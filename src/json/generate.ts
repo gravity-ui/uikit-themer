@@ -1,7 +1,7 @@
 import type {BorderSize} from '../borders/types.js';
 import {createBorderRadiusCssVariable} from '../borders/utils.js';
 import type {AnyPrivateColorToken} from '../private-colors/types.js';
-import type {GravityTheme, UtilityColor} from '../types.js';
+import type {GenerateOptions, UtilityColor} from '../types.js';
 import {
     TEXT_GROUP_PROPERTIES,
     TEXT_GROUPS,
@@ -19,10 +19,10 @@ import {isValueWithReference, type JsonTheme, type ThemizedValueWithReference} f
 
 /**
  * Generates a JSON theme from a GravityTheme object.
- * @param theme - The GravityTheme to convert to JSON
+ * @param options - The options for generating JSON
  * @returns JSON theme representation
  */
-export function generateJSON(theme: GravityTheme): JsonTheme {
+export function generateJSON({theme}: GenerateOptions): JsonTheme {
     const result: JsonTheme = {};
 
     for (const [key, value] of Object.entries(theme.typography.fontFamilies)) {

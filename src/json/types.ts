@@ -34,4 +34,14 @@ export const isThemizedValueWithReference = (obj: unknown): obj is ThemizedValue
     );
 };
 
+/**
+ * JSON theme representation.
+ * @example
+ * {
+ *     '--g-color-brand-heavy': {
+ *         dark: { value: 'rgb(0, 0, 0)' },
+ *         light: { value: 'rgb(255, 119, 0)' }
+ *     }
+ * }
+ */
 export type JsonTheme = Record<string, ValueWithReference | ThemizedValueWithReference>;

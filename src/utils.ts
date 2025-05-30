@@ -4,6 +4,7 @@ import {ALL_PRIVATE_VARIABLES} from './private-colors/constants.js';
 import {
     UTILITY_COLORS,
     type BaseColors,
+    type GravityTheme,
     type PrivateColorOptions,
     type PrivateColors,
     type Theme,
@@ -344,6 +345,136 @@ export const generatePrivateColorsForBaseColors = (
     }
 
     return privateColors;
+};
+
+type UpdateBaseColorOptions = {
+    theme: GravityTheme;
+    colorToken: string;
+} & (
+    | {
+          themeVariant: Theme;
+          value: string;
+      }
+    | {
+          value: Record<Theme, string>;
+      }
+);
+
+/**
+ * Updates a base color in the theme with regeneration of private colors.
+ *
+ * @example
+ * updateBaseColor({
+ *      theme: theme,
+ *      colorToken: 'brand',
+ *      themeVariant: 'light',
+ *      value: '#000000',
+ * })
+ *
+ * updateBaseColor({
+ *      theme: theme,
+ *      colorToken: 'brand',
+ *      value: {
+ *          light: '#000000',
+ *          dark: '#000000',
+ *      },
+ * })
+ * @param options - The options for updating the base color
+ * @param options.theme - The theme to update
+ * @param options.themeVariant - The theme variant to update
+ * @param options.colorToken - The color token to update
+ * @param options.value - The new color value
+ * @returns The updated theme
+ */
+export const updateBaseColor = (params: UpdateBaseColorOptions): GravityTheme => {
+    const {theme, colorToken} = params;
+    const newTheme = cloneDeep(theme);
+
+    if (!newTheme.baseColors[colorToken]) {
+        newTheme.baseColors[colorToken] = {
+            light: {value: ''},
+            dark: {value: ''},
+        };
+    }
+
+    if ('themeVariant' in params) {
+        const {themeVariant, value} = params;
+        newTheme.baseColors[colorToken][themeVariant] = {
+            value,
+        };
+    } else {
+        const {value} = params;
+        newTheme.baseColors[colorToken] = {
+            light: {value: value.light},
+            dark: {value: value.dark},
+        };
+    }
+
+    if (!newTheme.privateColors[colorToken]) {
+        newTheme.privateColors[colorToken] = {
+            light: {},
+            dark: {},
+        };
+    }
+
+    if ('themeVariant' in params) {
+        const {themeVariant, value} = params;
+
+        const privateColors = generatePrivateColors({
+            theme: themeVariant,
+            colorToken,
+            colorValue: value,
+            lightBg: newTheme.utilityColors['base-background'].light.value,
+            darkBg: newTheme.utilityColors['base-background'].dark.value,
+        });
+
+        newTheme.privateColors[colorToken][themeVariant] = Object.entries(
+            privateColors,
+        ).reduce<PrivateColorOptions>(
+            (acc, [privateColorToken, value]) => ({
+                ...acc,
+                [privateColorToken as AnyPrivateColorToken]: {
+                    value,
+                },
+            }),
+            {},
+        );
+    } else {
+        const {value} = params;
+
+        const {light: lightPrivateColors, dark: darkPrivateColors} = (
+            ['light', 'dark'] as const
+        ).reduce<Record<Theme, PrivateColorOptions>>(
+            (acc, theme) => {
+                const privateColors = generatePrivateColors({
+                    theme,
+                    colorToken,
+                    colorValue: value[theme],
+                    lightBg: newTheme.utilityColors['base-background'].light.value,
+                    darkBg: newTheme.utilityColors['base-background'].dark.value,
+                });
+
+                return {
+                    ...acc,
+                    [theme]: Object.entries(privateColors).reduce<PrivateColorOptions>(
+                        (acc, [privateColorToken, value]) => ({
+                            ...acc,
+                            [privateColorToken as AnyPrivateColorToken]: {value},
+                        }),
+                        {},
+                    ),
+                };
+            },
+            {light: {}, dark: {}},
+        );
+
+        newTheme.privateColors[colorToken] = {
+            light: lightPrivateColors,
+            dark: darkPrivateColors,
+        };
+    }
+
+    return newTheme;
 };
 
 /**

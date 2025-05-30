@@ -1,7 +1,7 @@
 import {isEqual} from 'lodash-es';
 import {DEFAULT_THEME} from '../constants.js';
 import type {AnyPrivateColorToken} from '../private-colors/types.js';
-import type {GravityTheme, Theme, UtilityColor} from '../types.js';
+import type {GenerateOptions, GravityTheme, Theme, UtilityColor} from '../types.js';
 import {
     TEXT_GROUP_PROPERTIES,
     TEXT_VARIANT_PROPERTIES,
@@ -63,16 +63,10 @@ Output example:
 */
 /**
  * Generates CSS string from a GravityTheme object.
- * @param theme - The GravityTheme to convert to CSS
- * @param ignoreDefaultValues - Whether to ignore default values when generating CSS
- * @param forPreview - Whether to add !important to values for preview mode
+ * @param options - The options for generating CSS
  * @returns CSS string representation of the theme
  */
-export function generateCSS(
-    theme: GravityTheme,
-    ignoreDefaultValues: boolean = false,
-    forPreview: boolean = false,
-): string {
+export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOptions): string {
     const backgroundColorChanged = isBackgroundColorChanged(theme);
 
     const createUtilityColorExport = (
