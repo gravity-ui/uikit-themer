@@ -74,16 +74,14 @@ describe('updateBaseColor', () => {
             });
 
             expect(result.baseColors.brand.light.value).toBe(newColor);
-            expect(result.baseColors.brand.dark.value).toBe(
-                DEFAULT_THEME.baseColors.brand.dark.value,
-            );
+            expect(result.baseColors.brand.dark.value).toBe('');
 
             // Check that private colors are regenerated for light theme
-            expect(result.privateColors.brand.light).toBeDefined();
+            expect(result.privateColors.brand).toBeDefined();
             expect(Object.keys(result.privateColors.brand.light).length).toBeGreaterThan(0);
 
             // Check that private colors for dark theme remain unchanged
-            expect(result.privateColors.brand.dark).toEqual(DEFAULT_THEME.privateColors.brand.dark);
+            expect(result.privateColors.brand.dark).toEqual({});
         });
 
         it('should update base color for dark theme', () => {
@@ -97,18 +95,14 @@ describe('updateBaseColor', () => {
             });
 
             expect(result.baseColors.brand.dark.value).toBe(newColor);
-            expect(result.baseColors.brand.light.value).toBe(
-                DEFAULT_THEME.baseColors.brand.light.value,
-            );
+            expect(result.baseColors.brand.light.value).toBe('');
 
             // Check that private colors are regenerated for dark theme
-            expect(result.privateColors.brand.dark).toBeDefined();
+            expect(result.privateColors.brand).toBeDefined();
             expect(Object.keys(result.privateColors.brand.dark).length).toBeGreaterThan(0);
 
             // Check that private colors for light theme remain unchanged
-            expect(result.privateColors.brand.light).toEqual(
-                DEFAULT_THEME.privateColors.brand.light,
-            );
+            expect(result.privateColors.brand.light).toEqual({});
         });
     });
 
@@ -200,9 +194,7 @@ describe('updateBaseColor', () => {
             // Check that original theme is not modified
             expect(DEFAULT_THEME).toEqual(originalTheme);
             expect(result).not.toBe(DEFAULT_THEME);
-            expect(result.baseColors.brand.light.value).not.toBe(
-                DEFAULT_THEME.baseColors.brand.light.value,
-            );
+            expect(result.baseColors.brand.light.value).not.toBe('');
         });
     });
 

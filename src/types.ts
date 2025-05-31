@@ -39,7 +39,6 @@ export const isThemizedColorOptions = (obj: unknown): obj is ThemizedColorOption
 };
 
 export type BaseColors = {
-    brand: ThemizedColorOptions;
     [key: string]: ThemizedColorOptions;
 };
 
@@ -67,7 +66,6 @@ export type PrivateColorOptions = Partial<Record<AnyPrivateColorToken, ColorOpti
 export type ThemizedPrivateColorOptions = Record<Theme, PrivateColorOptions>;
 
 export type PrivateColors = {
-    brand: ThemizedPrivateColorOptions;
     [key: string]: ThemizedPrivateColorOptions;
 };
 

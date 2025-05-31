@@ -23,7 +23,11 @@ export {
     createPrivateColorCssVariable,
     createUtilityColorCssVariable,
     getUtilityColorTypeFromCssVariable,
+    createInternalPrivateColorReference,
+    isInternalPrivateColorReference,
+    parseInternalPrivateColorReference,
     updateBaseColor,
+    removeBaseColor,
 } from './utils.js';
 
 export type {

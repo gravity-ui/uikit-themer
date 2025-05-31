@@ -306,12 +306,7 @@ export const generatePrivateColorsForBaseColors = (
     lightBackgroundColor: string,
     darkBackgroundColor: string,
 ): PrivateColors => {
-    const privateColors: PrivateColors = {
-        brand: {
-            dark: {},
-            light: {},
-        },
-    };
+    const privateColors: PrivateColors = {};
 
     for (const [colorToken, colorValues] of Object.entries(baseColors)) {
         if (!privateColors[colorToken]) {
@@ -474,6 +469,26 @@ export const updateBaseColor = (params: UpdateBaseColorOptions): GravityTheme =>
         };
     }
 
+    return newTheme;
+};
+
+/**
+ * Removes a base color from the theme.
+ *
+ * @example
+ * removeBaseColor({
+ *      theme: theme,
+ *      colorToken: 'brand',
+ * })
+ *
+ * @param theme - The theme to remove the base color from
+ * @param colorToken - The color token to remove
+ * @returns The updated theme
+ */
+export const removeBaseColor = (theme: GravityTheme, colorToken: string): GravityTheme => {
+    const newTheme = cloneDeep(theme);
+    delete newTheme.baseColors[colorToken];
+    delete newTheme.privateColors[colorToken];
     return newTheme;
 };
 

@@ -1,9 +1,11 @@
 import {DEFAULT_BORDERS} from './borders/constants.js';
 import type {BaseColors, GravityTheme, Theme, UtilityColors} from './types.js';
 import {DEFAULT_TYPOGRAPHY_OPTIONS} from './typography/constants.js';
-import {generatePrivateColorsForBaseColors, replaceReferencesInUtilityColors} from './utils.js';
-
-const DEFAULT_BRAND_COLOR = 'rgb(203,255,92)';
+import {
+    createInternalPrivateColorReference,
+    generatePrivateColorsForBaseColors,
+    replaceReferencesInUtilityColors,
+} from './utils.js';
 
 const DEFAULT_BACKGROUND = {
     dark: 'rgb(34,29,34)',
@@ -21,6 +23,9 @@ const TEXT_CONTRAST_COLORS: Record<Theme, {white: string; black: string}> = {
     },
 };
 
+// Values are taken from the default theme (550-solid)
+// Light: https://github.com/gravity-ui/uikit/blob/main/styles/themes/light/private.scss
+// Dark: https://github.com/gravity-ui/uikit/blob/main/styles/themes/dark/private.scss
 export const DEFAULT_BASE_COLORS: BaseColors = {
     white: {
         dark: {value: 'rgb(255, 255, 255)'},
@@ -30,29 +35,25 @@ export const DEFAULT_BASE_COLORS: BaseColors = {
         dark: {value: 'rgb(0, 0, 0)'},
         light: {value: 'rgb(0, 0, 0)'},
     },
-    brand: {
-        dark: {value: DEFAULT_BRAND_COLOR},
-        light: {value: DEFAULT_BRAND_COLOR},
-    },
     orange: {
         dark: {value: 'rgb(200, 99, 12)'},
         light: {value: 'rgb(255, 119, 0)'},
     },
     green: {
-        dark: {value: 'rgb(91, 181, 87)'},
-        light: {value: 'rgb(59, 201, 53)'},
+        dark: {value: 'rgb(77, 176, 155)'},
+        light: {value: 'rgb(50, 186, 118)'},
     },
     yellow: {
-        dark: {value: 'rgb(255, 203, 0)'},
-        light: {value: 'rgb(255, 219, 77)'},
+        dark: {value: 'rgb(255, 190, 92)'},
+        light: {value: 'rgb(255, 190, 92)'},
     },
     red: {
-        dark: {value: 'rgb(232, 73, 69)'},
-        light: {value: 'rgb(255, 4, 0)'},
+        dark: {value: 'rgb(229, 50, 93)'},
+        light: {value: 'rgb(255, 0, 61)'},
     },
     blue: {
-        dark: {value: 'rgb(82, 130, 255)'},
-        light: {value: 'rgb(82, 130, 255)'},
+        dark: {value: 'rgb(54, 151, 241)'},
+        light: {value: 'rgb(54, 151, 241)'},
     },
     'cool-grey': {
         dark: {value: 'rgb(96, 128, 156)'},
@@ -72,56 +73,56 @@ export const DEFAULT_PRIVATE_COLORS = generatePrivateColorsForBaseColors(
 
 const DEFAULT_UTILITY_COLORS: UtilityColors = {
     'base-brand': {
-        dark: {value: DEFAULT_BRAND_COLOR},
-        light: {value: DEFAULT_BRAND_COLOR},
+        dark: {value: createInternalPrivateColorReference('yellow', '550-solid')},
+        light: {value: createInternalPrivateColorReference('yellow', '550-solid')},
     },
     'base-background': {
         dark: {value: DEFAULT_BACKGROUND.dark},
-        light: {value: DEFAULT_BACKGROUND.light},
+        light: {value: createInternalPrivateColorReference('white', '1000-solid')},
     },
     'base-brand-hover': {
-        dark: {value: 'private.brand.650-solid'},
-        light: {value: 'private.brand.600-solid'},
+        dark: {value: createInternalPrivateColorReference('yellow', '650-solid')},
+        light: {value: createInternalPrivateColorReference('yellow', '600-solid')},
     },
     'base-selection': {
-        dark: {value: 'private.brand.150'},
-        light: {value: 'private.brand.200'},
+        dark: {value: createInternalPrivateColorReference('yellow', '150')},
+        light: {value: createInternalPrivateColorReference('yellow', '200')},
     },
     'base-selection-hover': {
-        dark: {value: 'private.brand.200'},
-        light: {value: 'private.brand.300'},
+        dark: {value: createInternalPrivateColorReference('yellow', '200')},
+        light: {value: createInternalPrivateColorReference('yellow', '300')},
     },
     'line-brand': {
-        dark: {value: 'private.brand.600-solid'},
-        light: {value: 'private.brand.600-solid'},
+        dark: {value: createInternalPrivateColorReference('yellow', '600-solid')},
+        light: {value: createInternalPrivateColorReference('yellow', '600-solid')},
     },
     'text-brand': {
-        dark: {value: 'private.brand.600-solid'},
-        light: {value: 'private.brand.700-solid'},
+        dark: {value: createInternalPrivateColorReference('yellow', '600-solid')},
+        light: {value: createInternalPrivateColorReference('yellow', '700-solid')},
     },
     'text-brand-heavy': {
-        dark: {value: 'private.brand.700-solid'},
-        light: {value: 'private.brand.700-solid'},
+        dark: {value: createInternalPrivateColorReference('yellow', '700-solid')},
+        light: {value: createInternalPrivateColorReference('orange', '700-solid')},
     },
     'text-brand-contrast': {
         dark: {value: TEXT_CONTRAST_COLORS.dark.black},
         light: {value: TEXT_CONTRAST_COLORS.light.black},
     },
     'text-link': {
-        dark: {value: 'private.brand.550-solid'},
-        light: {value: 'private.brand.600-solid'},
+        dark: {value: createInternalPrivateColorReference('yellow', '550-solid')},
+        light: {value: createInternalPrivateColorReference('yellow', '650-solid')},
     },
     'text-link-hover': {
-        dark: {value: 'private.brand.700-solid'},
-        light: {value: 'private.brand.800-solid'},
+        dark: {value: createInternalPrivateColorReference('orange', '550-solid')},
+        light: {value: createInternalPrivateColorReference('orange', '650-solid')},
     },
     'text-link-visited': {
-        dark: {value: 'private.purple.700-solid'},
-        light: {value: 'private.purple.550-solid'},
+        dark: {value: createInternalPrivateColorReference('purple', '600-solid')},
+        light: {value: createInternalPrivateColorReference('purple', '550-solid')},
     },
     'text-link-visited-hover': {
-        dark: {value: 'private.purple.850-solid'},
-        light: {value: 'private.purple.800-solid'},
+        dark: {value: createInternalPrivateColorReference('purple', '750-solid')},
+        light: {value: createInternalPrivateColorReference('purple', '800-solid')},
     },
 };
 

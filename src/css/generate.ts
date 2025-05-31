@@ -17,6 +17,20 @@ import {createPrivateColorCssVariable, createUtilityColorCssVariable} from '../u
 import type {BorderSize} from '../borders/types.js';
 import {createBorderRadiusCssVariable} from '../borders/utils.js';
 
+/**
+ * Adds indentation to each line of a string
+ * @param text - Text to indent
+ * @param spaces - Number of spaces for indentation
+ * @returns Indented text
+ */
+const addIndentation = (text: string, spaces: number = 4): string => {
+    const indent = ' '.repeat(spaces);
+    return text
+        .split('\n')
+        .map((line) => (line.trim() ? indent + line : line))
+        .join('\n');
+};
+
 const COMMON_VARIABLES_TEMPLATE_NAME = '%COMMON_VARIABLES%';
 const LIGHT_THEME_VARIABLES_TEMPLATE_NAME = '%LIGHT_THEME_VARIABLES%';
 const DARK_THEME_VARIABLES_TEMPLATE_NAME = '%DARK_THEME_VARIABLES%';
@@ -87,20 +101,17 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
         let cssVariables = '';
 
         Object.entries(theme.baseColors).forEach(([token, colorOptions]) => {
-            // Dont export colors that are equals to default (except brand color)
+            // Dont export colors that are equals to default
             // Private colors recalculate when background color changes
             const valueEqualsToDefault =
                 DEFAULT_THEME.baseColors[token]?.[themeVariant].value ===
-                    colorOptions[themeVariant].value &&
-                token !== 'brand' &&
-                !backgroundColorChanged;
+                    colorOptions[themeVariant].value && !backgroundColorChanged;
 
             if (valueEqualsToDefault && ignoreDefaultValues) {
                 return;
             }
 
-            const needExportColor =
-                backgroundColorChanged || token === 'brand' || !valueEqualsToDefault;
+            const needExportColor = backgroundColorChanged || !valueEqualsToDefault;
 
             if (!needExportColor) {
                 return;
@@ -121,15 +132,22 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
 
         cssVariables += '\n';
 
-        cssVariables += `${createUtilityColorCssVariable('base-brand')}: ${
-            theme.baseColors.brand[themeVariant].value
-        }${forPreview ? ' !important' : ''};\n`;
+        Object.keys(theme.utilityColors).forEach((_utilityColor) => {
+            const utilityColor = _utilityColor as UtilityColor;
 
-        Object.keys(theme.utilityColors).forEach((utilityColor) => {
-            if (utilityColor === 'base-brand') {
+            // Dont export colors that are equals to default
+            const valueEqualsToDefault =
+                DEFAULT_THEME.utilityColors[utilityColor][themeVariant].value ===
+                    theme.utilityColors[utilityColor][themeVariant].value ||
+                (DEFAULT_THEME.utilityColors[utilityColor][themeVariant].ref &&
+                    DEFAULT_THEME.utilityColors[utilityColor][themeVariant].ref ===
+                        theme.utilityColors[utilityColor][themeVariant].ref);
+
+            if (valueEqualsToDefault && ignoreDefaultValues) {
                 return;
             }
-            cssVariables += `${createUtilityColorExport(theme, themeVariant, utilityColor as UtilityColor)}\n`;
+
+            cssVariables += `${createUtilityColorExport(theme, themeVariant, utilityColor)}\n`;
         });
 
         return cssVariables.trim();
@@ -240,7 +258,8 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
         dark: prepareThemeVariables('dark'),
     };
 
-    return CSS_TEMPLATE.replace(COMMON_VARIABLES_TEMPLATE_NAME, themeParams.common)
-        .replace(LIGHT_THEME_VARIABLES_TEMPLATE_NAME, themeParams.light)
-        .replace(DARK_THEME_VARIABLES_TEMPLATE_NAME, themeParams.dark);
+    return CSS_TEMPLATE.replace(COMMON_VARIABLES_TEMPLATE_NAME, addIndentation(themeParams.common))
+        .replace(LIGHT_THEME_VARIABLES_TEMPLATE_NAME, addIndentation(themeParams.light))
+        .replace(DARK_THEME_VARIABLES_TEMPLATE_NAME, addIndentation(themeParams.dark))
+        .replace(/\n{3,}/g, '\n\n');
 }

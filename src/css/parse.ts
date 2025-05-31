@@ -22,20 +22,21 @@ import {
 import {getSizeFromCssBorderSizeVariable, isBorderRadiusCssVariable} from '../borders/utils.js';
 
 function parseThemeTokens(cssString: string) {
-    const tokens: Record<Theme, Record<string, string>> = {
+    const tokens: Record<Theme | 'root', Record<string, string>> = {
+        root: {},
         light: {},
         dark: {},
     };
 
-    const regex = /\.g-root_theme_(light|dark)\s*{([^}]*)}/g;
+    // Single regex for .g-root, .g-root_theme_light and .g-root_theme_dark
+    const regex = /\.g-root(?:_theme_(light|dark))?\s*{([^}]*)}/g;
 
     let match;
     while ((match = regex.exec(cssString)) !== null) {
         const [_, themeName, properties] = match;
 
-        if (themeName !== 'light' && themeName !== 'dark') {
-            continue;
-        }
+        // Determine type: if themeName is undefined, then it is .g-root
+        const tokenType = themeName || 'root';
 
         if (!properties) {
             continue;
@@ -48,7 +49,7 @@ function parseThemeTokens(cssString: string) {
             if (!propName || !propValue) {
                 continue;
             }
-            tokens[themeName][propName] = propValue.trim();
+            tokens[tokenType as Theme | 'root'][propName] = propValue.trim();
         }
     }
 
@@ -204,6 +205,20 @@ export function parseCSS(cssString: string): GravityTheme {
     const themeTokens = parseThemeTokens(cssString);
     const theme = cloneDeep(DEFAULT_THEME);
 
+    // Process global variables from .g-root
+    for (const [variable, value] of Object.entries(themeTokens.root)) {
+        if (isFontCssVariable(variable)) {
+            applyFontVariable(theme, variable, value);
+        } else if (isTextCssVariable(variable)) {
+            applyTextVariable(theme, variable, value);
+        } else if (isBorderRadiusCssVariable(variable)) {
+            applyBorderRadiusVariable(theme, variable, value);
+        } else {
+            console.error(`Unsupported css variable in .g-root: ${variable}. Skip`);
+        }
+    }
+
+    // Process variables for specific themes
     for (const themeType of ['light', 'dark'] as const) {
         for (const [variable, value] of Object.entries(themeTokens[themeType])) {
             if (isColorCssVariable(variable)) {
@@ -212,19 +227,14 @@ export function parseCSS(cssString: string): GravityTheme {
                 } else if (isUtilityColorCssVariable(variable)) {
                     applyUtilityColorVariable(theme, themeType, variable, value);
                 } else {
-                    console.error(`Unsupported css variable ${variable}. Skip`);
+                    console.error(
+                        `Unsupported css variable in .g-root_theme_${themeType}: ${variable}. Skip`,
+                    );
                 }
-            } else if (isFontCssVariable(variable)) {
-                // TODO variable should be parsed from global styles .g-root, not from light/dark
-                applyFontVariable(theme, variable, value);
-            } else if (isTextCssVariable(variable)) {
-                // TODO variable should be parsed from global styles .g-root, not from light/dark
-                applyTextVariable(theme, variable, value);
-            } else if (isBorderRadiusCssVariable(variable)) {
-                // TODO variable should be parsed from global styles .g-root, not from light/dark
-                applyBorderRadiusVariable(theme, variable, value);
             } else {
-                console.error(`Unsupported css variable ${variable}. Skip`);
+                console.error(
+                    `Unsupported css variable in .g-root_theme_${themeType}: ${variable}. Skip`,
+                );
             }
         }
     }
