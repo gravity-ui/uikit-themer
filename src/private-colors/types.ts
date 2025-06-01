@@ -31,6 +31,7 @@ export type PrivateColorToken =
     | '700'
     | '650'
     | '600'
+    | '550'
     | '500'
     | '450'
     | '400'

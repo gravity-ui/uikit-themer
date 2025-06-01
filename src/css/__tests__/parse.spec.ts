@@ -65,7 +65,7 @@ describe('parseCSS', () => {
 
         expect(result.typography.fontFamilies).toEqual({
             'additional-1': {
-                fallbackFonts: ['Raz', 'Dva'],
+                fallbackFonts: ['Raz', 'Dva', 'Tri'],
                 mainFont: 'Custom',
             },
             'additional-123': {
@@ -73,7 +73,7 @@ describe('parseCSS', () => {
                 mainFont: 'Custom111',
             },
             sans: {
-                fallbackFonts: ['Helvetica Neue', 'Helvetica', 'Arial'],
+                fallbackFonts: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
                 mainFont: 'Inter',
             },
             monospace: {
@@ -86,6 +86,7 @@ describe('parseCSS', () => {
                     'DejaVu Sans Mono',
                     'Courier New',
                     'Courier',
+                    'monospace',
                 ],
                 mainFont: 'Roboto Mono',
             },

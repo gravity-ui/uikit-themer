@@ -13,12 +13,18 @@ import {
     TEXT_GROUP_PROPERTIES,
 } from './types.js';
 
-type FontFamilyType = 'monospace' | 'sans-serif';
+const FONT_FAMILY_TYPES = new Set([
+    'sans-serif',
+    'serif',
+    'monospace',
+    'cursive',
+    'fantasy',
+    'system-ui',
+]);
 
 type FontFamilyDetails = {
     mainFont: string;
     fallbackFonts: string[];
-    type?: FontFamilyType;
 };
 
 /**
@@ -43,21 +49,11 @@ export function parseCssFontFamily(fontFamilyValue: string): FontFamilyDetails |
         return undefined;
     }
 
-    // The last font is assumed to be the family type (sans-serif / monospace)
-    const lastFont = fonts[fonts.length - 1]?.toLowerCase();
-    let type: FontFamilyType | undefined;
-    if (lastFont?.includes('mono')) {
-        type = 'monospace';
-    } else if (lastFont?.includes('sans')) {
-        type = 'sans-serif';
-    } else if (lastFont === 'monospace' || lastFont === 'sans-serif') {
-        type = lastFont;
-    }
+    const [mainFont, ...fallbackFonts] = fonts;
 
     return {
-        mainFont: fonts[0]!,
-        fallbackFonts: fonts.slice(1, -1),
-        type,
+        mainFont: mainFont!,
+        fallbackFonts,
     };
 }
 
@@ -67,7 +63,9 @@ export function parseCssFontFamily(fontFamilyValue: string): FontFamilyDetails |
  * @returns CSS font-family string
  */
 export function generateCssFontFamily(value: FontOptions) {
-    return [value.mainFont, ...value.fallbackFonts].map((el) => `'${el}'`).join(', ');
+    return [value.mainFont, ...value.fallbackFonts]
+        .map((el) => (FONT_FAMILY_TYPES.has(el) ? el : `'${el}'`))
+        .join(', ');
 }
 
 /**

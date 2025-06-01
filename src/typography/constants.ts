@@ -5,7 +5,7 @@ export const DEFAULT_TYPOGRAPHY_OPTIONS: TypographyOptions = {
     fontFamilies: {
         sans: {
             mainFont: 'Inter',
-            fallbackFonts: ['Helvetica Neue', 'Helvetica', 'Arial'],
+            fallbackFonts: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
         },
         monospace: {
             mainFont: 'Menlo',
@@ -17,6 +17,7 @@ export const DEFAULT_TYPOGRAPHY_OPTIONS: TypographyOptions = {
                 'DejaVu Sans Mono',
                 'Courier New',
                 'Courier',
+                'monospace',
             ],
         },
     },

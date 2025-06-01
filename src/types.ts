@@ -42,17 +42,8 @@ export type BaseColors = {
     [key: string]: ThemizedColorOptions;
 };
 
-export const UTILITY_COLORS = [
-    // TODO add other base colors
-    'base-brand',
-    'base-background',
-    'base-brand-hover',
-    'base-selection',
-    'base-selection-hover',
-
-    // TODO add other line colors
-    'line-brand',
-
+// From https://github.com/gravity-ui/uikit/blob/main/styles/themes/light/text.scss
+export const UTILITY_TEXT_COLORS = [
     'text-primary',
     'text-complementary',
     'text-secondary',
@@ -94,6 +85,138 @@ export const UTILITY_COLORS = [
     'text-inverted-complementary',
     'text-inverted-secondary',
     'text-inverted-hint',
+] as const;
+
+// From https://github.com/gravity-ui/uikit/blob/main/styles/themes/light/base.scss
+export const UTILITY_BASE_COLORS = [
+    'base-background',
+    'base-generic',
+    'base-generic-hover',
+    'base-generic-medium',
+    'base-generic-medium-hover',
+    'base-generic-accent',
+    'base-generic-accent-disabled',
+    'base-generic-ultralight',
+    'base-simple-hover',
+    'base-simple-hover-solid',
+
+    'base-brand',
+    'base-brand-hover',
+    'base-selection',
+    'base-selection-hover',
+
+    'base-info-light',
+    'base-info-light-hover',
+    'base-info-medium',
+    'base-info-medium-hover',
+    'base-info-heavy',
+    'base-info-heavy-hover',
+
+    'base-positive-light',
+    'base-positive-light-hover',
+    'base-positive-medium',
+    'base-positive-medium-hover',
+    'base-positive-heavy',
+    'base-positive-heavy-hover',
+
+    'base-warning-light',
+    'base-warning-light-hover',
+    'base-warning-medium',
+    'base-warning-medium-hover',
+    'base-warning-heavy',
+    'base-warning-heavy-hover',
+
+    'base-danger-light',
+    'base-danger-light-hover',
+    'base-danger-medium',
+    'base-danger-medium-hover',
+    'base-danger-heavy',
+    'base-danger-heavy-hover',
+
+    'base-utility-light',
+    'base-utility-light-hover',
+    'base-utility-medium',
+    'base-utility-medium-hover',
+    'base-utility-heavy',
+    'base-utility-heavy-hover',
+
+    'base-neutral-light',
+    'base-neutral-light-hover',
+    'base-neutral-medium',
+    'base-neutral-medium-hover',
+    'base-neutral-heavy',
+    'base-neutral-heavy-hover',
+
+    'base-misc-light',
+    'base-misc-light-hover',
+    'base-misc-medium',
+    'base-misc-medium-hover',
+    'base-misc-heavy',
+    'base-misc-heavy-hover',
+
+    'base-light',
+    'base-light-hover',
+    'base-light-simple-hover',
+    'base-light-disabled',
+    'base-light-accent-disabled',
+
+    'base-float',
+    'base-float-hover',
+    'base-float-medium',
+    'base-float-heavy',
+    'base-float-accent',
+    'base-float-accent-hover',
+    'base-float-announcement',
+    'base-modal',
+] as const;
+
+// From https://github.com/gravity-ui/uikit/blob/main/styles/themes/light/line.scss
+export const UTILITY_LINE_COLORS = [
+    'line-generic',
+    'line-generic-hover',
+    'line-generic-active',
+    'line-generic-accent',
+    'line-generic-accent-hover',
+    'line-generic-solid',
+
+    'line-brand',
+    'line-focus',
+    'line-light',
+
+    'line-info',
+    'line-positive',
+    'line-warning',
+    'line-danger',
+    'line-utility',
+    'line-misc',
+] as const;
+
+// From https://github.com/gravity-ui/uikit/blob/main/styles/themes/light/sfx.scss
+export const UTILITY_SFX_COLORS = [
+    'sfx-veil',
+    'sfx-shadow',
+    'sfx-shadow-heavy',
+    'sfx-shadow-light',
+    'sfx-fade',
+] as const;
+
+// From https://github.com/gravity-ui/uikit/blob/main/styles/themes/light/system.scss
+export const UTILITY_SYSTEM_COLORS = [
+    'scroll-track',
+    'scroll-handle',
+    'scroll-handle-hover',
+    'scroll-corner',
+
+    'infographics-axis',
+    'infographics-tooltip-bg',
+] as const;
+
+export const UTILITY_COLORS = [
+    ...UTILITY_TEXT_COLORS,
+    ...UTILITY_BASE_COLORS,
+    ...UTILITY_LINE_COLORS,
+    ...UTILITY_SFX_COLORS,
+    ...UTILITY_SYSTEM_COLORS,
 ] as const;
 
 export type UtilityColor = (typeof UTILITY_COLORS)[number];

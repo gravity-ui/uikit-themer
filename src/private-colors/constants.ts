@@ -31,6 +31,7 @@ export const ALL_PRIVATE_VARIABLES: AnyPrivateColorToken[] = [
     '700',
     '650',
     '600',
+    '550',
     '500',
     '450',
     '400',
