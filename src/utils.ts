@@ -221,6 +221,67 @@ export function getUtilityColorTypeFromCssVariable(variable: string): UtilityCol
 }
 
 /**
+ * Creates an internal reference to a utility color.
+ * @param utilityColor - The utility color name
+ * @returns Internal utility color reference string (example: utility.base-brand-hover)
+ */
+export function createInternalUtilityColorReference(utilityColor: UtilityColor) {
+    return `utility.${utilityColor}`;
+}
+
+const UTILITY_COLOR_TOKENS = new Set(UTILITY_COLORS);
+
+/**
+ * Checks if a string is a valid utility color token.
+ * @param token - The token to check
+ * @returns True if the token is a valid utility color token
+ */
+export function isUtilityColorToken(token: string): token is UtilityColor {
+    return UTILITY_COLOR_TOKENS.has(token as UtilityColor);
+}
+
+/**
+ * Checks if a string is an internal utility color reference.
+ * @param utilityColorReference - The reference string to check
+ * @returns True if the string is a valid internal utility color reference
+ */
+export function isInternalUtilityColorReference(utilityColorReference?: string) {
+    if (!utilityColorReference) {
+        return false;
+    }
+
+    const parts = utilityColorReference.split('.');
+
+    if (parts.length !== 2 || parts[0] !== 'utility') {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Parses an internal utility color reference into its utility color.
+ * @param utilityColorReference - The internal utility color reference string
+ * @returns Parsed utility color or undefined if invalid
+ * @example
+ * parseInternalUtilityColorReference('utility.base-brand-hover') === 'base-brand-hover'
+ * parseInternalUtilityColorReference('utility.wrong-utility-color') === undefined
+ */
+export function parseInternalUtilityColorReference(utilityColorReference: string) {
+    const parts = utilityColorReference.split('.');
+
+    if (parts.length !== 2 || parts[0] !== 'utility') {
+        return undefined;
+    }
+
+    if (isUtilityColorToken(parts[1] as UtilityColor)) {
+        return parts[1] as UtilityColor;
+    }
+
+    return undefined;
+}
+
+/**
  * Replaces internal references in utility colors with actual values from private colors.
  * @param utilityColors - Utility colors with potential internal references
  * @param privateColors - Private colors to resolve references against
@@ -232,6 +293,7 @@ export const replaceReferencesInUtilityColors = (
 ): UtilityColors => {
     const result = cloneDeep(utilityColors);
 
+    // First, process all private color references
     for (const [colorToken, colorValues] of Object.entries(result)) {
         for (const [theme, colorValue] of Object.entries(colorValues)) {
             if (isInternalPrivateColorReference(colorValue.value)) {
@@ -246,6 +308,38 @@ export const replaceReferencesInUtilityColors = (
                         privateColors[mainColorToken]?.[theme as Theme][privateColorCode]?.value ||
                         '';
                     ref = createPrivateColorCssVariable(mainColorToken, privateColorCode);
+                }
+
+                result[colorToken as UtilityColor][theme as Theme] = {
+                    value: newValue,
+                    ref,
+                };
+            }
+        }
+    }
+
+    // Now process all utility color references
+    for (const [colorToken, colorValues] of Object.entries(result)) {
+        for (const [theme, colorValue] of Object.entries(colorValues)) {
+            if (isInternalUtilityColorReference(colorValue.value)) {
+                let newValue = '';
+                let ref: string | undefined;
+
+                const refUtilityColor = parseInternalUtilityColorReference(colorValue.value);
+
+                if (refUtilityColor) {
+                    newValue = result[refUtilityColor][theme as Theme].value;
+
+                    if (
+                        isInternalPrivateColorReference(newValue) ||
+                        isInternalUtilityColorReference(newValue)
+                    ) {
+                        throw new Error(
+                            `Circular reference detected in utility color ${colorToken}`,
+                        );
+                    }
+
+                    ref = createUtilityColorCssVariable(refUtilityColor);
                 }
 
                 result[colorToken as UtilityColor][theme as Theme] = {

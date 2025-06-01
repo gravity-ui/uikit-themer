@@ -43,12 +43,35 @@ export type BaseColors = {
 };
 
 export const UTILITY_COLORS = [
+    // TODO add other base colors
     'base-brand',
     'base-background',
     'base-brand-hover',
     'base-selection',
     'base-selection-hover',
+
+    // TODO add other line colors
     'line-brand',
+
+    'text-primary',
+    'text-complementary',
+    'text-secondary',
+    'text-hint',
+
+    'text-info',
+    'text-positive',
+    'text-warning',
+    'text-danger',
+    'text-utility',
+    'text-misc',
+
+    'text-info-heavy',
+    'text-positive-heavy',
+    'text-warning-heavy',
+    'text-danger-heavy',
+    'text-utility-heavy',
+    'text-misc-heavy',
+
     'text-brand',
     'text-brand-heavy',
     'text-brand-contrast',
@@ -56,6 +79,21 @@ export const UTILITY_COLORS = [
     'text-link-hover',
     'text-link-visited',
     'text-link-visited-hover',
+
+    'text-dark-primary',
+    'text-dark-complementary',
+    'text-dark-secondary',
+    'text-dark-hint',
+
+    'text-light-primary',
+    'text-light-complementary',
+    'text-light-secondary',
+    'text-light-hint',
+
+    'text-inverted-primary',
+    'text-inverted-complementary',
+    'text-inverted-secondary',
+    'text-inverted-hint',
 ] as const;
 
 export type UtilityColor = (typeof UTILITY_COLORS)[number];
