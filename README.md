@@ -1,4 +1,4 @@
-# @gravity-ui/gravity-themer &middot; [![npm package](https://img.shields.io/npm/v/@gravity-ui/gravity-themer)](https://www.npmjs.com/package/@gravity-ui/gravity-themer) [![CI](https://img.shields.io/github/actions/workflow/status/gravity-ui/uikit-themer/.github/workflows/ci.yml?label=CI&logo=github)](https://github.com/gravity-ui/uikit-themer/actions/workflows/ci.yml?query=branch:main)
+# @gravity-ui/gravity-themer &middot; [![npm package](https://img.shields.io/npm/v/@gravity-ui/uikit-themer)](https://www.npmjs.com/package/@gravity-ui/uikit-themer) [![CI](https://img.shields.io/github/actions/workflow/status/gravity-ui/uikit-themer/.github/workflows/ci.yml?label=CI&logo=github)](https://github.com/gravity-ui/uikit-themer/actions/workflows/ci.yml?query=branch:main)
 
 A library for manipulating themes for the `@gravity-ui/uikit` library. Allows you to parse existing themes and generate new ones using a convenient API.
 
