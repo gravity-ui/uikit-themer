@@ -1,4 +1,4 @@
-# @gravity-ui/gravity-themer &middot; [![npm package](https://img.shields.io/npm/v/@gravity-ui/uikit-themer)](https://www.npmjs.com/package/@gravity-ui/uikit-themer) [![CI](https://img.shields.io/github/actions/workflow/status/gravity-ui/uikit-themer/.github/workflows/ci.yml?label=CI&logo=github)](https://github.com/gravity-ui/uikit-themer/actions/workflows/ci.yml?query=branch:main)
+# @gravity-ui/uikit-themer &middot; [![npm package](https://img.shields.io/npm/v/@gravity-ui/uikit-themer)](https://www.npmjs.com/package/@gravity-ui/uikit-themer) [![CI](https://img.shields.io/github/actions/workflow/status/gravity-ui/uikit-themer/.github/workflows/ci.yml?label=CI&logo=github)](https://github.com/gravity-ui/uikit-themer/actions/workflows/ci.yml?query=branch:main)
 
 A library for manipulating themes for the `@gravity-ui/uikit` library. Allows you to parse existing themes and generate new ones using a convenient API.
 
@@ -14,7 +14,7 @@ A library for manipulating themes for the `@gravity-ui/uikit` library. Allows yo
 ## Installation
 
 ```shell
-npm install @gravity-ui/gravity-themer
+npm install @gravity-ui/uikit-themer
 ```
 
 ## Basic Usage
@@ -26,7 +26,7 @@ Theme generation functions require a complete theme object. For convenience, you
 ⚠️ **Note**: When modifying base colors, use `updateBaseColor` instead of direct manipulation to ensure private colors are properly regenerated.
 
 ```typescript
-import { generateCSS, generateJSON, updateBaseColor, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { generateCSS, generateJSON, updateBaseColor, DEFAULT_THEME } from '@gravity-ui/uikit-themer';
 
 // Recommended: Use updateBaseColor for modifying colors
 const themeWithCustomColors = updateBaseColor({
@@ -64,7 +64,7 @@ const jsonTheme = generateJSON({
 ### Parsing Existing Theme
 
 ```typescript
-import { parseCSS, parseJSON } from '@gravity-ui/gravity-themer';
+import { parseCSS, parseJSON } from '@gravity-ui/uikit-themer';
 
 // Parse CSS theme to internal GravityTheme
 const parsedCssTheme = parseCSS(cssString);
@@ -76,7 +76,7 @@ const parsedJsonTheme = parseJSON(jsonString);
 ### Converting Between Formats
 
 ```typescript
-import { convertCSStoJSON, convertJSONtoCSS } from '@gravity-ui/gravity-themer';
+import { convertCSStoJSON, convertJSONtoCSS } from '@gravity-ui/uikit-themer';
 
 // Convert CSS to JSON
 const jsonFromCss = convertCSStoJSON(cssTheme);
@@ -94,8 +94,8 @@ The library provides a `DEFAULT_THEME` constant that contains all the default va
 ⚠️ **Important**: When modifying `baseColors`, use the `updateBaseColor` function instead of direct manipulation to ensure private colors are properly regenerated.
 
 ```typescript
-import { DEFAULT_THEME, updateBaseColor } from '@gravity-ui/gravity-themer';
-import type { GravityTheme } from '@gravity-ui/gravity-themer';
+import { DEFAULT_THEME, updateBaseColor } from '@gravity-ui/uikit-themer';
+import type { GravityTheme } from '@gravity-ui/uikit-themer';
 
 // Recommended: Use updateBaseColor for base color changes
 const customTheme: GravityTheme = updateBaseColor({
@@ -129,7 +129,7 @@ import {
   createUtilityColorCssVariable,
   getUtilityColorTypeFromCssVariable,
   updateBaseColor
-} from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
 
 // Check CSS variable type
 const isColor = isColorCssVariable('--g-color-base-brand');
@@ -152,7 +152,7 @@ getUtilityColorTypeFromCssVariable('--g-color-text-link-hover') === 'text-link-h
 ⚠️ **Important**: Always use `updateBaseColor` when modifying base colors to ensure proper regeneration of private colors.
 
 ```typescript
-import { updateBaseColor, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { updateBaseColor, DEFAULT_THEME } from '@gravity-ui/uikit-themer';
 
 // Update base color for a single theme variant
 const updatedTheme = updateBaseColor({
@@ -216,13 +216,13 @@ import {
   TEXT_VARIANTS,
   TEXT_GROUP_PROPERTIES,
   TEXT_VARIANT_PROPERTIES
-} from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
 import type {
   TypographyOptions,
   TextGroup,
   TextVariant,
   FontOptions
-} from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
 
 // Check typography CSS variables
 const isText = isTextCssVariable('--g-text-body-1-font-size');
@@ -273,8 +273,8 @@ import {
   isBorderRadiusCssVariable,
   createBorderRadiusCssVariable,
   BORDER_SIZES
-} from '@gravity-ui/gravity-themer';
-import type { BorderSize } from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
+import type { BorderSize } from '@gravity-ui/uikit-themer';
 
 // Check border radius variable
 const isBorderRadius = isBorderRadiusCssVariable('--g-border-radius-m');
@@ -294,12 +294,12 @@ import {
   parseJSON,
   isValueWithReference,
   isThemizedValueWithReference
-} from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
 import type {
   JsonTheme,
   ThemizedValueWithReference,
   ValueWithReference
-} from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
 
 // Check values with references
 const hasRef = isValueWithReference(value);
@@ -323,7 +323,7 @@ import type {
   ThemizedColorOptions,
   ColorOptions,
   Theme
-} from '@gravity-ui/gravity-themer';
+} from '@gravity-ui/uikit-themer';
 ```
 
 - `GravityTheme` - main internal Gravity UI theme type
@@ -339,7 +339,7 @@ import type {
 ### Creating a Custom Theme
 
 ```typescript
-import { generateCSS, updateBaseColor, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { generateCSS, updateBaseColor, DEFAULT_THEME } from '@gravity-ui/uikit-themer';
 
 // Recommended: Use updateBaseColor to modify base colors
 const themeWithCustomBrand = updateBaseColor({
@@ -378,7 +378,7 @@ const customTheme = generateCSS({
 ### Parsing and Modifying Existing Theme
 
 ```typescript
-import { parseCSS, generateCSS, updateBaseColor } from '@gravity-ui/gravity-themer';
+import { parseCSS, generateCSS, updateBaseColor } from '@gravity-ui/uikit-themer';
 
 // Parse existing theme
 const existingTheme = parseCSS(cssString);
@@ -400,7 +400,7 @@ const newCSS = generateCSS({theme: modifiedTheme});
 ### Working with Specific Theme Parts
 
 ```typescript
-import { generateCSS, DEFAULT_THEME } from '@gravity-ui/gravity-themer';
+import { generateCSS, DEFAULT_THEME } from '@gravity-ui/uikit-themer';
 
 // Override only typography
 const typographyOnlyTheme = generateCSS({
