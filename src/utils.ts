@@ -586,6 +586,57 @@ export const removeBaseColor = (theme: GravityTheme, colorToken: string): Gravit
     return newTheme;
 };
 
+type UpdateUtilityColorOptions = {
+    theme: GravityTheme;
+    themeVariant: Theme;
+    colorToken: UtilityColor;
+    value: string;
+};
+
+/**
+ * Updates a utility color in the theme.
+ * If the utility color is 'base-background', it will regenerate private colors for all base colors.
+ *
+ * @example
+ * updateUtilityColor({
+ *      theme: theme,
+ *      themeVariant: 'light',
+ *      colorToken: 'base-background',
+ *      value: '#000000',
+ * })
+ */
+export const updateUtilityColor = (params: UpdateUtilityColorOptions): GravityTheme => {
+    const {theme, themeVariant, colorToken, value} = params;
+    const newTheme = cloneDeep(theme);
+    newTheme.utilityColors[colorToken][themeVariant] = {value};
+
+    if (colorToken === 'base-background') {
+        Object.entries(newTheme.baseColors).forEach(([colorToken, colorValues]) => {
+            Object.entries(colorValues).forEach(([theme, colorValue]) => {
+                const privateColors = generatePrivateColors({
+                    theme: theme as Theme,
+                    colorToken,
+                    colorValue: colorValue.value,
+                    lightBg: newTheme.utilityColors['base-background'].light.value,
+                    darkBg: newTheme.utilityColors['base-background'].dark.value,
+                });
+
+                newTheme.privateColors[colorToken]![theme as Theme] = Object.entries(
+                    privateColors,
+                ).reduce<PrivateColorOptions>(
+                    (acc, [privateColorToken, value]) => ({
+                        ...acc,
+                        [privateColorToken as AnyPrivateColorToken]: {value},
+                    }),
+                    {},
+                );
+            });
+        });
+    }
+
+    return newTheme;
+};
+
 /**
  * Parses a CSS variable reference from a value string.
  * @param value - Value string that may contain a CSS variable reference

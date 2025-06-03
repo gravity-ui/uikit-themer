@@ -28,6 +28,7 @@ export {
     parseInternalPrivateColorReference,
     updateBaseColor,
     removeBaseColor,
+    updateUtilityColor,
 } from './utils.js';
 
 export type {
@@ -56,7 +57,7 @@ export {
     generateCssFontFamily,
 } from './typography/utils.js';
 
-export type {BorderSize} from './borders/types.js';
+export type {BorderSize, BordersOptions} from './borders/types.js';
 export {BORDER_SIZES} from './borders/types.js';
 export {isBorderRadiusCssVariable, createBorderRadiusCssVariable} from './borders/utils.js';
 
@@ -67,6 +68,7 @@ export type {
     PrivateColorOptions,
     PrivateColors,
     BaseColors,
+    UtilityColor,
     ThemizedColorOptions,
     ColorOptions,
     Theme,
