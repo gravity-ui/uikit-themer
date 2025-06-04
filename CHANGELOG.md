@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/gravity-ui/uikit-themer/compare/v1.1.0...v1.2.0) (2025-06-04)
+
+
+### Features
+
+* replace private references when generate css ([d7608fa](https://github.com/gravity-ui/uikit-themer/commit/d7608fa88efb94f1a673d1de3959bf8eb96a77dc))
+
 ## [1.1.0](https://github.com/gravity-ui/uikit-themer/compare/v1.0.0...v1.1.0) (2025-06-03)
 
 
