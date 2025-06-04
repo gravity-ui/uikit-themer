@@ -1,7 +1,12 @@
 import {cloneDeep} from 'lodash-es';
 import {DEFAULT_THEME} from '../../constants.js';
 import {generateCSS} from '../generate.js';
-import {updateBaseColor} from '../../utils.js';
+import {
+    updateUtilityColor,
+    updateBaseColor,
+    createInternalPrivateColorReference,
+    createInternalUtilityColorReference,
+} from '../../utils.js';
 
 describe('generateCSS', () => {
     it('generate full theme', async () => {
@@ -41,6 +46,26 @@ describe('generateCSS', () => {
                 dark: 'rgb(253,255,23)',
             },
         });
+        const result = generateCSS({theme: newTheme, ignoreDefaultValues: true});
+        expect(result).toMatchSnapshot();
+    });
+
+    it('generate when set reference in utility colors', async () => {
+        let newTheme = cloneDeep(DEFAULT_THEME);
+        newTheme = updateUtilityColor({
+            theme: newTheme,
+            colorToken: 'text-link-hover',
+            themeVariant: 'light',
+            value: createInternalPrivateColorReference('red', '500-solid'),
+        });
+
+        newTheme = updateUtilityColor({
+            theme: newTheme,
+            colorToken: 'base-float-medium',
+            themeVariant: 'dark',
+            value: createInternalUtilityColorReference('base-background'),
+        });
+
         const result = generateCSS({theme: newTheme, ignoreDefaultValues: true});
         expect(result).toMatchSnapshot();
     });

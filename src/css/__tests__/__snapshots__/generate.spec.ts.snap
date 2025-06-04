@@ -449,3 +449,17 @@ exports[`generateCSS generate when add new base color 1`] = `
     --g-color-private-custom-50-solid: rgb(56 52 33);
 }"
 `;
+
+exports[`generateCSS generate when set reference in utility colors 1`] = `
+".g-root {
+
+}
+
+.g-root_theme_light {
+    --g-color-text-link-hover: var(--g-color-private-red-500-solid);
+}
+
+.g-root_theme_dark {
+    --g-color-base-float-medium: var(--g-color-base-background);
+}"
+`;

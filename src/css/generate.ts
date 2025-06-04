@@ -13,7 +13,14 @@ import {
     createTextCssVariable,
     generateCssFontFamily,
 } from '../typography/utils.js';
-import {createPrivateColorCssVariable, createUtilityColorCssVariable} from '../utils.js';
+import {
+    createPrivateColorCssVariable,
+    createUtilityColorCssVariable,
+    isInternalPrivateColorReference,
+    isInternalUtilityColorReference,
+    parseInternalPrivateColorReference,
+    parseInternalUtilityColorReference,
+} from '../utils.js';
 import type {BorderSize} from '../borders/types.js';
 import {createBorderRadiusCssVariable} from '../borders/utils.js';
 
@@ -62,6 +69,34 @@ const isBackgroundColorChanged = (theme: GravityTheme) => {
     );
 };
 
+const createUtilityColorExport = (
+    theme: GravityTheme,
+    themeVariant: Theme,
+    utilityColor: UtilityColor,
+    forPreview?: boolean,
+) => {
+    const {ref, value} = theme.utilityColors[utilityColor][themeVariant];
+    let resultValue = ref ? `var(${ref})` : value;
+
+    if (isInternalPrivateColorReference(resultValue)) {
+        const parseResult = parseInternalPrivateColorReference(resultValue);
+        if (parseResult) {
+            const {mainColorToken, privateColorCode} = parseResult;
+            resultValue = `var(${createPrivateColorCssVariable(mainColorToken, privateColorCode)})`;
+        }
+    } else if (isInternalUtilityColorReference(resultValue)) {
+        const utilityColor = parseInternalUtilityColorReference(resultValue);
+        if (utilityColor) {
+            resultValue = `var(${createUtilityColorCssVariable(utilityColor)})`;
+        }
+    }
+
+    return [
+        createUtilityColorCssVariable(utilityColor),
+        `${resultValue}${forPreview ? ' !important' : ''};`,
+    ].join(': ');
+};
+
 /*
 Output example:
 
@@ -82,20 +117,6 @@ Output example:
  */
 export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOptions): string {
     const backgroundColorChanged = isBackgroundColorChanged(theme);
-
-    const createUtilityColorExport = (
-        theme: GravityTheme,
-        themeVariant: Theme,
-        utilityColor: UtilityColor,
-    ) => {
-        const {ref, value} = theme.utilityColors[utilityColor][themeVariant];
-        const resultValue = ref ? `var(${ref})` : value;
-
-        return [
-            createUtilityColorCssVariable(utilityColor),
-            `${resultValue}${forPreview ? ' !important' : ''};`,
-        ].join(': ');
-    };
 
     const prepareThemeVariables = (themeVariant: Theme) => {
         let cssVariables = '';
@@ -147,7 +168,7 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
                 return;
             }
 
-            cssVariables += `${createUtilityColorExport(theme, themeVariant, utilityColor)}\n`;
+            cssVariables += `${createUtilityColorExport(theme, themeVariant, utilityColor, forPreview)}\n`;
         });
 
         return cssVariables.trim();
