@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/gravity-ui/uikit-themer/compare/v1.2.0...v1.2.1) (2025-07-06)
+
+
+### Bug Fixes
+
+* text colors ([ce1a9f6](https://github.com/gravity-ui/uikit-themer/commit/ce1a9f630ff883656e8f8b1bed1008964c023aec))
+
 ## [1.2.0](https://github.com/gravity-ui/uikit-themer/compare/v1.1.0...v1.2.0) (2025-06-04)
 
 
