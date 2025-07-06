@@ -140,20 +140,20 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
         light: {value: createInternalPrivateColorReference('cool-grey', '700-solid')},
     },
     'text-primary': {
-        dark: {value: createInternalUtilityColorReference('text-dark-primary')},
-        light: {value: createInternalUtilityColorReference('text-light-primary')},
+        dark: {value: createInternalUtilityColorReference('text-light-primary')},
+        light: {value: createInternalUtilityColorReference('text-dark-primary')},
     },
     'text-complementary': {
-        dark: {value: createInternalUtilityColorReference('text-dark-complementary')},
-        light: {value: createInternalUtilityColorReference('text-light-complementary')},
+        dark: {value: createInternalUtilityColorReference('text-light-complementary')},
+        light: {value: createInternalUtilityColorReference('text-dark-complementary')},
     },
     'text-secondary': {
-        dark: {value: createInternalUtilityColorReference('text-dark-secondary')},
-        light: {value: createInternalUtilityColorReference('text-light-secondary')},
+        dark: {value: createInternalUtilityColorReference('text-light-secondary')},
+        light: {value: createInternalUtilityColorReference('text-dark-secondary')},
     },
     'text-hint': {
-        dark: {value: createInternalUtilityColorReference('text-dark-hint')},
-        light: {value: createInternalUtilityColorReference('text-light-hint')},
+        dark: {value: createInternalUtilityColorReference('text-light-hint')},
+        light: {value: createInternalUtilityColorReference('text-dark-hint')},
     },
     'text-dark-primary': {
         dark: {value: createInternalPrivateColorReference('black', '900')},
