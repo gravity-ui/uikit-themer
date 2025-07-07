@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.3.0](https://github.com/gravity-ui/uikit-themer/compare/v1.2.1...v1.3.0) (2025-07-07)
+
+
+### Features
+
+* export default uikit styles ([c1d10d1](https://github.com/gravity-ui/uikit-themer/commit/c1d10d1d27ef4dc1582ba39b02dc9b715017d464))
+
+
+### Bug Fixes
+
+* build default styles ([c064cff](https://github.com/gravity-ui/uikit-themer/commit/c064cff190008f04c1d27aab4e15f1c64685092d))
+* build default styles ([d02c0a2](https://github.com/gravity-ui/uikit-themer/commit/d02c0a2c62d844516859c7ecfd8a52c44634542b))
+
 ## [1.2.1](https://github.com/gravity-ui/uikit-themer/compare/v1.2.0...v1.2.1) (2025-07-06)
 
 
