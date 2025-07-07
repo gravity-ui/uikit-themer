@@ -2,7 +2,7 @@
 
 // This script is used to generate a default Gravity UIKit styles file.
 
-import {writeFile, mkdir, stat} from 'fs/promises';
+import {writeFile, mkdir} from 'fs/promises';
 import {existsSync} from 'fs';
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
