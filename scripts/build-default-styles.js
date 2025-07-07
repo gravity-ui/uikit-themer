@@ -3,6 +3,7 @@
 // This script is used to generate a default Gravity UIKit styles file.
 
 import {writeFile, mkdir, stat} from 'fs/promises';
+import {existsSync} from 'fs';
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 
@@ -21,7 +22,7 @@ async function generateDefaultStyles() {
             forPreview: false,
         });
 
-        if (!(await stat(dirname(cssPath)))) {
+        if (!existsSync(dirname(cssPath))) {
             await mkdir(dirname(cssPath), {recursive: true});
         }
         await writeFile(cssPath, css, 'utf8');
