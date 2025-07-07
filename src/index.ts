@@ -29,6 +29,7 @@ export {
     updateBaseColor,
     removeBaseColor,
     updateUtilityColor,
+    generatePrivateColorsForBaseColors,
 } from './utils.js';
 
 export type {

@@ -14,11 +14,13 @@
   "type": "module",
   "main": "./dist/index.js",
   "files": [
-    "dist"
+    "dist",
+    "styles"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.build.json && npm run generate-constants",
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && npm run generate-constants && npm run generate-default-styles",
     "generate-constants": "node scripts/build-constants.js",
+    "generate-default-styles": "node scripts/build-default-styles.js",
     "watch": "npm run build -- --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

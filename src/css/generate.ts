@@ -132,12 +132,6 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
                 return;
             }
 
-            const needExportColor = backgroundColorChanged || !valueEqualsToDefault;
-
-            if (!needExportColor) {
-                return;
-            }
-
             if (theme.privateColors[token]?.[themeVariant]) {
                 Object.entries(theme.privateColors[token][themeVariant]).forEach(
                     ([privateColorToken, color]) => {
