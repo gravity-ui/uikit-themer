@@ -135,6 +135,19 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
             if (theme.privateColors[token]?.[themeVariant]) {
                 Object.entries(theme.privateColors[token][themeVariant]).forEach(
                     ([privateColorToken, color]) => {
+                        const valueInDefaultTheme =
+                            DEFAULT_THEME.privateColors?.[token]?.[themeVariant]?.[
+                                privateColorToken as AnyPrivateColorToken
+                            ]?.value;
+
+                        const colorEqualsToDefault =
+                            valueInDefaultTheme === color.value &&
+                            valueInDefaultTheme !== undefined;
+
+                        if (ignoreDefaultValues && colorEqualsToDefault) {
+                            return;
+                        }
+
                         cssVariables += `${createPrivateColorCssVariable(
                             token,
                             privateColorToken as AnyPrivateColorToken,
