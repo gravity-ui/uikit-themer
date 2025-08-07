@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.4.0](https://github.com/gravity-ui/uikit-themer/compare/v1.3.0...v1.4.0) (2025-08-07)
+
+
+### Features
+
+* export font families type ([dc178f4](https://github.com/gravity-ui/uikit-themer/commit/dc178f4123ecf5b3fd911c9f909074a8e85d735c))
+
+
+### Bug Fixes
+
+* dont export unchanged private colors ([a7e5310](https://github.com/gravity-ui/uikit-themer/commit/a7e53103c33786bb5b36327c468054e094a77e1b))
+* typecheck ([1c6c6eb](https://github.com/gravity-ui/uikit-themer/commit/1c6c6ebd55d529fbe2129d82048c810acca4238a))
+* typecheck ([ea63f4e](https://github.com/gravity-ui/uikit-themer/commit/ea63f4eb5c15952ded0313ce8b6101b4071571c8))
+
 ## [1.3.0](https://github.com/gravity-ui/uikit-themer/compare/v1.2.1...v1.3.0) (2025-07-07)
 
 
