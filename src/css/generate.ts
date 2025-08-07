@@ -207,6 +207,10 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
                 continue;
             }
 
+            if (!value) {
+                continue;
+            }
+
             const entry = [
                 createFontCssVariable(key),
                 `${generateCssFontFamily(value)}${forPreview ? ' !important' : ''};`,
