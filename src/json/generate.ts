@@ -27,7 +27,9 @@ export function generateJSON({theme}: GenerateOptions): JsonTheme {
 
     for (const [key, value] of Object.entries(theme.typography.fontFamilies)) {
         const cssVariable = createFontCssVariable(key);
-        result[cssVariable] = {value: generateCssFontFamily(value)};
+        if (value) {
+            result[cssVariable] = {value: generateCssFontFamily(value)};
+        }
     }
 
     for (const [group, value] of Object.entries(theme.typography.groups)) {
