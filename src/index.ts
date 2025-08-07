@@ -46,6 +46,8 @@ export type {
     TextVariantProperty,
     FontOptions,
     TextGroupOptions,
+    FontFamilies,
+    DefaultFontFamily,
 } from './typography/types.js';
 export {TEXT_VARIANTS, TEXT_GROUP_PROPERTIES, TEXT_VARIANT_PROPERTIES} from './typography/types.js';
 export {

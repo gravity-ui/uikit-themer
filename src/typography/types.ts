@@ -48,9 +48,17 @@ export type TextVariantOptions = {
     'line-height': string;
 };
 
+export type DefaultFontFamily = 'sans' | 'monospace';
+
+export type FontFamilies = {
+    sans: FontOptions;
+    monospace: FontOptions;
+    [key: string]: FontOptions | undefined;
+};
+
 export type TypographyOptions = {
     fontImports: string[];
-    fontFamilies: Record<string, FontOptions>;
+    fontFamilies: FontFamilies;
     groups: Record<TextGroup, TextGroupOptions>;
     variants: Record<TextVariant, TextVariantOptions>;
 };
