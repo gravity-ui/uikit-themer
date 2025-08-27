@@ -7,7 +7,7 @@ export type Theme = 'light' | 'dark';
 export type ColorOptions = {
     /* Pure color value without reference to other variable */
     value: string;
-    /* Name of the associated CSS variable (example --g-color-private-organge-800) */
+    /* Name of the associated internal variable (example private.orange.800) */
     ref?: string;
 };
 

@@ -307,7 +307,7 @@ export const replaceReferencesInUtilityColors = (
                     newValue =
                         privateColors[mainColorToken]?.[theme as Theme][privateColorCode]?.value ||
                         '';
-                    ref = createPrivateColorCssVariable(mainColorToken, privateColorCode);
+                    ref = colorValue.value;
                 }
 
                 result[colorToken as UtilityColor][theme as Theme] = {
@@ -339,7 +339,7 @@ export const replaceReferencesInUtilityColors = (
                         );
                     }
 
-                    ref = createUtilityColorCssVariable(refUtilityColor);
+                    ref = colorValue.value;
                 }
 
                 result[colorToken as UtilityColor][theme as Theme] = {

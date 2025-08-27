@@ -1,7 +1,7 @@
 import type {BorderSize} from '../borders/types.js';
 import {createBorderRadiusCssVariable} from '../borders/utils.js';
 import type {AnyPrivateColorToken} from '../private-colors/types.js';
-import type {GenerateOptions, UtilityColor} from '../types.js';
+import type {ColorOptions, GenerateOptions, UtilityColor} from '../types.js';
 import {
     TEXT_GROUP_PROPERTIES,
     TEXT_GROUPS,
@@ -14,8 +14,41 @@ import {
     createTextCssVariable,
     generateCssFontFamily,
 } from '../typography/utils.js';
-import {createPrivateColorCssVariable, createUtilityColorCssVariable} from '../utils.js';
+import {
+    createPrivateColorCssVariable,
+    createUtilityColorCssVariable,
+    isInternalPrivateColorReference,
+    isInternalUtilityColorReference,
+    parseInternalPrivateColorReference,
+    parseInternalUtilityColorReference,
+} from '../utils.js';
 import {isValueWithReference, type JsonTheme, type ThemizedValueWithReference} from './types.js';
+
+const normalizeColorOptionsForExport = (options: ColorOptions): ColorOptions => {
+    let ref = options.ref ? options.ref : undefined;
+
+    if (ref) {
+        if (isInternalPrivateColorReference(ref)) {
+            const parseResult = parseInternalPrivateColorReference(ref);
+            if (parseResult) {
+                const {mainColorToken, privateColorCode} = parseResult;
+                ref = createPrivateColorCssVariable(mainColorToken, privateColorCode);
+            }
+        } else if (isInternalUtilityColorReference(ref)) {
+            const utilityColor = parseInternalUtilityColorReference(ref);
+            if (utilityColor) {
+                ref = createUtilityColorCssVariable(utilityColor);
+            }
+        } else {
+            ref = undefined;
+        }
+    }
+
+    return {
+        value: options.value,
+        ref,
+    };
+};
 
 /**
  * Generates a JSON theme from a GravityTheme object.
@@ -88,7 +121,11 @@ export function generateJSON({theme}: GenerateOptions): JsonTheme {
 
     for (const [colorToken, value] of Object.entries(theme.utilityColors)) {
         const cssVariable = createUtilityColorCssVariable(colorToken as UtilityColor);
-        result[cssVariable] = value;
+
+        result[cssVariable] = {
+            light: normalizeColorOptionsForExport(value.light),
+            dark: normalizeColorOptionsForExport(value.dark),
+        };
     }
 
     for (const [size, value] of Object.entries(theme.borders)) {

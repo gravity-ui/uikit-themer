@@ -76,7 +76,7 @@ const createUtilityColorExport = (
     forPreview?: boolean,
 ) => {
     const {ref, value} = theme.utilityColors[utilityColor][themeVariant];
-    let resultValue = ref ? `var(${ref})` : value;
+    let resultValue = ref ? ref : value;
 
     if (isInternalPrivateColorReference(resultValue)) {
         const parseResult = parseInternalPrivateColorReference(resultValue);

@@ -37,11 +37,11 @@ describe('parseCSS', () => {
 
         expect(result.utilityColors['base-brand-hover']).toEqual({
             dark: {
-                ref: '--g-color-private-brand-50',
+                ref: 'private.brand.50',
                 value: 'rgba(11,20,33,0.1)',
             },
             light: {
-                ref: '--g-color-private-brand-200',
+                ref: 'private.brand.200',
                 value: 'rgba(203,255,92,0.1)',
             },
         });
