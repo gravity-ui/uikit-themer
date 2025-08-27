@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/gravity-ui/uikit-themer/compare/v1.4.0...v1.4.1) (2025-08-27)
+
+
+### Bug Fixes
+
+* use only internal private variables in ref ([05ad5a3](https://github.com/gravity-ui/uikit-themer/commit/05ad5a30fa0e1d24022766fe0ed4a69d1b67d7a7))
+
 ## [1.4.0](https://github.com/gravity-ui/uikit-themer/compare/v1.3.0...v1.4.0) (2025-08-07)
 
 
