@@ -25,12 +25,12 @@ export {
     getUtilityColorTypeFromCssVariable,
     createInternalPrivateColorReference,
     isInternalPrivateColorReference,
+    isInternalUtilityColorReference,
     parseInternalPrivateColorReference,
     updateBaseColor,
     removeBaseColor,
     updateUtilityColor,
     generatePrivateColorsForBaseColors,
-    isInternalUtilityColorReference,
 } from './utils.js';
 
 export type {
