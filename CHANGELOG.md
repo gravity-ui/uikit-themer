@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/gravity-ui/uikit-themer/compare/v1.4.1...v1.4.2) (2025-10-19)
+
+
+### Bug Fixes
+
+* reexport ([d93ecc9](https://github.com/gravity-ui/uikit-themer/commit/d93ecc9b1819cf4d11ee23d8f8778b2ca1d9c7e9))
+
 ## [1.4.1](https://github.com/gravity-ui/uikit-themer/compare/v1.4.0...v1.4.1) (2025-08-27)
 
 
