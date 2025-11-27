@@ -591,6 +591,7 @@ type UpdateUtilityColorOptions = {
     themeVariant: Theme;
     colorToken: UtilityColor;
     value: string;
+    ref?: string;
 };
 
 /**
@@ -606,9 +607,9 @@ type UpdateUtilityColorOptions = {
  * })
  */
 export const updateUtilityColor = (params: UpdateUtilityColorOptions): GravityTheme => {
-    const {theme, themeVariant, colorToken, value} = params;
+    const {theme, themeVariant, colorToken, value, ref} = params;
     const newTheme = cloneDeep(theme);
-    newTheme.utilityColors[colorToken][themeVariant] = {value};
+    newTheme.utilityColors[colorToken][themeVariant] = {value, ref};
 
     if (colorToken === 'base-background') {
         Object.entries(newTheme.baseColors).forEach(([colorToken, colorValues]) => {

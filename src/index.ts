@@ -31,6 +31,9 @@ export {
     removeBaseColor,
     updateUtilityColor,
     generatePrivateColorsForBaseColors,
+    isUtilityColorToken,
+    createInternalUtilityColorReference,
+    parseInternalUtilityColorReference,
 } from './utils.js';
 
 export type {
