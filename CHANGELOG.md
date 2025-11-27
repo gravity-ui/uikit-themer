@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/gravity-ui/uikit-themer/compare/v1.4.2...v1.5.0) (2025-11-27)
+
+
+### Features
+
+* reexport more utils and add ref prop for updatingutility colors ([d8f6cf5](https://github.com/gravity-ui/uikit-themer/commit/d8f6cf5fe6a7bb9975c1befbe73520aed6810f1f))
+
 ## [1.4.2](https://github.com/gravity-ui/uikit-themer/compare/v1.4.1...v1.4.2) (2025-10-19)
 
 
