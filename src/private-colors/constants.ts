@@ -71,6 +71,7 @@ export const BASE_PRIVATE_SOLID_VARIABLES: PrivateSolidColorToken[] = [
 ];
 
 export const BASE_PRIVATE_VARIABLES: PrivateColorToken[] = [
+    '550',
     '500',
     '450',
     '400',
@@ -94,6 +95,7 @@ export const LIGHT__WHITE_PRIVATE_VARIABLES: PrivateColorToken[] = [
     '650',
     '600',
     '70',
+    '20',
 ];
 
 export const DARK__WHITE_PRIVATE_VARIABLES: PrivateColorToken[] = [
@@ -119,11 +121,14 @@ export const LIGHT__BLACK_PRIVATE_VARIABLES: PrivateColorToken[] = [
     '700',
     '650',
     '600',
+    '70',
+    '20',
     ...BASE_PRIVATE_VARIABLES,
 ];
 
 export const DARK__BLACK_PRIVATE_VARIABLES: PrivateColorToken[] = [
     ...LIGHT__BLACK_PRIVATE_VARIABLES,
+    '70',
     '20',
 ];
 
@@ -156,6 +161,7 @@ export const THEME_PRESET = {
             privateSolidVariables: [],
             privateVariables: LIGHT__WHITE_PRIVATE_VARIABLES,
             colorsMap: {
+                20: {a: 0.02, c: -1},
                 50: {a: 0.05, c: 1},
                 70: {a: 0.07, c: 1},
                 100: {a: 0.1, c: 1},
@@ -183,6 +189,7 @@ export const THEME_PRESET = {
             privateSolidVariables: LIGHT__BLACK_PRIVATE_SOLID_VARIABLES,
             privateVariables: LIGHT__BLACK_PRIVATE_VARIABLES,
             colorsMap: {
+                20: {a: 0.02, c: -1},
                 50: {a: 0.05, c: -1},
                 70: {a: 0.07, c: -1},
                 100: {a: 0.1, c: -1},
@@ -242,6 +249,7 @@ export const THEME_PRESET = {
             colorsMap: {
                 20: {a: 0.02, c: 1},
                 50: {a: 0.05, c: 1},
+                70: {a: 0.07, c: 1},
                 100: {a: 0.1, c: 1},
                 150: {a: 0.15, c: 1},
                 200: {a: 0.2, c: 1},

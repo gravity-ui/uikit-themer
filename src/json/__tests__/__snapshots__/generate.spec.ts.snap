@@ -204,7 +204,7 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-70",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-base-generic-hover": {
@@ -430,7 +430,7 @@ exports[`generateJSON generate full theme 1`] = `
   "--g-color-base-neutral-heavy": {
     "dark": {
       "ref": "--g-color-private-white-550",
-      "value": "",
+      "value": "rgb(255 255 255 / 0.55)",
     },
     "light": {
       "ref": "--g-color-private-black-450",
@@ -444,7 +444,7 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-550",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.55)",
     },
   },
   "--g-color-base-neutral-light": {
@@ -922,7 +922,7 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(0 0 0 / 0.02)",
     },
     "light": {
-      "value": "",
+      "value": "rgb(0 0 0 / 0.02)",
     },
   },
   "--g-color-private-black-200": {
@@ -1053,6 +1053,14 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(128 128 128)",
     },
   },
+  "--g-color-private-black-550": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+  },
   "--g-color-private-black-550-solid": {
     "dark": {
       "value": "",
@@ -1091,6 +1099,14 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "value": "rgb(89 89 89)",
+    },
+  },
+  "--g-color-private-black-70": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.07)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-private-black-700": {
@@ -1357,6 +1373,14 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(74 161 242)",
     },
   },
+  "--g-color-private-blue-550": {
+    "dark": {
+      "value": "rgb(54 151 241)",
+    },
+    "light": {
+      "value": "rgb(54 151 241)",
+    },
+  },
   "--g-color-private-blue-550-solid": {
     "dark": {
       "value": "rgb(54 151 241)",
@@ -1595,6 +1619,14 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "value": "rgb(122 144 163)",
+    },
+  },
+  "--g-color-private-cool-grey-550": {
+    "dark": {
+      "value": "rgb(96 128 156)",
+    },
+    "light": {
+      "value": "rgb(107 132 153)",
     },
   },
   "--g-color-private-cool-grey-550-solid": {
@@ -1837,6 +1869,14 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(71 193 132)",
     },
   },
+  "--g-color-private-green-550": {
+    "dark": {
+      "value": "rgb(77 176 155)",
+    },
+    "light": {
+      "value": "rgb(50 186 118)",
+    },
+  },
   "--g-color-private-green-550-solid": {
     "dark": {
       "value": "rgb(77 176 155)",
@@ -2075,6 +2115,14 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "value": "rgb(255 133 25)",
+    },
+  },
+  "--g-color-private-orange-550": {
+    "dark": {
+      "value": "rgb(200 99 12)",
+    },
+    "light": {
+      "value": "rgb(255 119 0)",
     },
   },
   "--g-color-private-orange-550-solid": {
@@ -2317,6 +2365,14 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(154 99 209)",
     },
   },
+  "--g-color-private-purple-550": {
+    "dark": {
+      "value": "rgb(143 82 204)",
+    },
+    "light": {
+      "value": "rgb(143 82 204)",
+    },
+  },
   "--g-color-private-purple-550-solid": {
     "dark": {
       "value": "rgb(143 82 204)",
@@ -2557,6 +2613,14 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(255 25 80)",
     },
   },
+  "--g-color-private-red-550": {
+    "dark": {
+      "value": "rgb(229 50 93)",
+    },
+    "light": {
+      "value": "rgb(255 0 61)",
+    },
+  },
   "--g-color-private-red-550-solid": {
     "dark": {
       "value": "rgb(229 50 93)",
@@ -2667,6 +2731,14 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-20": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.02)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.02)",
     },
   },
   "--g-color-private-white-20-solid": {
@@ -2803,6 +2875,14 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-550": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.55)",
     },
   },
   "--g-color-private-white-550-solid": {
@@ -3133,6 +3213,14 @@ exports[`generateJSON generate full theme 1`] = `
       "value": "rgb(255 197 108)",
     },
   },
+  "--g-color-private-yellow-550": {
+    "dark": {
+      "value": "rgb(255 190 92)",
+    },
+    "light": {
+      "value": "rgb(255 190 92)",
+    },
+  },
   "--g-color-private-yellow-550-solid": {
     "dark": {
       "value": "rgb(255 190 92)",
@@ -3307,8 +3395,8 @@ exports[`generateJSON generate full theme 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",
@@ -4026,7 +4114,7 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-70",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-base-generic-hover": {
@@ -4252,7 +4340,7 @@ exports[`generateJSON generate only changed variables 1`] = `
   "--g-color-base-neutral-heavy": {
     "dark": {
       "ref": "--g-color-private-white-550",
-      "value": "",
+      "value": "rgb(255 255 255 / 0.55)",
     },
     "light": {
       "ref": "--g-color-private-black-450",
@@ -4266,7 +4354,7 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-550",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.55)",
     },
   },
   "--g-color-base-neutral-light": {
@@ -4744,7 +4832,7 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(0 0 0 / 0.02)",
     },
     "light": {
-      "value": "",
+      "value": "rgb(0 0 0 / 0.02)",
     },
   },
   "--g-color-private-black-200": {
@@ -4875,6 +4963,14 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(128 128 128)",
     },
   },
+  "--g-color-private-black-550": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+  },
   "--g-color-private-black-550-solid": {
     "dark": {
       "value": "",
@@ -4913,6 +5009,14 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "value": "rgb(89 89 89)",
+    },
+  },
+  "--g-color-private-black-70": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.07)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-private-black-700": {
@@ -5179,6 +5283,14 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(74 161 242)",
     },
   },
+  "--g-color-private-blue-550": {
+    "dark": {
+      "value": "rgb(54 151 241)",
+    },
+    "light": {
+      "value": "rgb(54 151 241)",
+    },
+  },
   "--g-color-private-blue-550-solid": {
     "dark": {
       "value": "rgb(54 151 241)",
@@ -5417,6 +5529,14 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "value": "rgb(122 144 163)",
+    },
+  },
+  "--g-color-private-cool-grey-550": {
+    "dark": {
+      "value": "rgb(96 128 156)",
+    },
+    "light": {
+      "value": "rgb(107 132 153)",
     },
   },
   "--g-color-private-cool-grey-550-solid": {
@@ -5659,6 +5779,14 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(71 193 132)",
     },
   },
+  "--g-color-private-green-550": {
+    "dark": {
+      "value": "rgb(77 176 155)",
+    },
+    "light": {
+      "value": "rgb(50 186 118)",
+    },
+  },
   "--g-color-private-green-550-solid": {
     "dark": {
       "value": "rgb(77 176 155)",
@@ -5897,6 +6025,14 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "value": "rgb(255 133 25)",
+    },
+  },
+  "--g-color-private-orange-550": {
+    "dark": {
+      "value": "rgb(200 99 12)",
+    },
+    "light": {
+      "value": "rgb(255 119 0)",
     },
   },
   "--g-color-private-orange-550-solid": {
@@ -6139,6 +6275,14 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(154 99 209)",
     },
   },
+  "--g-color-private-purple-550": {
+    "dark": {
+      "value": "rgb(143 82 204)",
+    },
+    "light": {
+      "value": "rgb(143 82 204)",
+    },
+  },
   "--g-color-private-purple-550-solid": {
     "dark": {
       "value": "rgb(143 82 204)",
@@ -6379,6 +6523,14 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(255 25 80)",
     },
   },
+  "--g-color-private-red-550": {
+    "dark": {
+      "value": "rgb(229 50 93)",
+    },
+    "light": {
+      "value": "rgb(255 0 61)",
+    },
+  },
   "--g-color-private-red-550-solid": {
     "dark": {
       "value": "rgb(229 50 93)",
@@ -6489,6 +6641,14 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-20": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.02)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.02)",
     },
   },
   "--g-color-private-white-20-solid": {
@@ -6625,6 +6785,14 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-550": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.55)",
     },
   },
   "--g-color-private-white-550-solid": {
@@ -6955,6 +7123,14 @@ exports[`generateJSON generate only changed variables 1`] = `
       "value": "rgb(255 197 108)",
     },
   },
+  "--g-color-private-yellow-550": {
+    "dark": {
+      "value": "rgb(255 190 92)",
+    },
+    "light": {
+      "value": "rgb(255 190 92)",
+    },
+  },
   "--g-color-private-yellow-550-solid": {
     "dark": {
       "value": "rgb(255 190 92)",
@@ -7129,8 +7305,8 @@ exports[`generateJSON generate only changed variables 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",
@@ -7848,7 +8024,7 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-70",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-base-generic-hover": {
@@ -8074,7 +8250,7 @@ exports[`generateJSON generate when add new base color 1`] = `
   "--g-color-base-neutral-heavy": {
     "dark": {
       "ref": "--g-color-private-white-550",
-      "value": "",
+      "value": "rgb(255 255 255 / 0.55)",
     },
     "light": {
       "ref": "--g-color-private-black-450",
@@ -8088,7 +8264,7 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-550",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.55)",
     },
   },
   "--g-color-base-neutral-light": {
@@ -8566,7 +8742,7 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(0 0 0 / 0.02)",
     },
     "light": {
-      "value": "",
+      "value": "rgb(0 0 0 / 0.02)",
     },
   },
   "--g-color-private-black-200": {
@@ -8697,6 +8873,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(128 128 128)",
     },
   },
+  "--g-color-private-black-550": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+  },
   "--g-color-private-black-550-solid": {
     "dark": {
       "value": "",
@@ -8735,6 +8919,14 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "value": "rgb(89 89 89)",
+    },
+  },
+  "--g-color-private-black-70": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.07)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-private-black-700": {
@@ -9001,6 +9193,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(74 161 242)",
     },
   },
+  "--g-color-private-blue-550": {
+    "dark": {
+      "value": "rgb(54 151 241)",
+    },
+    "light": {
+      "value": "rgb(54 151 241)",
+    },
+  },
   "--g-color-private-blue-550-solid": {
     "dark": {
       "value": "rgb(54 151 241)",
@@ -9239,6 +9439,14 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "value": "rgb(235 235 235)",
+    },
+  },
+  "--g-color-private-brand-550": {
+    "dark": {
+      "value": "",
+    },
+    "light": {
+      "value": "rgb(233 233 233)",
     },
   },
   "--g-color-private-brand-550-solid": {
@@ -9481,6 +9689,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(122 144 163)",
     },
   },
+  "--g-color-private-cool-grey-550": {
+    "dark": {
+      "value": "rgb(96 128 156)",
+    },
+    "light": {
+      "value": "rgb(107 132 153)",
+    },
+  },
   "--g-color-private-cool-grey-550-solid": {
     "dark": {
       "value": "rgb(96 128 156)",
@@ -9716,6 +9932,14 @@ exports[`generateJSON generate when add new base color 1`] = `
   "--g-color-private-custom-500-solid": {
     "dark": {
       "value": "rgb(231 232 24)",
+    },
+    "light": {
+      "value": "rgb(255 255 255)",
+    },
+  },
+  "--g-color-private-custom-550": {
+    "dark": {
+      "value": "rgb(253 255 23)",
     },
     "light": {
       "value": "rgb(255 255 255)",
@@ -9961,6 +10185,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(71 193 132)",
     },
   },
+  "--g-color-private-green-550": {
+    "dark": {
+      "value": "rgb(77 176 155)",
+    },
+    "light": {
+      "value": "rgb(50 186 118)",
+    },
+  },
   "--g-color-private-green-550-solid": {
     "dark": {
       "value": "rgb(77 176 155)",
@@ -10199,6 +10431,14 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "value": "rgb(255 133 25)",
+    },
+  },
+  "--g-color-private-orange-550": {
+    "dark": {
+      "value": "rgb(200 99 12)",
+    },
+    "light": {
+      "value": "rgb(255 119 0)",
     },
   },
   "--g-color-private-orange-550-solid": {
@@ -10441,6 +10681,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(154 99 209)",
     },
   },
+  "--g-color-private-purple-550": {
+    "dark": {
+      "value": "rgb(143 82 204)",
+    },
+    "light": {
+      "value": "rgb(143 82 204)",
+    },
+  },
   "--g-color-private-purple-550-solid": {
     "dark": {
       "value": "rgb(143 82 204)",
@@ -10681,6 +10929,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(255 25 80)",
     },
   },
+  "--g-color-private-red-550": {
+    "dark": {
+      "value": "rgb(229 50 93)",
+    },
+    "light": {
+      "value": "rgb(255 0 61)",
+    },
+  },
   "--g-color-private-red-550-solid": {
     "dark": {
       "value": "rgb(229 50 93)",
@@ -10791,6 +11047,14 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-20": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.02)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.02)",
     },
   },
   "--g-color-private-white-20-solid": {
@@ -10927,6 +11191,14 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-550": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.55)",
     },
   },
   "--g-color-private-white-550-solid": {
@@ -11257,6 +11529,14 @@ exports[`generateJSON generate when add new base color 1`] = `
       "value": "rgb(255 197 108)",
     },
   },
+  "--g-color-private-yellow-550": {
+    "dark": {
+      "value": "rgb(255 190 92)",
+    },
+    "light": {
+      "value": "rgb(255 190 92)",
+    },
+  },
   "--g-color-private-yellow-550-solid": {
     "dark": {
       "value": "rgb(255 190 92)",
@@ -11431,8 +11711,8 @@ exports[`generateJSON generate when add new base color 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",
@@ -12150,7 +12430,7 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-70",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-base-generic-hover": {
@@ -12376,7 +12656,7 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
   "--g-color-base-neutral-heavy": {
     "dark": {
       "ref": "--g-color-private-white-550",
-      "value": "",
+      "value": "rgb(255 255 255 / 0.55)",
     },
     "light": {
       "ref": "--g-color-private-black-450",
@@ -12390,7 +12670,7 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-550",
-      "value": "",
+      "value": "rgb(0 0 0 / 0.55)",
     },
   },
   "--g-color-base-neutral-light": {
@@ -12868,7 +13148,7 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(0 0 0 / 0.02)",
     },
     "light": {
-      "value": "",
+      "value": "rgb(0 0 0 / 0.02)",
     },
   },
   "--g-color-private-black-200": {
@@ -12999,6 +13279,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(128 128 128)",
     },
   },
+  "--g-color-private-black-550": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.55)",
+    },
+  },
   "--g-color-private-black-550-solid": {
     "dark": {
       "value": "",
@@ -13037,6 +13325,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "value": "rgb(89 89 89)",
+    },
+  },
+  "--g-color-private-black-70": {
+    "dark": {
+      "value": "rgb(0 0 0 / 0.07)",
+    },
+    "light": {
+      "value": "rgb(0 0 0 / 0.07)",
     },
   },
   "--g-color-private-black-700": {
@@ -13303,6 +13599,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(74 161 242)",
     },
   },
+  "--g-color-private-blue-550": {
+    "dark": {
+      "value": "rgb(54 151 241)",
+    },
+    "light": {
+      "value": "rgb(54 151 241)",
+    },
+  },
   "--g-color-private-blue-550-solid": {
     "dark": {
       "value": "rgb(54 151 241)",
@@ -13541,6 +13845,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "value": "rgb(122 144 163)",
+    },
+  },
+  "--g-color-private-cool-grey-550": {
+    "dark": {
+      "value": "rgb(96 128 156)",
+    },
+    "light": {
+      "value": "rgb(107 132 153)",
     },
   },
   "--g-color-private-cool-grey-550-solid": {
@@ -13783,6 +14095,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(71 193 132)",
     },
   },
+  "--g-color-private-green-550": {
+    "dark": {
+      "value": "rgb(77 176 155)",
+    },
+    "light": {
+      "value": "rgb(50 186 118)",
+    },
+  },
   "--g-color-private-green-550-solid": {
     "dark": {
       "value": "rgb(77 176 155)",
@@ -14021,6 +14341,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "value": "rgb(255 133 25)",
+    },
+  },
+  "--g-color-private-orange-550": {
+    "dark": {
+      "value": "rgb(200 99 12)",
+    },
+    "light": {
+      "value": "rgb(255 119 0)",
     },
   },
   "--g-color-private-orange-550-solid": {
@@ -14263,6 +14591,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(154 99 209)",
     },
   },
+  "--g-color-private-purple-550": {
+    "dark": {
+      "value": "rgb(143 82 204)",
+    },
+    "light": {
+      "value": "rgb(143 82 204)",
+    },
+  },
   "--g-color-private-purple-550-solid": {
     "dark": {
       "value": "rgb(143 82 204)",
@@ -14503,6 +14839,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(255 25 80)",
     },
   },
+  "--g-color-private-red-550": {
+    "dark": {
+      "value": "rgb(229 50 93)",
+    },
+    "light": {
+      "value": "rgb(255 0 61)",
+    },
+  },
   "--g-color-private-red-550-solid": {
     "dark": {
       "value": "rgb(229 50 93)",
@@ -14613,6 +14957,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-20": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.02)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.02)",
     },
   },
   "--g-color-private-white-20-solid": {
@@ -14749,6 +15101,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "value": "",
+    },
+  },
+  "--g-color-private-white-550": {
+    "dark": {
+      "value": "rgb(255 255 255 / 0.55)",
+    },
+    "light": {
+      "value": "rgb(255 255 255 / 0.55)",
     },
   },
   "--g-color-private-white-550-solid": {
@@ -15079,6 +15439,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
       "value": "rgb(255 197 108)",
     },
   },
+  "--g-color-private-yellow-550": {
+    "dark": {
+      "value": "rgb(255 190 92)",
+    },
+    "light": {
+      "value": "rgb(255 190 92)",
+    },
+  },
   "--g-color-private-yellow-550-solid": {
     "dark": {
       "value": "rgb(255 190 92)",
@@ -15253,8 +15621,8 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",

@@ -72,7 +72,7 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
         light: {value: createInternalPrivateColorReference('orange', '700-solid')},
     },
     'text-brand-contrast': {
-        dark: {value: createInternalUtilityColorReference('text-dark-primary')},
+        dark: {value: createInternalUtilityColorReference('text-light-primary')},
         light: {value: createInternalUtilityColorReference('text-dark-primary')},
     },
     'text-link': {
