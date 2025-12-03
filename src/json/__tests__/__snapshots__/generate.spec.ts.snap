@@ -3395,8 +3395,8 @@ exports[`generateJSON generate full theme 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",
@@ -7305,8 +7305,8 @@ exports[`generateJSON generate only changed variables 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",
@@ -11711,8 +11711,8 @@ exports[`generateJSON generate when add new base color 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",
@@ -15621,8 +15621,8 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
   },
   "--g-color-text-brand-contrast": {
     "dark": {
-      "ref": "--g-color-text-dark-primary",
-      "value": "rgb(0 0 0 / 0.9)",
+      "ref": "--g-color-text-light-primary",
+      "value": "rgb(255 255 255 / 0.85)",
     },
     "light": {
       "ref": "--g-color-text-dark-primary",

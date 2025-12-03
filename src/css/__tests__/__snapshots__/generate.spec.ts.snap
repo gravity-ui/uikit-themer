@@ -783,7 +783,7 @@ exports[`generateCSS generate full theme 1`] = `
 
     --g-color-text-brand: var(--g-color-private-yellow-600-solid);
     --g-color-text-brand-heavy: var(--g-color-private-yellow-700-solid);
-    --g-color-text-brand-contrast: var(--g-color-text-dark-primary);
+    --g-color-text-brand-contrast: var(--g-color-text-light-primary);
     --g-color-text-link: var(--g-color-private-yellow-550-solid);
     --g-color-text-link-hover: var(--g-color-private-orange-550-solid);
     --g-color-text-link-visited: var(--g-color-private-purple-600-solid);
