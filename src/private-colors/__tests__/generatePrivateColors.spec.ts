@@ -114,6 +114,7 @@ describe('generatePrivateColors', () => {
             }),
         ).toEqual({
             '20': 'rgb(0 0 0 / 0.02)',
+            '20-solid': 'rgb(250 250 250)',
             '70': 'rgb(0 0 0 / 0.07)',
             '100': 'rgb(0 0 0 / 0.1)',
             '100-solid': 'rgb(230 230 230)',

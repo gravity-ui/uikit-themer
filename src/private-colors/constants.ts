@@ -109,8 +109,10 @@ export const DARK__WHITE_PRIVATE_SOLID_VARIABLES: PrivateSolidColorToken[] = [
     '20-solid',
 ];
 
-export const LIGHT__BLACK_PRIVATE_SOLID_VARIABLES: PrivateSolidColorToken[] =
-    BASE_PRIVATE_SOLID_VARIABLES.filter((v) => v !== '1000-solid');
+export const LIGHT__BLACK_PRIVATE_SOLID_VARIABLES: PrivateSolidColorToken[] = [
+    ...BASE_PRIVATE_SOLID_VARIABLES.filter((v) => v !== '1000-solid'),
+    '20-solid',
+];
 
 export const LIGHT__BLACK_PRIVATE_VARIABLES: PrivateColorToken[] = [
     '950',
