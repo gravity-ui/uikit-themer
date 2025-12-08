@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.0](https://github.com/gravity-ui/uikit-themer/compare/v1.5.0...v1.6.0) (2025-12-08)
+
+
+### Features
+
+* add 20 and 70 keys to private black/white variables ([487aa4b](https://github.com/gravity-ui/uikit-themer/commit/487aa4b7a419e63e21abff9c1f49b736f33abfb9))
+
+
+### Bug Fixes
+
+* update tests and snapshots ([db80633](https://github.com/gravity-ui/uikit-themer/commit/db80633523fab4d43ab27e8fe5b8c6e4618c91a9))
+* use text-light-primary for text-brand-contrast in dark theme ([f9c9da8](https://github.com/gravity-ui/uikit-themer/commit/f9c9da8506de526e83db760d15ee2cb6eca6d27d))
+
 ## [1.5.0](https://github.com/gravity-ui/uikit-themer/compare/v1.4.2...v1.5.0) (2025-11-27)
 
 
