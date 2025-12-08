@@ -67,6 +67,7 @@ exports[`generateCSS generate full theme 1`] = `
 }
 
 .g-root_theme_light {
+    --g-color-private-white-20: rgb(255 255 255 / 0.02);
     --g-color-private-white-50: rgb(255 255 255 / 0.05);
     --g-color-private-white-70: rgb(255 255 255 / 0.07);
     --g-color-private-white-100: rgb(255 255 255 / 0.1);
@@ -78,6 +79,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-white-400: rgb(255 255 255 / 0.4);
     --g-color-private-white-450: rgb(255 255 255 / 0.45);
     --g-color-private-white-500: rgb(255 255 255 / 0.5);
+    --g-color-private-white-550: rgb(255 255 255 / 0.55);
     --g-color-private-white-600: rgb(255 255 255 / 0.6);
     --g-color-private-white-650: rgb(255 255 255 / 0.65);
     --g-color-private-white-700: rgb(255 255 255 / 0.7);
@@ -88,7 +90,9 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-white-950: rgb(255 255 255 / 0.95);
     --g-color-private-white-1000-solid: rgb(255 255 255);
 
+    --g-color-private-black-20: rgb(0 0 0 / 0.02);
     --g-color-private-black-50: rgb(0 0 0 / 0.05);
+    --g-color-private-black-70: rgb(0 0 0 / 0.07);
     --g-color-private-black-100: rgb(0 0 0 / 0.1);
     --g-color-private-black-150: rgb(0 0 0 / 0.15);
     --g-color-private-black-200: rgb(0 0 0 / 0.2);
@@ -98,6 +102,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-black-400: rgb(0 0 0 / 0.4);
     --g-color-private-black-450: rgb(0 0 0 / 0.45);
     --g-color-private-black-500: rgb(0 0 0 / 0.5);
+    --g-color-private-black-550: rgb(0 0 0 / 0.55);
     --g-color-private-black-600: rgb(0 0 0 / 0.6);
     --g-color-private-black-650: rgb(0 0 0 / 0.65);
     --g-color-private-black-700: rgb(0 0 0 / 0.7);
@@ -137,6 +142,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-orange-400: rgb(255 119 0 / 0.7);
     --g-color-private-orange-450: rgb(255 119 0 / 0.8);
     --g-color-private-orange-500: rgb(255 119 0 / 0.9);
+    --g-color-private-orange-550: rgb(255 119 0);
     --g-color-private-orange-550-solid: rgb(255 119 0);
     --g-color-private-orange-1000-solid: rgb(67 43 29);
     --g-color-private-orange-950-solid: rgb(78 47 27);
@@ -168,6 +174,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-green-400: rgb(50 186 118 / 0.7);
     --g-color-private-green-450: rgb(50 186 118 / 0.8);
     --g-color-private-green-500: rgb(50 186 118 / 0.9);
+    --g-color-private-green-550: rgb(50 186 118);
     --g-color-private-green-550-solid: rgb(50 186 118);
     --g-color-private-green-1000-solid: rgb(36 53 47);
     --g-color-private-green-950-solid: rgb(37 60 51);
@@ -199,6 +206,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-yellow-400: rgb(255 190 92 / 0.7);
     --g-color-private-yellow-450: rgb(255 190 92 / 0.8);
     --g-color-private-yellow-500: rgb(255 190 92 / 0.9);
+    --g-color-private-yellow-550: rgb(255 190 92);
     --g-color-private-yellow-550-solid: rgb(255 190 92);
     --g-color-private-yellow-1000-solid: rgb(67 53 43);
     --g-color-private-yellow-950-solid: rgb(78 61 46);
@@ -230,6 +238,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-red-400: rgb(255 0 61 / 0.7);
     --g-color-private-red-450: rgb(255 0 61 / 0.8);
     --g-color-private-red-500: rgb(255 0 61 / 0.9);
+    --g-color-private-red-550: rgb(255 0 61);
     --g-color-private-red-550-solid: rgb(255 0 61);
     --g-color-private-red-1000-solid: rgb(67 25 38);
     --g-color-private-red-950-solid: rgb(78 23 39);
@@ -261,6 +270,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-blue-400: rgb(54 151 241 / 0.7);
     --g-color-private-blue-450: rgb(54 151 241 / 0.8);
     --g-color-private-blue-500: rgb(54 151 241 / 0.9);
+    --g-color-private-blue-550: rgb(54 151 241);
     --g-color-private-blue-550-solid: rgb(54 151 241);
     --g-color-private-blue-1000-solid: rgb(37 47 65);
     --g-color-private-blue-950-solid: rgb(38 53 75);
@@ -292,6 +302,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-cool-grey-400: rgb(107 132 153 / 0.7);
     --g-color-private-cool-grey-450: rgb(107 132 153 / 0.8);
     --g-color-private-cool-grey-500: rgb(107 132 153 / 0.9);
+    --g-color-private-cool-grey-550: rgb(107 132 153);
     --g-color-private-cool-grey-550-solid: rgb(107 132 153);
     --g-color-private-cool-grey-1000-solid: rgb(45 44 52);
     --g-color-private-cool-grey-950-solid: rgb(49 50 58);
@@ -323,6 +334,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-purple-400: rgb(143 82 204 / 0.7);
     --g-color-private-purple-450: rgb(143 82 204 / 0.8);
     --g-color-private-purple-500: rgb(143 82 204 / 0.9);
+    --g-color-private-purple-550: rgb(143 82 204);
     --g-color-private-purple-550-solid: rgb(143 82 204);
     --g-color-private-purple-1000-solid: rgb(50 37 60);
     --g-color-private-purple-950-solid: rgb(56 40 68);
@@ -477,6 +489,7 @@ exports[`generateCSS generate full theme 1`] = `
 }
 
 .g-root_theme_dark {
+    --g-color-private-white-20: rgb(255 255 255 / 0.02);
     --g-color-private-white-50: rgb(255 255 255 / 0.05);
     --g-color-private-white-70: rgb(255 255 255 / 0.07);
     --g-color-private-white-100: rgb(255 255 255 / 0.1);
@@ -488,6 +501,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-white-400: rgb(255 255 255 / 0.4);
     --g-color-private-white-450: rgb(255 255 255 / 0.45);
     --g-color-private-white-500: rgb(255 255 255 / 0.5);
+    --g-color-private-white-550: rgb(255 255 255 / 0.55);
     --g-color-private-white-600: rgb(255 255 255 / 0.6);
     --g-color-private-white-650: rgb(255 255 255 / 0.65);
     --g-color-private-white-700: rgb(255 255 255 / 0.7);
@@ -522,6 +536,7 @@ exports[`generateCSS generate full theme 1`] = `
 
     --g-color-private-black-20: rgb(0 0 0 / 0.02);
     --g-color-private-black-50: rgb(0 0 0 / 0.05);
+    --g-color-private-black-70: rgb(0 0 0 / 0.07);
     --g-color-private-black-100: rgb(0 0 0 / 0.1);
     --g-color-private-black-150: rgb(0 0 0 / 0.15);
     --g-color-private-black-200: rgb(0 0 0 / 0.2);
@@ -531,6 +546,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-black-400: rgb(0 0 0 / 0.4);
     --g-color-private-black-450: rgb(0 0 0 / 0.45);
     --g-color-private-black-500: rgb(0 0 0 / 0.5);
+    --g-color-private-black-550: rgb(0 0 0 / 0.55);
     --g-color-private-black-600: rgb(0 0 0 / 0.6);
     --g-color-private-black-650: rgb(0 0 0 / 0.65);
     --g-color-private-black-700: rgb(0 0 0 / 0.7);
@@ -551,6 +567,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-orange-400: rgb(200 99 12 / 0.7);
     --g-color-private-orange-450: rgb(200 99 12 / 0.8);
     --g-color-private-orange-500: rgb(200 99 12 / 0.9);
+    --g-color-private-orange-550: rgb(200 99 12);
     --g-color-private-orange-550-solid: rgb(200 99 12);
     --g-color-private-orange-1000-solid: rgb(247 232 219);
     --g-color-private-orange-950-solid: rgb(244 224 206);
@@ -582,6 +599,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-green-400: rgb(77 176 155 / 0.7);
     --g-color-private-green-450: rgb(77 176 155 / 0.8);
     --g-color-private-green-500: rgb(77 176 155 / 0.9);
+    --g-color-private-green-550: rgb(77 176 155);
     --g-color-private-green-550-solid: rgb(77 176 155);
     --g-color-private-green-1000-solid: rgb(228 243 240);
     --g-color-private-green-950-solid: rgb(219 239 235);
@@ -613,6 +631,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-yellow-400: rgb(255 190 92 / 0.7);
     --g-color-private-yellow-450: rgb(255 190 92 / 0.8);
     --g-color-private-yellow-500: rgb(255 190 92 / 0.9);
+    --g-color-private-yellow-550: rgb(255 190 92);
     --g-color-private-yellow-550-solid: rgb(255 190 92);
     --g-color-private-yellow-1000-solid: rgb(255 245 231);
     --g-color-private-yellow-950-solid: rgb(255 242 222);
@@ -644,6 +663,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-red-400: rgb(229 50 93 / 0.7);
     --g-color-private-red-450: rgb(229 50 93 / 0.8);
     --g-color-private-red-500: rgb(229 50 93 / 0.9);
+    --g-color-private-red-550: rgb(229 50 93);
     --g-color-private-red-550-solid: rgb(229 50 93);
     --g-color-private-red-1000-solid: rgb(251 224 231);
     --g-color-private-red-950-solid: rgb(250 214 223);
@@ -675,6 +695,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-blue-400: rgb(54 151 241 / 0.7);
     --g-color-private-blue-450: rgb(54 151 241 / 0.8);
     --g-color-private-blue-500: rgb(54 151 241 / 0.9);
+    --g-color-private-blue-550: rgb(54 151 241);
     --g-color-private-blue-550-solid: rgb(54 151 241);
     --g-color-private-blue-1000-solid: rgb(225 239 253);
     --g-color-private-blue-950-solid: rgb(215 234 252);
@@ -706,6 +727,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-cool-grey-400: rgb(96 128 156 / 0.7);
     --g-color-private-cool-grey-450: rgb(96 128 156 / 0.8);
     --g-color-private-cool-grey-500: rgb(96 128 156 / 0.9);
+    --g-color-private-cool-grey-550: rgb(96 128 156);
     --g-color-private-cool-grey-550-solid: rgb(96 128 156);
     --g-color-private-cool-grey-1000-solid: rgb(231 236 240);
     --g-color-private-cool-grey-950-solid: rgb(223 230 235);
@@ -737,6 +759,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-private-purple-400: rgb(143 82 204 / 0.7);
     --g-color-private-purple-450: rgb(143 82 204 / 0.8);
     --g-color-private-purple-500: rgb(143 82 204 / 0.9);
+    --g-color-private-purple-550: rgb(143 82 204);
     --g-color-private-purple-550-solid: rgb(143 82 204);
     --g-color-private-purple-1000-solid: rgb(238 229 247);
     --g-color-private-purple-950-solid: rgb(233 220 245);
@@ -760,7 +783,7 @@ exports[`generateCSS generate full theme 1`] = `
 
     --g-color-text-brand: var(--g-color-private-yellow-600-solid);
     --g-color-text-brand-heavy: var(--g-color-private-yellow-700-solid);
-    --g-color-text-brand-contrast: var(--g-color-text-dark-primary);
+    --g-color-text-brand-contrast: var(--g-color-text-light-primary);
     --g-color-text-link: var(--g-color-private-yellow-550-solid);
     --g-color-text-link-hover: var(--g-color-private-orange-550-solid);
     --g-color-text-link-visited: var(--g-color-private-purple-600-solid);
@@ -921,6 +944,7 @@ exports[`generateCSS generate when add new base color 1`] = `
     --g-color-private-brand-400: rgb(233 233 233 / 0.7);
     --g-color-private-brand-450: rgb(233 233 233 / 0.8);
     --g-color-private-brand-500: rgb(233 233 233 / 0.9);
+    --g-color-private-brand-550: rgb(233 233 233);
     --g-color-private-brand-550-solid: rgb(233 233 233);
     --g-color-private-brand-1000-solid: rgb(64 60 64);
     --g-color-private-brand-950-solid: rgb(74 70 74);
@@ -952,6 +976,7 @@ exports[`generateCSS generate when add new base color 1`] = `
     --g-color-private-custom-400: rgb(255 255 255 / 0.7);
     --g-color-private-custom-450: rgb(255 255 255 / 0.8);
     --g-color-private-custom-500: rgb(255 255 255 / 0.9);
+    --g-color-private-custom-550: rgb(255 255 255);
     --g-color-private-custom-550-solid: rgb(255 255 255);
     --g-color-private-custom-1000-solid: rgb(67 63 67);
     --g-color-private-custom-950-solid: rgb(78 74 78);
@@ -985,6 +1010,7 @@ exports[`generateCSS generate when add new base color 1`] = `
     --g-color-private-custom-400: rgb(253 255 23 / 0.7);
     --g-color-private-custom-450: rgb(253 255 23 / 0.8);
     --g-color-private-custom-500: rgb(253 255 23 / 0.9);
+    --g-color-private-custom-550: rgb(253 255 23);
     --g-color-private-custom-550-solid: rgb(253 255 23);
     --g-color-private-custom-1000-solid: rgb(255 255 220);
     --g-color-private-custom-950-solid: rgb(255 255 209);
