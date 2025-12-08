@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/gravity-ui/uikit-themer/compare/v1.6.0...v1.6.1) (2025-12-08)
+
+
+### Bug Fixes
+
+* add 20-solid to private colors ([8cb91bc](https://github.com/gravity-ui/uikit-themer/commit/8cb91bc6aa2d133699c4a3f143983df51b705b7b))
+
 ## [1.6.0](https://github.com/gravity-ui/uikit-themer/compare/v1.5.0...v1.6.0) (2025-12-08)
 
 
