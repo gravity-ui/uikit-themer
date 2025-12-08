@@ -244,7 +244,7 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-20-solid",
-      "value": "",
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-base-info-heavy": {
@@ -923,6 +923,14 @@ exports[`generateJSON generate full theme 1`] = `
     },
     "light": {
       "value": "rgb(0 0 0 / 0.02)",
+    },
+  },
+  "--g-color-private-black-20-solid": {
+    "dark": {
+      "value": "",
+    },
+    "light": {
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-private-black-200": {
@@ -4154,7 +4162,7 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-20-solid",
-      "value": "",
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-base-info-heavy": {
@@ -4833,6 +4841,14 @@ exports[`generateJSON generate only changed variables 1`] = `
     },
     "light": {
       "value": "rgb(0 0 0 / 0.02)",
+    },
+  },
+  "--g-color-private-black-20-solid": {
+    "dark": {
+      "value": "",
+    },
+    "light": {
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-private-black-200": {
@@ -8064,7 +8080,7 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-20-solid",
-      "value": "",
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-base-info-heavy": {
@@ -8743,6 +8759,14 @@ exports[`generateJSON generate when add new base color 1`] = `
     },
     "light": {
       "value": "rgb(0 0 0 / 0.02)",
+    },
+  },
+  "--g-color-private-black-20-solid": {
+    "dark": {
+      "value": "",
+    },
+    "light": {
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-private-black-200": {
@@ -12470,7 +12494,7 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "ref": "--g-color-private-black-20-solid",
-      "value": "",
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-base-info-heavy": {
@@ -13149,6 +13173,14 @@ exports[`generateJSON generate when set reference in utility colors 1`] = `
     },
     "light": {
       "value": "rgb(0 0 0 / 0.02)",
+    },
+  },
+  "--g-color-private-black-20-solid": {
+    "dark": {
+      "value": "",
+    },
+    "light": {
+      "value": "rgb(250 250 250)",
     },
   },
   "--g-color-private-black-200": {
