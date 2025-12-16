@@ -11,6 +11,7 @@ import {
     restoreBaseColorsFromPrivateColors,
     isColorCssVariable,
     parseCssReferenceVariable,
+    createInternalUtilityColorReference,
 } from '../utils.js';
 import {
     parseCssFontFamily,
@@ -109,16 +110,21 @@ const applyUtilityColorVariable = (
     let ref: string | undefined;
 
     const refCssVariable = parseCssReferenceVariable(value);
-    if (refCssVariable) {
-        if (!isPrivateColorCssVariable(refCssVariable)) {
-            throw Error(
-                `Utility color can use only private color variables. ${refCssVariable} is not private color`,
-            );
-        }
 
-        const {mainColorToken, privateColorToken} = parsePrivateColorCssVariable(refCssVariable);
-        newValue = createInternalPrivateColorReference(mainColorToken, privateColorToken);
-        ref = refCssVariable;
+    if (refCssVariable) {
+        if (isPrivateColorCssVariable(refCssVariable)) {
+            const {mainColorToken, privateColorToken} =
+                parsePrivateColorCssVariable(refCssVariable);
+            newValue = createInternalPrivateColorReference(mainColorToken, privateColorToken);
+            ref = refCssVariable;
+        } else if (isUtilityColorCssVariable(refCssVariable)) {
+            const utilityColorType = getUtilityColorTypeFromCssVariable(refCssVariable);
+
+            if (utilityColorType) {
+                newValue = createInternalUtilityColorReference(utilityColorType);
+                ref = refCssVariable;
+            }
+        }
     }
 
     theme.utilityColors[utilityColorType][themeType] = {value: newValue, ref};
@@ -220,7 +226,9 @@ export function parseCSS(cssString: string): GravityTheme {
 
     // Process variables for specific themes
     for (const themeType of ['light', 'dark'] as const) {
-        for (const [variable, value] of Object.entries(themeTokens[themeType])) {
+        for (const token of Object.entries(themeTokens[themeType]) as [string, string][]) {
+            const [variable, value] = token;
+
             if (isColorCssVariable(variable)) {
                 if (isPrivateColorCssVariable(variable)) {
                     applyPrivateColorVariable(theme, themeType, variable, value);

@@ -47,6 +47,31 @@ describe('parseCSS', () => {
         });
     });
 
+    it('utility colors with utility references', async () => {
+        const result = parseCSS(`
+.g-root_theme_light {
+    --g-color-text-info: var(--g-color-private-blue-600-solid);
+    --g-color-text-primary: var(--g-color-text-info);
+}
+
+.g-root_theme_dark {
+    --g-color-text-info: var(--g-color-private-blue-550-solid);
+    --g-color-text-primary: var(--g-color-text-info);
+}
+        `);
+
+        expect(result.utilityColors['text-primary']).toEqual({
+            light: {
+                ref: 'utility.text-info',
+                value: 'rgb(52 139 220)',
+            },
+            dark: {
+                ref: 'utility.text-info',
+                value: 'rgb(54 151 241)',
+            },
+        });
+    });
+
     it('parse font families', async () => {
         const result = parseCSS(`
 .g-root {
