@@ -224,8 +224,6 @@ export function parseCSS(cssString: string): GravityTheme {
         }
     }
 
-    const variablesWithUtilityRefs: [string, string][] = [];
-
     // Process variables for specific themes
     for (const themeType of ['light', 'dark'] as const) {
         for (const token of Object.entries(themeTokens[themeType]) as [string, string][]) {
@@ -235,11 +233,6 @@ export function parseCSS(cssString: string): GravityTheme {
                 if (isPrivateColorCssVariable(variable)) {
                     applyPrivateColorVariable(theme, themeType, variable, value);
                 } else if (isUtilityColorCssVariable(variable)) {
-                    if (isUtilityColorCssVariable(parseCssReferenceVariable(value) || '')) {
-                        variablesWithUtilityRefs.push(token);
-                        continue;
-                    }
-
                     applyUtilityColorVariable(theme, themeType, variable, value);
                 } else {
                     console.error(
@@ -251,10 +244,6 @@ export function parseCSS(cssString: string): GravityTheme {
                     `Unsupported css variable in .g-root_theme_${themeType}: ${variable}. Skip`,
                 );
             }
-        }
-
-        for (const [variable, value] of variablesWithUtilityRefs) {
-            applyUtilityColorVariable(theme, themeType, variable, value);
         }
     }
 
