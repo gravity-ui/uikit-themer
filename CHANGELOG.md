@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.7.0](https://github.com/gravity-ui/uikit-themer/compare/v1.6.1...v1.7.0) (2025-12-16)
+
+
+### Features
+
+* refactor parsing function; parse utility refs for colors ([78c7260](https://github.com/gravity-ui/uikit-themer/commit/78c726099b25bc5fd76ace068eeba9339c3942a6))
+
+
+### Bug Fixes
+
+* add tests ([0ddd46f](https://github.com/gravity-ui/uikit-themer/commit/0ddd46f6044fb3f1192ce4286f50e2fda98a2707))
+
 ## [1.6.1](https://github.com/gravity-ui/uikit-themer/compare/v1.6.0...v1.6.1) (2025-12-08)
 
 
