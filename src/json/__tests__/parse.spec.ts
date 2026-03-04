@@ -19,6 +19,14 @@ describe('parseJSON', () => {
                     value: 'rgb(82, 130, 255)',
                 },
             },
+            '--gil-color-object-base': {
+                dark: {
+                    value: 'rgb(143, 82, 201)',
+                },
+                light: {
+                    value: 'rgb(82, 130, 251)',
+                },
+            },
         });
 
         expect(result.utilityColors['text-brand-heavy']).toEqual({
@@ -36,6 +44,15 @@ describe('parseJSON', () => {
             },
             light: {
                 value: 'rgb(82, 130, 255)',
+            },
+        });
+
+        expect(result.utilityColors['object-base']).toEqual({
+            dark: {
+                value: 'rgb(143, 82, 201)',
+            },
+            light: {
+                value: 'rgb(82, 130, 251)',
             },
         });
     });

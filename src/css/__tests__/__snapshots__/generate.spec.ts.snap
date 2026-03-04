@@ -487,6 +487,14 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-scroll-corner: var(--g-color-private-black-100);
     --g-color-infographics-axis: var(--g-color-private-black-150-solid);
     --g-color-infographics-tooltip-bg: var(--g-color-private-white-950);
+    --gil-color-object-base: var(--g-color-private-yellow-550-solid);
+    --gil-color-object-hightlight: var(--g-color-private-yellow-350-solid);
+    --gil-color-object-accent-heavy: var(--g-color-private-orange-650-solid);
+    --gil-color-object-accent-light: var(--g-color-private-white-1000-solid);
+    --gil-color-object-danger: var(--g-color-private-red-550-solid);
+    --gil-color-shadow-over-object: var(--g-color-private-yellow-650-solid);
+    --gil-color-background-lines: var(--g-color-private-black-450-solid);
+    --gil-color-background-shapes: var(--g-color-private-black-50-solid);
 }
 
 .g-root_theme_dark {
@@ -912,6 +920,14 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-scroll-corner: var(--g-color-private-white-150);
     --g-color-infographics-axis: var(--g-color-private-white-150-solid);
     --g-color-infographics-tooltip-bg: var(--g-color-private-white-opaque-150);
+    --gil-color-object-base: var(--g-color-private-yellow-550-solid);
+    --gil-color-object-hightlight: var(--g-color-private-yellow-700-solid);
+    --gil-color-object-accent-heavy: var(--g-color-private-orange-650-solid);
+    --gil-color-object-accent-light: var(--g-color-private-white-1000-solid);
+    --gil-color-object-danger: var(--g-color-private-red-550-solid);
+    --gil-color-shadow-over-object: var(--g-color-private-yellow-500-solid);
+    --gil-color-background-lines: var(--g-color-private-white-550-solid);
+    --gil-color-background-shapes: var(--g-color-private-white-200-solid);
 }"
 `;
 

@@ -32,6 +32,7 @@ export {
     updateUtilityColor,
     generatePrivateColorsForBaseColors,
     isUtilityColorToken,
+    isUtilityIllustrationColorToken,
     createInternalUtilityColorReference,
     parseInternalUtilityColorReference,
 } from './utils.js';
