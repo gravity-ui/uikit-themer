@@ -2,6 +2,11 @@ import {cloneDeep} from 'lodash-es';
 import {DEFAULT_THEME} from '../constants.js';
 import type {GravityTheme, Theme} from '../types.js';
 import {
+    isIllustrationColorCssVariable,
+    getIllustrationColorTypeFromCssVariable,
+    replaceReferencesInIllustrationColors,
+} from '../libraries/illustrations/utils.js';
+import {
     isPrivateColorCssVariable,
     isUtilityColorCssVariable,
     getUtilityColorTypeFromCssVariable,
@@ -130,6 +135,40 @@ const applyUtilityColorVariable = (
     theme.utilityColors[utilityColorType][themeType] = {value: newValue, ref};
 };
 
+const applyIllustrationColorVariable = (
+    theme: GravityTheme,
+    themeType: Theme,
+    cssVariable: string,
+    value: string,
+) => {
+    const illustrationColorType = getIllustrationColorTypeFromCssVariable(cssVariable);
+
+    if (!illustrationColorType) {
+        console.error(`Error when parse illustration variable ${cssVariable}`);
+        return;
+    }
+
+    if (!theme.libraries?.illustrations) {
+        return;
+    }
+
+    let newValue = value;
+    let ref: string | undefined;
+
+    const refCssVariable = parseCssReferenceVariable(value);
+
+    if (refCssVariable) {
+        if (isPrivateColorCssVariable(refCssVariable)) {
+            const {mainColorToken, privateColorToken} =
+                parsePrivateColorCssVariable(refCssVariable);
+            newValue = createInternalPrivateColorReference(mainColorToken, privateColorToken);
+            ref = refCssVariable;
+        }
+    }
+
+    theme.libraries.illustrations[illustrationColorType][themeType] = {value: newValue, ref};
+};
+
 const applyFontVariable = (theme: GravityTheme, cssVariable: string, value: string) => {
     const fontParams = parseCssFontFamily(value);
 
@@ -229,7 +268,9 @@ export function parseCSS(cssString: string): GravityTheme {
         for (const token of Object.entries(themeTokens[themeType]) as [string, string][]) {
             const [variable, value] = token;
 
-            if (isColorCssVariable(variable)) {
+            if (isIllustrationColorCssVariable(variable)) {
+                applyIllustrationColorVariable(theme, themeType, variable, value);
+            } else if (isColorCssVariable(variable)) {
                 if (isPrivateColorCssVariable(variable)) {
                     applyPrivateColorVariable(theme, themeType, variable, value);
                 } else if (isUtilityColorCssVariable(variable)) {
@@ -251,6 +292,13 @@ export function parseCSS(cssString: string): GravityTheme {
         theme.utilityColors,
         theme.privateColors,
     );
+
+    if (theme.libraries?.illustrations) {
+        theme.libraries.illustrations = replaceReferencesInIllustrationColors(
+            theme.libraries.illustrations,
+            theme.privateColors,
+        );
+    }
 
     theme.baseColors = restoreBaseColorsFromPrivateColors(theme.baseColors, theme.privateColors);
 

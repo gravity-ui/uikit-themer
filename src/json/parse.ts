@@ -2,6 +2,10 @@ import {cloneDeep} from 'lodash-es';
 import {DEFAULT_THEME} from '../constants.js';
 import {type GravityTheme} from '../types.js';
 import {
+    isIllustrationColorCssVariable,
+    getIllustrationColorTypeFromCssVariable,
+} from '../libraries/illustrations/utils.js';
+import {
     getUtilityColorTypeFromCssVariable,
     isColorCssVariable,
     isPrivateColorCssVariable,
@@ -73,6 +77,26 @@ const applyUtilityColorVariable = (
 
     theme.utilityColors[utilityColorType].light = parameters.light;
     theme.utilityColors[utilityColorType].dark = parameters.dark;
+};
+
+const applyIllustrationColorVariable = (
+    theme: GravityTheme,
+    cssVariable: string,
+    parameters: ThemizedValueWithReference,
+) => {
+    const illustrationColorType = getIllustrationColorTypeFromCssVariable(cssVariable);
+
+    if (!illustrationColorType) {
+        console.error(`Error when parse illustration variable ${cssVariable}`);
+        return;
+    }
+
+    if (!theme.libraries?.illustrations) {
+        return;
+    }
+
+    theme.libraries.illustrations[illustrationColorType].light = parameters.light;
+    theme.libraries.illustrations[illustrationColorType].dark = parameters.dark;
 };
 
 const applyFontVariable = (
@@ -149,7 +173,14 @@ export function parseJSON(input: JsonTheme): GravityTheme {
     const theme = cloneDeep(DEFAULT_THEME);
 
     for (const [variable, parameters] of Object.entries(input)) {
-        if (isColorCssVariable(variable)) {
+        if (isIllustrationColorCssVariable(variable)) {
+            if (!isThemizedValueWithReference(parameters)) {
+                console.error(`Incorrect options format for variable ${variable}. Skip`);
+                continue;
+            }
+
+            applyIllustrationColorVariable(theme, variable, parameters);
+        } else if (isColorCssVariable(variable)) {
             if (!isThemizedValueWithReference(parameters)) {
                 console.error(`Incorrect options format for variable ${variable}. Skip`);
                 continue;

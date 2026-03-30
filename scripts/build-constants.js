@@ -15,15 +15,22 @@ const constantsPath = join(__dirname, '../dist/constants.js');
 
 async function generatePrecomputedConstants() {
     try {
-        const {DEFAULT_PRIVATE_COLORS, DEFAULT_THEME_UTILITY_COLORS} = await import(
-            '../dist/constants.js'
-        );
+        const {
+            DEFAULT_PRIVATE_COLORS,
+            DEFAULT_THEME_UTILITY_COLORS,
+            DEFAULT_THEME_ILLUSTRATION_COLORS,
+        } = await import('../dist/constants.js');
 
         const constantsContent = await readFile(constantsPath, 'utf8');
 
         const replacements = {
             DEFAULT_PRIVATE_COLORS: JSON.stringify(DEFAULT_PRIVATE_COLORS, null, 2),
             DEFAULT_THEME_UTILITY_COLORS: JSON.stringify(DEFAULT_THEME_UTILITY_COLORS, null, 2),
+            DEFAULT_THEME_ILLUSTRATION_COLORS: JSON.stringify(
+                DEFAULT_THEME_ILLUSTRATION_COLORS,
+                null,
+                2,
+            ),
         };
 
         let newConstantsContent = constantsContent;

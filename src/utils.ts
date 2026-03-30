@@ -1,13 +1,8 @@
-import {
-    THEME_ILLUSTRATION_COLOR_VARIABLE_PREFIX,
-    THEME_COLOR_VARIABLE_PREFIX,
-    THEME_PRIVATE_COLOR_VARIABLE_PREFIX,
-} from './variables.js';
+import {THEME_COLOR_VARIABLE_PREFIX, THEME_PRIVATE_COLOR_VARIABLE_PREFIX} from './variables.js';
 import type {AnyPrivateColorToken} from './private-colors/types.js';
 import {ALL_PRIVATE_VARIABLES} from './private-colors/constants.js';
 import {
     UTILITY_COLORS,
-    UTILITY_ILLUSTRATIONS_COLORS,
     type BaseColors,
     type GravityTheme,
     type PrivateColorOptions,
@@ -15,7 +10,6 @@ import {
     type Theme,
     type UtilityColor,
     type UtilityColors,
-    type UtilityIllustrationColor,
 } from './types.js';
 import {cloneDeep} from 'lodash-es';
 import {generatePrivateColors} from './private-colors/generatePrivateColors.js';
@@ -95,10 +89,7 @@ export function parseInternalPrivateColorReference(privateColorReference: string
  * @returns True if the variable is a color CSS variable
  */
 export function isColorCssVariable(variable: string) {
-    return (
-        variable.startsWith(THEME_COLOR_VARIABLE_PREFIX) ||
-        variable.startsWith(THEME_ILLUSTRATION_COLOR_VARIABLE_PREFIX)
-    );
+    return variable.startsWith(THEME_COLOR_VARIABLE_PREFIX);
 }
 
 /**
@@ -187,17 +178,6 @@ export function parsePrivateColorCssVariable(variable: string) {
     };
 }
 
-const UTILITY_ILLUSTRATION_COLOR_TOKENS = new Set(UTILITY_ILLUSTRATIONS_COLORS);
-
-/**
- * Checks if a string is a valid utility illustration color token.
- * @param token - The token to check
- * @returns True if the token is a valid utility illustration color token
- */
-export function isUtilityIllustrationColorToken(token: string): token is UtilityColor {
-    return UTILITY_ILLUSTRATION_COLOR_TOKENS.has(token as UtilityIllustrationColor);
-}
-
 /**
  * Creates a CSS variable for utility color.
  *
@@ -208,10 +188,6 @@ export function isUtilityIllustrationColorToken(token: string): token is Utility
  * @returns CSS variable string
  */
 export function createUtilityColorCssVariable(colorName: UtilityColor) {
-    if (isUtilityIllustrationColorToken(colorName)) {
-        return `${THEME_ILLUSTRATION_COLOR_VARIABLE_PREFIX}-${colorName}`;
-    }
-
     return `${THEME_COLOR_VARIABLE_PREFIX}-${colorName}`;
 }
 
@@ -242,10 +218,6 @@ export function isUtilityColorCssVariable(variable: string) {
 export function getUtilityColorTypeFromCssVariable(variable: string): UtilityColor | undefined {
     if (!isUtilityColorCssVariable(variable)) {
         return undefined;
-    }
-
-    if (variable.startsWith(THEME_ILLUSTRATION_COLOR_VARIABLE_PREFIX)) {
-        return variable.split(`${THEME_ILLUSTRATION_COLOR_VARIABLE_PREFIX}-`)[1] as UtilityColor;
     }
 
     return variable.split(`${THEME_COLOR_VARIABLE_PREFIX}-`)[1] as UtilityColor;

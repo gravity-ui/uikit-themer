@@ -1,6 +1,7 @@
 import type {BorderSize} from '../borders/types.js';
 import {createBorderRadiusCssVariable} from '../borders/utils.js';
 import type {AnyPrivateColorToken} from '../private-colors/types.js';
+import type {UtilityIllustrationColor} from '../libraries/illustrations/types.js';
 import type {ColorOptions, GenerateOptions, UtilityColor} from '../types.js';
 import {
     TEXT_GROUP_PROPERTIES,
@@ -14,6 +15,7 @@ import {
     createTextCssVariable,
     generateCssFontFamily,
 } from '../typography/utils.js';
+import {createIllustrationColorCssVariable} from '../libraries/illustrations/utils.js';
 import {
     createPrivateColorCssVariable,
     createUtilityColorCssVariable,
@@ -55,7 +57,7 @@ const normalizeColorOptionsForExport = (options: ColorOptions): ColorOptions => 
  * @param options - The options for generating JSON
  * @returns JSON theme representation
  */
-export function generateJSON({theme}: GenerateOptions): JsonTheme {
+export function generateJSON({theme, libraries}: GenerateOptions): JsonTheme {
     const result: JsonTheme = {};
 
     for (const [key, value] of Object.entries(theme.typography.fontFamilies)) {
@@ -126,6 +128,19 @@ export function generateJSON({theme}: GenerateOptions): JsonTheme {
             light: normalizeColorOptionsForExport(value.light),
             dark: normalizeColorOptionsForExport(value.dark),
         };
+    }
+
+    if (theme.libraries?.illustrations && libraries?.includes('illustrations')) {
+        for (const [colorToken, value] of Object.entries(theme.libraries.illustrations)) {
+            const cssVariable = createIllustrationColorCssVariable(
+                colorToken as UtilityIllustrationColor,
+            );
+
+            result[cssVariable] = {
+                light: normalizeColorOptionsForExport(value.light),
+                dark: normalizeColorOptionsForExport(value.dark),
+            };
+        }
     }
 
     for (const [size, value] of Object.entries(theme.borders)) {

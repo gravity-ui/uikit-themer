@@ -72,27 +72,6 @@ describe('parseCSS', () => {
         });
     });
 
-    it('illustrations utility colors', async () => {
-        const result = parseCSS(`
-.g-root_theme_light {
-    --gil-color-object-base: rgb(231,231,232);
-}
-
-.g-root_theme_dark {
-    --gil-color-object-base: rgb(123, 123, 222);
-}
-        `);
-
-        expect(result.utilityColors['object-base']).toEqual({
-            light: {
-                value: 'rgb(231,231,232)',
-            },
-            dark: {
-                value: 'rgb(123, 123, 222)',
-            },
-        });
-    });
-
     it('parse font families', async () => {
         const result = parseCSS(`
 .g-root {
@@ -168,5 +147,26 @@ describe('parseCSS', () => {
         `);
 
         expect(result.typography.groups.code['font-weight']).toEqual('700');
+    });
+
+    it('illustrations colors', async () => {
+        const result = parseCSS(`
+.g-root_theme_light {
+    --gil-color-object-base: rgb(231,231,232);
+}
+
+.g-root_theme_dark {
+    --gil-color-object-base: rgb(123, 123, 222);
+}
+        `);
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            light: {
+                value: 'rgb(231,231,232)',
+            },
+            dark: {
+                value: 'rgb(123, 123, 222)',
+            },
+        });
     });
 });

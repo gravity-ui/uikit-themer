@@ -69,4 +69,9 @@ describe('generateCSS', () => {
         const result = generateCSS({theme: newTheme, ignoreDefaultValues: true});
         expect(result).toMatchSnapshot();
     });
+
+    it('generate with illustrations library', async () => {
+        const result = generateCSS({theme: DEFAULT_THEME, libraries: ['illustrations']});
+        expect(result).toMatchSnapshot();
+    });
 });
