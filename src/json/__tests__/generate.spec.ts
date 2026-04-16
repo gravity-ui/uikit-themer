@@ -69,4 +69,9 @@ describe('generateJSON', () => {
         const result = generateJSON({theme: newTheme});
         expect(result).toMatchSnapshot();
     });
+
+    it('generate with illustrations library', async () => {
+        const result = generateJSON({theme: DEFAULT_THEME, libraries: ['illustrations']});
+        expect(result).toMatchSnapshot();
+    });
 });

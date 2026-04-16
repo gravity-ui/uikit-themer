@@ -1,6 +1,7 @@
 import type {BordersOptions} from './borders/types.js';
 import type {AnyPrivateColorToken} from './private-colors/types.js';
 import type {TypographyOptions} from './typography/types.js';
+import type {GravityLibrary, GravityThemeLibraryColors} from './libraries/types.js';
 
 export type Theme = 'light' | 'dark';
 
@@ -211,28 +212,15 @@ export const UTILITY_SYSTEM_COLORS = [
     'infographics-tooltip-bg',
 ] as const;
 
-export const UTILITY_ILLUSTRATIONS_COLORS = [
-    'object-base',
-    'object-hightlight',
-    'object-accent-heavy',
-    'object-accent-light',
-    'object-danger',
-    'shadow-over-object',
-    'background-lines',
-    'background-shapes',
-] as const;
-
 export const UTILITY_COLORS = [
     ...UTILITY_TEXT_COLORS,
     ...UTILITY_BASE_COLORS,
     ...UTILITY_LINE_COLORS,
     ...UTILITY_SFX_COLORS,
     ...UTILITY_SYSTEM_COLORS,
-    ...UTILITY_ILLUSTRATIONS_COLORS,
 ] as const;
 
 export type UtilityColor = (typeof UTILITY_COLORS)[number];
-export type UtilityIllustrationColor = (typeof UTILITY_ILLUSTRATIONS_COLORS)[number];
 export type UtilityColors = Record<UtilityColor, ThemizedColorOptions>;
 
 export type PrivateColorOptions = Partial<Record<AnyPrivateColorToken, ColorOptions>>;
@@ -254,6 +242,8 @@ export type GravityTheme = {
     typography: TypographyOptions;
     /** Borders (radius, etc.) */
     borders: BordersOptions;
+    /** Colors for external Gravity UI libraries */
+    libraries?: GravityThemeLibraryColors;
 };
 
 export type GenerateOptions = {
@@ -262,4 +252,6 @@ export type GenerateOptions = {
     ignoreDefaultValues?: boolean;
     /** Add !important to values for preview mode */
     forPreview?: boolean;
+    /** List of libraries to include in the generated output. If omitted, no library variables are generated. */
+    libraries?: GravityLibrary[];
 };

@@ -32,10 +32,26 @@ export {
     updateUtilityColor,
     generatePrivateColorsForBaseColors,
     isUtilityColorToken,
-    isUtilityIllustrationColorToken,
     createInternalUtilityColorReference,
     parseInternalUtilityColorReference,
 } from './utils.js';
+
+export {
+    isIllustrationColorCssVariable,
+    createIllustrationColorCssVariable,
+    getIllustrationColorTypeFromCssVariable,
+    isUtilityIllustrationColorToken,
+    replaceReferencesInIllustrationColors,
+} from './libraries/illustrations/utils.js';
+
+export type {
+    UtilityIllustrationColor,
+    IllustrationColors,
+} from './libraries/illustrations/types.js';
+export {UTILITY_ILLUSTRATIONS_COLORS} from './libraries/illustrations/types.js';
+
+export {DEFAULT_ILLUSTRATION_COLORS} from './libraries/illustrations/constants.js';
+export {DEFAULT_THEME_ILLUSTRATION_COLORS} from './constants.js';
 
 export type {
     TypographyOptions,
@@ -81,3 +97,5 @@ export type {
     ColorOptions,
     Theme,
 } from './types.js';
+
+export type {GravityLibrary, GravityThemeLibraryColors} from './libraries/types.js';
