@@ -16,7 +16,7 @@ import {
     restoreBaseColorsFromPrivateColors,
     isColorCssVariable,
     parseCssReferenceVariable,
-    createInternalUtilityColorReference,
+    createInternalColorReference,
 } from '../utils.js';
 import {
     parseCssFontFamily,
@@ -117,18 +117,10 @@ const applyUtilityColorVariable = (
     const refCssVariable = parseCssReferenceVariable(value);
 
     if (refCssVariable) {
-        if (isPrivateColorCssVariable(refCssVariable)) {
-            const {mainColorToken, privateColorToken} =
-                parsePrivateColorCssVariable(refCssVariable);
-            newValue = createInternalPrivateColorReference(mainColorToken, privateColorToken);
+        const internalColorReference = createInternalColorReference(refCssVariable);
+        if (internalColorReference) {
+            newValue = internalColorReference;
             ref = refCssVariable;
-        } else if (isUtilityColorCssVariable(refCssVariable)) {
-            const utilityColorType = getUtilityColorTypeFromCssVariable(refCssVariable);
-
-            if (utilityColorType) {
-                newValue = createInternalUtilityColorReference(utilityColorType);
-                ref = refCssVariable;
-            }
         }
     }
 

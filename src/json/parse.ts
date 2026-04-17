@@ -6,12 +6,14 @@ import {
     getIllustrationColorTypeFromCssVariable,
 } from '../libraries/illustrations/utils.js';
 import {
+    createInternalColorReference,
     getUtilityColorTypeFromCssVariable,
     isColorCssVariable,
     isPrivateColorCssVariable,
     isUtilityColorCssVariable,
     parsePrivateColorCssVariable,
     restoreBaseColorsFromPrivateColors,
+    replaceReferencesInUtilityColors,
 } from '../utils.js';
 import {
     getKeyFromCssFontVariable,
@@ -75,8 +77,19 @@ const applyUtilityColorVariable = (
         return;
     }
 
-    theme.utilityColors[utilityColorType].light = parameters.light;
-    theme.utilityColors[utilityColorType].dark = parameters.dark;
+    for (const themeType of ['light', 'dark'] as const) {
+        const value = parameters[themeType].value;
+        let ref: string | undefined = parameters[themeType].ref;
+
+        if (ref) {
+            const internalColorReference = createInternalColorReference(ref);
+            if (internalColorReference) {
+                ref = internalColorReference;
+            }
+        }
+
+        theme.utilityColors[utilityColorType][themeType] = {value, ref};
+    }
 };
 
 const applyIllustrationColorVariable = (
@@ -215,6 +228,11 @@ export function parseJSON(input: JsonTheme): GravityTheme {
             console.error(`Unsupported css variable ${variable}. Skip`);
         }
     }
+
+    theme.utilityColors = replaceReferencesInUtilityColors(
+        theme.utilityColors,
+        theme.privateColors,
+    );
 
     theme.baseColors = restoreBaseColorsFromPrivateColors(theme.baseColors, theme.privateColors);
 

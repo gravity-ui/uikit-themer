@@ -656,3 +656,25 @@ export function parseCssReferenceVariable(value: string) {
 
     return undefined;
 }
+
+/**
+ * Creates an internal color reference from a CSS color variable.
+ * @param refCssVariable - CSS variable reference (e.g., '--g-color-private-brand-50', '--g-color-text-info')
+ * @returns Internal reference string, or undefined if not a color reference
+ * @example
+ * createInternalColorReference('--g-color-private-brand-50') === 'private.brand.50'
+ * @example
+ * createInternalColorReference('--g-color-text-info') === 'utility.text-info'
+ */
+export function createInternalColorReference(refCssVariable: string): string | undefined {
+    if (isPrivateColorCssVariable(refCssVariable)) {
+        const {mainColorToken, privateColorToken} = parsePrivateColorCssVariable(refCssVariable);
+        return createInternalPrivateColorReference(mainColorToken, privateColorToken);
+    } else if (isUtilityColorCssVariable(refCssVariable)) {
+        const utilityColorType = getUtilityColorTypeFromCssVariable(refCssVariable);
+        if (utilityColorType) {
+            return createInternalUtilityColorReference(utilityColorType);
+        }
+    }
+    return undefined;
+}
