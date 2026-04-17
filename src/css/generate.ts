@@ -119,6 +119,11 @@ const createIllustrationColorExport = (
             const {mainColorToken, privateColorCode} = parseResult;
             resultValue = `var(${createPrivateColorCssVariable(mainColorToken, privateColorCode)})`;
         }
+    } else if (isInternalUtilityColorReference(resultValue)) {
+        const utilityColor = parseInternalUtilityColorReference(resultValue);
+        if (utilityColor) {
+            resultValue = `var(${createUtilityColorCssVariable(utilityColor)})`;
+        }
     }
 
     return [

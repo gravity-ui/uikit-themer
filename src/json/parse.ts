@@ -4,6 +4,7 @@ import {type GravityTheme} from '../types.js';
 import {
     isIllustrationColorCssVariable,
     getIllustrationColorTypeFromCssVariable,
+    replaceReferencesInIllustrationColors,
 } from '../libraries/illustrations/utils.js';
 import {
     createInternalColorReference,
@@ -108,8 +109,19 @@ const applyIllustrationColorVariable = (
         return;
     }
 
-    theme.libraries.illustrations[illustrationColorType].light = parameters.light;
-    theme.libraries.illustrations[illustrationColorType].dark = parameters.dark;
+    for (const themeType of ['light', 'dark'] as const) {
+        const value = parameters[themeType].value;
+        let ref: string | undefined = parameters[themeType].ref;
+
+        if (ref) {
+            const internalColorReference = createInternalColorReference(ref);
+            if (internalColorReference) {
+                ref = internalColorReference;
+            }
+        }
+
+        theme.libraries.illustrations[illustrationColorType][themeType] = {value, ref};
+    }
 };
 
 const applyFontVariable = (
@@ -233,6 +245,14 @@ export function parseJSON(input: JsonTheme): GravityTheme {
         theme.utilityColors,
         theme.privateColors,
     );
+
+    if (theme.libraries?.illustrations) {
+        theme.libraries.illustrations = replaceReferencesInIllustrationColors(
+            theme.libraries.illustrations,
+            theme.privateColors,
+            theme.utilityColors,
+        );
+    }
 
     theme.baseColors = restoreBaseColorsFromPrivateColors(theme.baseColors, theme.privateColors);
 

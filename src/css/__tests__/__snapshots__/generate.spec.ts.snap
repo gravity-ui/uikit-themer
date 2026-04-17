@@ -1049,6 +1049,20 @@ exports[`generateCSS generate when set reference in utility colors 1`] = `
 }"
 `;
 
+exports[`generateCSS generate with illustrations  when set reference in utility colors 1`] = `
+".g-root {
+
+}
+
+.g-root_theme_light {
+    --gil-color-object-base: var(--g-color-text-info);
+}
+
+.g-root_theme_dark {
+    --gil-color-object-base: var(--g-color-text-info);
+}"
+`;
+
 exports[`generateCSS generate with illustrations library 1`] = `
 ".g-root {
     --g-border-radius-xs: 3px;

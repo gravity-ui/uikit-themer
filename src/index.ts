@@ -41,7 +41,10 @@ export {
     createIllustrationColorCssVariable,
     getIllustrationColorTypeFromCssVariable,
     isUtilityIllustrationColorToken,
+    isInternalUtilityIllustrationColorReference,
     replaceReferencesInIllustrationColors,
+    parseInternalUtilityIllustrationColorReference,
+    createInternalUtilityIllustrationColorReference,
 } from './libraries/illustrations/utils.js';
 
 export type {

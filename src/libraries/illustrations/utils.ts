@@ -1,7 +1,12 @@
 import {cloneDeep} from 'lodash-es';
 import {THEME_ILLUSTRATION_COLOR_VARIABLE_PREFIX} from '../../variables.js';
-import {isInternalPrivateColorReference, parseInternalPrivateColorReference} from '../../utils.js';
-import type {PrivateColors, Theme} from '../../types.js';
+import {
+    isInternalPrivateColorReference,
+    parseInternalPrivateColorReference,
+    isInternalUtilityColorReference,
+    parseInternalUtilityColorReference,
+} from '../../utils.js';
+import type {PrivateColors, Theme, UtilityColors} from '../../types.js';
 import {
     UTILITY_ILLUSTRATIONS_COLORS,
     type IllustrationColors,
@@ -17,6 +22,62 @@ const UTILITY_ILLUSTRATION_COLOR_TOKENS = new Set(UTILITY_ILLUSTRATIONS_COLORS);
  */
 export function isUtilityIllustrationColorToken(token: string): token is UtilityIllustrationColor {
     return UTILITY_ILLUSTRATION_COLOR_TOKENS.has(token as UtilityIllustrationColor);
+}
+
+/**
+ * Checks if a string is an internal utility illustration color reference.
+ * @param utilityIllustrationColorReference - The reference string to check
+ * @returns True if the string is a valid internal utility color reference
+ */
+export function isInternalUtilityIllustrationColorReference(
+    utilityIllustrationColorReference?: string,
+) {
+    if (!utilityIllustrationColorReference) {
+        return false;
+    }
+
+    const parts = utilityIllustrationColorReference.split('.');
+
+    if (parts.length !== 2 || parts[0] !== 'illustrations') {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Parses an internal utility illustration color reference into its utility color.
+ * @param utilityIllustrationColorReference - The internal utility illustration color reference string
+ * @returns Parsed utility color or undefined if invalid
+ * @example
+ * parseInternalUtilityIllustrationColorReference('illustrations.object-base') === 'object-base'
+ * parseInternalUtilityIllustrationColorReference('illustrations.wrong-illustration-color') === undefined
+ */
+export function parseInternalUtilityIllustrationColorReference(
+    utilityIllustrationColorReference: string,
+) {
+    const parts = utilityIllustrationColorReference.split('.');
+
+    if (parts.length !== 2 || parts[0] !== 'illustrations') {
+        return undefined;
+    }
+
+    if (isUtilityIllustrationColorToken(parts[1] as UtilityIllustrationColor)) {
+        return parts[1] as UtilityIllustrationColor;
+    }
+
+    return undefined;
+}
+
+/**
+ * Creates an internal reference to a utility illustration color.
+ * @param utilityIllustrationColor - The utility illustration color name
+ * @returns Internal utility illustration color reference string (example: illustrations.object-base)
+ */
+export function createInternalUtilityIllustrationColorReference(
+    utilityIllustrationColor: UtilityIllustrationColor,
+) {
+    return `illustrations.${utilityIllustrationColor}`;
 }
 
 /**
@@ -72,14 +133,16 @@ export function getIllustrationColorTypeFromCssVariable(
 }
 
 /**
- * Replaces internal references in illustration colors with actual values from private colors.
+ * Replaces internal references in illustration colors with actual values from private colors and utility colors.
  * @param illustrationColors - Illustration colors with potential internal references
  * @param privateColors - Private colors to resolve references against
+ * @param utilityColors - Utility colors to resolve references against
  * @returns Illustration colors with resolved references
  */
 export const replaceReferencesInIllustrationColors = (
     illustrationColors: IllustrationColors,
     privateColors: PrivateColors,
+    utilityColors?: UtilityColors,
 ): IllustrationColors => {
     const result = cloneDeep(illustrationColors);
 
@@ -96,6 +159,31 @@ export const replaceReferencesInIllustrationColors = (
                     newValue =
                         privateColors[mainColorToken]?.[theme as Theme][privateColorCode]?.value ||
                         '';
+                    ref = colorValue.value;
+                }
+
+                result[colorToken as UtilityIllustrationColor][theme as Theme] = {
+                    value: newValue,
+                    ref,
+                };
+            } else if (isInternalUtilityColorReference(colorValue.value) && utilityColors) {
+                let newValue = '';
+                let ref: string | undefined;
+
+                const refUtilityColor = parseInternalUtilityColorReference(colorValue.value);
+
+                if (refUtilityColor) {
+                    newValue = utilityColors[refUtilityColor][theme as Theme].value;
+
+                    if (
+                        isInternalPrivateColorReference(newValue) ||
+                        isInternalUtilityColorReference(newValue)
+                    ) {
+                        throw new Error(
+                            `Circular reference detected in illustration color ${colorToken}`,
+                        );
+                    }
+
                     ref = colorValue.value;
                 }
 

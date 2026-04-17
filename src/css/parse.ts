@@ -11,7 +11,6 @@ import {
     isUtilityColorCssVariable,
     getUtilityColorTypeFromCssVariable,
     parsePrivateColorCssVariable,
-    createInternalPrivateColorReference,
     replaceReferencesInUtilityColors,
     restoreBaseColorsFromPrivateColors,
     isColorCssVariable,
@@ -150,10 +149,9 @@ const applyIllustrationColorVariable = (
     const refCssVariable = parseCssReferenceVariable(value);
 
     if (refCssVariable) {
-        if (isPrivateColorCssVariable(refCssVariable)) {
-            const {mainColorToken, privateColorToken} =
-                parsePrivateColorCssVariable(refCssVariable);
-            newValue = createInternalPrivateColorReference(mainColorToken, privateColorToken);
+        const internalColorReference = createInternalColorReference(refCssVariable);
+        if (internalColorReference) {
+            newValue = internalColorReference;
             ref = refCssVariable;
         }
     }
@@ -289,6 +287,7 @@ export function parseCSS(cssString: string): GravityTheme {
         theme.libraries.illustrations = replaceReferencesInIllustrationColors(
             theme.libraries.illustrations,
             theme.privateColors,
+            theme.utilityColors,
         );
     }
 
