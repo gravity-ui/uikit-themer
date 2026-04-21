@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.8.0](https://github.com/gravity-ui/uikit-themer/compare/v1.7.0...v1.8.0) (2026-04-21)
+
+
+### Features
+
+* add illustrations colors ([fcd1607](https://github.com/gravity-ui/uikit-themer/commit/fcd16072be95a551df2ba362ff667d3c7cc7d104))
+* add utility color refs support for illustration colors and illustration internal refs utils ([36ac79d](https://github.com/gravity-ui/uikit-themer/commit/36ac79d35137d5eba414086161b4539782adaf38))
+* integrate illustration colors into theme generation and parsing ([8c431ab](https://github.com/gravity-ui/uikit-themer/commit/8c431ab22a57f31557611e593c71d837a12c5d4a))
+
+
+### Bug Fixes
+
+* json parser internal references ([020074d](https://github.com/gravity-ui/uikit-themer/commit/020074d85970505579534bd79ac9b781adda670e))
+
 ## [1.7.0](https://github.com/gravity-ui/uikit-themer/compare/v1.6.1...v1.7.0) (2025-12-16)
 
 
