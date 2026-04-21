@@ -1,6 +1,7 @@
 import type {BordersOptions} from './borders/types.js';
 import type {AnyPrivateColorToken} from './private-colors/types.js';
 import type {TypographyOptions} from './typography/types.js';
+import type {GravityLibrary, GravityThemeLibraryColors} from './libraries/types.js';
 
 export type Theme = 'light' | 'dark';
 
@@ -241,6 +242,8 @@ export type GravityTheme = {
     typography: TypographyOptions;
     /** Borders (radius, etc.) */
     borders: BordersOptions;
+    /** Colors for external Gravity UI libraries */
+    libraries?: GravityThemeLibraryColors;
 };
 
 export type GenerateOptions = {
@@ -249,4 +252,6 @@ export type GenerateOptions = {
     ignoreDefaultValues?: boolean;
     /** Add !important to values for preview mode */
     forPreview?: boolean;
+    /** List of libraries to include in the generated output. If omitted, no library variables are generated. */
+    libraries?: GravityLibrary[];
 };

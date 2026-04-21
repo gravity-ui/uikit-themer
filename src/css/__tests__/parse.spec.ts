@@ -148,4 +148,75 @@ describe('parseCSS', () => {
 
         expect(result.typography.groups.code['font-weight']).toEqual('700');
     });
+
+    it('illustrations colors', async () => {
+        const result = parseCSS(`
+.g-root_theme_light {
+    --gil-color-object-base: rgb(231,231,232);
+}
+
+.g-root_theme_dark {
+    --gil-color-object-base: rgb(123, 123, 222);
+}
+        `);
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            light: {
+                value: 'rgb(231,231,232)',
+            },
+            dark: {
+                value: 'rgb(123, 123, 222)',
+            },
+        });
+    });
+
+    it('illustrations colors with private references', async () => {
+        const result = parseCSS(`
+.g-root_theme_light {
+    --g-color-private-brand-200: rgba(203,255,92,0.1);
+    --gil-color-object-base: var(--g-color-private-brand-200);
+}
+
+.g-root_theme_dark {
+    --g-color-private-brand-50: rgba(11,20,33,0.1);
+    --gil-color-object-base: var(--g-color-private-brand-50);
+}
+        `);
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            dark: {
+                ref: 'private.brand.50',
+                value: 'rgba(11,20,33,0.1)',
+            },
+            light: {
+                ref: 'private.brand.200',
+                value: 'rgba(203,255,92,0.1)',
+            },
+        });
+    });
+
+    it('illustrations colors with utility references', async () => {
+        const result = parseCSS(`
+.g-root_theme_light {
+    --g-color-text-info: rgb(52, 139, 220);
+    --gil-color-object-base: var(--g-color-text-info);
+}
+
+.g-root_theme_dark {
+    --g-color-text-info: rgb(54, 151, 241);
+    --gil-color-object-base: var(--g-color-text-info);
+}
+        `);
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            light: {
+                ref: 'utility.text-info',
+                value: 'rgb(52, 139, 220)',
+            },
+            dark: {
+                ref: 'utility.text-info',
+                value: 'rgb(54, 151, 241)',
+            },
+        });
+    });
 });

@@ -1,6 +1,7 @@
 import {isEqual} from 'lodash-es';
 import {DEFAULT_THEME} from '../constants.js';
 import type {AnyPrivateColorToken} from '../private-colors/types.js';
+import type {UtilityIllustrationColor} from '../libraries/illustrations/types.js';
 import type {GenerateOptions, GravityTheme, Theme, UtilityColor} from '../types.js';
 import {
     TEXT_GROUP_PROPERTIES,
@@ -13,6 +14,7 @@ import {
     createTextCssVariable,
     generateCssFontFamily,
 } from '../typography/utils.js';
+import {createIllustrationColorCssVariable} from '../libraries/illustrations/utils.js';
 import {
     createPrivateColorCssVariable,
     createUtilityColorCssVariable,
@@ -97,6 +99,39 @@ const createUtilityColorExport = (
     ].join(': ');
 };
 
+const createIllustrationColorExport = (
+    theme: GravityTheme,
+    themeVariant: Theme,
+    illustrationColor: UtilityIllustrationColor,
+    forPreview?: boolean,
+) => {
+    const colorOptions = theme.libraries?.illustrations?.[illustrationColor];
+    if (!colorOptions) {
+        return '';
+    }
+
+    const {ref, value} = colorOptions[themeVariant];
+    let resultValue = ref ? ref : value;
+
+    if (isInternalPrivateColorReference(resultValue)) {
+        const parseResult = parseInternalPrivateColorReference(resultValue);
+        if (parseResult) {
+            const {mainColorToken, privateColorCode} = parseResult;
+            resultValue = `var(${createPrivateColorCssVariable(mainColorToken, privateColorCode)})`;
+        }
+    } else if (isInternalUtilityColorReference(resultValue)) {
+        const utilityColor = parseInternalUtilityColorReference(resultValue);
+        if (utilityColor) {
+            resultValue = `var(${createUtilityColorCssVariable(utilityColor)})`;
+        }
+    }
+
+    return [
+        createIllustrationColorCssVariable(illustrationColor),
+        `${resultValue}${forPreview ? ' !important' : ''};`,
+    ].join(': ');
+};
+
 /*
 Output example:
 
@@ -115,7 +150,12 @@ Output example:
  * @param options - The options for generating CSS
  * @returns CSS string representation of the theme
  */
-export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOptions): string {
+export function generateCSS({
+    theme,
+    ignoreDefaultValues,
+    forPreview,
+    libraries,
+}: GenerateOptions): string {
     const backgroundColorChanged = isBackgroundColorChanged(theme);
 
     const prepareThemeVariables = (themeVariant: Theme) => {
@@ -177,6 +217,31 @@ export function generateCSS({theme, ignoreDefaultValues, forPreview}: GenerateOp
 
             cssVariables += `${createUtilityColorExport(theme, themeVariant, utilityColor, forPreview)}\n`;
         });
+
+        if (theme.libraries?.illustrations && libraries?.includes('illustrations')) {
+            cssVariables += '\n';
+
+            Object.keys(theme.libraries.illustrations).forEach((_illustrationColor) => {
+                const illustrationColor = _illustrationColor as UtilityIllustrationColor;
+
+                const valueEqualsToDefault =
+                    DEFAULT_THEME.libraries?.illustrations?.[illustrationColor]?.[themeVariant]
+                        .value ===
+                        theme.libraries?.illustrations?.[illustrationColor]?.[themeVariant].value ||
+                    (DEFAULT_THEME.libraries?.illustrations?.[illustrationColor]?.[themeVariant]
+                        .ref &&
+                        DEFAULT_THEME.libraries?.illustrations?.[illustrationColor]?.[themeVariant]
+                            .ref ===
+                            theme.libraries?.illustrations?.[illustrationColor]?.[themeVariant]
+                                .ref);
+
+                if (valueEqualsToDefault && ignoreDefaultValues) {
+                    return;
+                }
+
+                cssVariables += `${createIllustrationColorExport(theme, themeVariant, illustrationColor, forPreview)}\n`;
+            });
+        }
 
         return cssVariables.trim();
     };

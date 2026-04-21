@@ -40,6 +40,98 @@ describe('parseJSON', () => {
         });
     });
 
+    it('utility colors with private references', async () => {
+        const result = parseJSON({
+            '--g-color-private-brand-200': {
+                dark: {
+                    value: 'rgba(203,255,92,0.1)',
+                },
+                light: {
+                    value: 'rgba(203,255,92,0.1)',
+                },
+            },
+            '--g-color-private-brand-50': {
+                dark: {
+                    value: 'rgba(11,20,33,0.1)',
+                },
+                light: {
+                    value: 'rgba(11,20,33,0.1)',
+                },
+            },
+            '--g-color-base-brand-hover': {
+                dark: {
+                    value: 'rgba(11,20,33,0.1)',
+                    ref: '--g-color-private-brand-50',
+                },
+                light: {
+                    value: 'rgba(203,255,92,0.1)',
+                    ref: '--g-color-private-brand-200',
+                },
+            },
+        });
+
+        expect(result.utilityColors['base-brand-hover']).toEqual({
+            dark: {
+                ref: 'private.brand.50',
+                value: 'rgba(11,20,33,0.1)',
+            },
+            light: {
+                ref: 'private.brand.200',
+                value: 'rgba(203,255,92,0.1)',
+            },
+        });
+    });
+
+    it('utility colors with utility references', async () => {
+        const result = parseJSON({
+            '--g-color-private-blue-600-solid': {
+                dark: {
+                    value: 'rgb(54, 151, 241)',
+                },
+                light: {
+                    value: 'rgb(52, 139, 220)',
+                },
+            },
+            '--g-color-private-blue-550-solid': {
+                dark: {
+                    value: 'rgb(54, 151, 241)',
+                },
+                light: {
+                    value: 'rgb(52, 139, 220)',
+                },
+            },
+            '--g-color-text-info': {
+                dark: {
+                    value: '--g-color-private-blue-550-solid',
+                },
+                light: {
+                    value: '--g-color-private-blue-600-solid',
+                },
+            },
+            '--g-color-text-primary': {
+                dark: {
+                    value: 'rgb(54, 151, 241)',
+                    ref: '--g-color-text-info',
+                },
+                light: {
+                    value: 'rgb(52, 139, 220)',
+                    ref: '--g-color-text-info',
+                },
+            },
+        });
+
+        expect(result.utilityColors['text-primary']).toEqual({
+            light: {
+                ref: 'utility.text-info',
+                value: 'rgb(52, 139, 220)',
+            },
+            dark: {
+                ref: 'utility.text-info',
+                value: 'rgb(54, 151, 241)',
+            },
+        });
+    });
+
     it('private colors', async () => {
         const result = parseJSON({
             '--g-color-private-white-50': {
@@ -74,6 +166,104 @@ describe('parseJSON', () => {
 
         expect(result.privateColors['green']!.dark['200-solid']).toEqual({
             value: 'rgb(143, 82, 204)',
+        });
+    });
+
+    it('illustrations colors', async () => {
+        const result = parseJSON({
+            '--gil-color-object-base': {
+                dark: {
+                    value: 'rgb(143, 82, 201)',
+                },
+                light: {
+                    value: 'rgb(82, 130, 251)',
+                },
+            },
+        });
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            dark: {
+                value: 'rgb(143, 82, 201)',
+            },
+            light: {
+                value: 'rgb(82, 130, 251)',
+            },
+        });
+    });
+
+    it('illustrations colors with private references', async () => {
+        const result = parseJSON({
+            '--g-color-private-brand-200': {
+                dark: {
+                    value: 'rgba(203,255,92,0.1)',
+                },
+                light: {
+                    value: 'rgba(203,255,92,0.1)',
+                },
+            },
+            '--g-color-private-brand-50': {
+                dark: {
+                    value: 'rgba(11,20,33,0.1)',
+                },
+                light: {
+                    value: 'rgba(11,20,33,0.1)',
+                },
+            },
+            '--gil-color-object-base': {
+                dark: {
+                    value: 'rgba(11,20,33,0.1)',
+                    ref: '--g-color-private-brand-50',
+                },
+                light: {
+                    value: 'rgba(203,255,92,0.1)',
+                    ref: '--g-color-private-brand-200',
+                },
+            },
+        });
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            dark: {
+                ref: 'private.brand.50',
+                value: 'rgba(11,20,33,0.1)',
+            },
+            light: {
+                ref: 'private.brand.200',
+                value: 'rgba(203,255,92,0.1)',
+            },
+        });
+    });
+
+    it('illustrations colors with utility references', async () => {
+        const result = parseJSON({
+            '--g-color-text-info': {
+                dark: {
+                    value: 'rgb(54, 151, 241)',
+                },
+                light: {
+                    value: 'rgb(52, 139, 220)',
+                },
+            },
+            '--gil-color-object-base': {
+                dark: {
+                    value: 'rgb(54, 151, 241)',
+                    ref: '--g-color-text-info',
+                },
+                light: {
+                    value: 'rgb(52, 139, 220)',
+                    ref: '--g-color-text-info',
+                },
+            },
+        });
+
+        expect(result.libraries?.illustrations?.['object-base']).toEqual({
+            light: {
+                ref: 'utility.text-info',
+                value: 'rgb(52, 139, 220)',
+            },
+            dark: {
+                ref: 'utility.text-info',
+                value: 'rgb(54, 151, 241)',
+            },
         });
     });
 });

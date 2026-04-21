@@ -2,12 +2,19 @@ import {cloneDeep} from 'lodash-es';
 import {DEFAULT_THEME} from '../constants.js';
 import {type GravityTheme} from '../types.js';
 import {
+    isIllustrationColorCssVariable,
+    getIllustrationColorTypeFromCssVariable,
+    replaceReferencesInIllustrationColors,
+} from '../libraries/illustrations/utils.js';
+import {
+    createInternalColorReference,
     getUtilityColorTypeFromCssVariable,
     isColorCssVariable,
     isPrivateColorCssVariable,
     isUtilityColorCssVariable,
     parsePrivateColorCssVariable,
     restoreBaseColorsFromPrivateColors,
+    replaceReferencesInUtilityColors,
 } from '../utils.js';
 import {
     getKeyFromCssFontVariable,
@@ -71,8 +78,50 @@ const applyUtilityColorVariable = (
         return;
     }
 
-    theme.utilityColors[utilityColorType].light = parameters.light;
-    theme.utilityColors[utilityColorType].dark = parameters.dark;
+    for (const themeType of ['light', 'dark'] as const) {
+        const value = parameters[themeType].value;
+        let ref: string | undefined = parameters[themeType].ref;
+
+        if (ref) {
+            const internalColorReference = createInternalColorReference(ref);
+            if (internalColorReference) {
+                ref = internalColorReference;
+            }
+        }
+
+        theme.utilityColors[utilityColorType][themeType] = {value, ref};
+    }
+};
+
+const applyIllustrationColorVariable = (
+    theme: GravityTheme,
+    cssVariable: string,
+    parameters: ThemizedValueWithReference,
+) => {
+    const illustrationColorType = getIllustrationColorTypeFromCssVariable(cssVariable);
+
+    if (!illustrationColorType) {
+        console.error(`Error when parse illustration variable ${cssVariable}`);
+        return;
+    }
+
+    if (!theme.libraries?.illustrations) {
+        return;
+    }
+
+    for (const themeType of ['light', 'dark'] as const) {
+        const value = parameters[themeType].value;
+        let ref: string | undefined = parameters[themeType].ref;
+
+        if (ref) {
+            const internalColorReference = createInternalColorReference(ref);
+            if (internalColorReference) {
+                ref = internalColorReference;
+            }
+        }
+
+        theme.libraries.illustrations[illustrationColorType][themeType] = {value, ref};
+    }
 };
 
 const applyFontVariable = (
@@ -149,7 +198,14 @@ export function parseJSON(input: JsonTheme): GravityTheme {
     const theme = cloneDeep(DEFAULT_THEME);
 
     for (const [variable, parameters] of Object.entries(input)) {
-        if (isColorCssVariable(variable)) {
+        if (isIllustrationColorCssVariable(variable)) {
+            if (!isThemizedValueWithReference(parameters)) {
+                console.error(`Incorrect options format for variable ${variable}. Skip`);
+                continue;
+            }
+
+            applyIllustrationColorVariable(theme, variable, parameters);
+        } else if (isColorCssVariable(variable)) {
             if (!isThemizedValueWithReference(parameters)) {
                 console.error(`Incorrect options format for variable ${variable}. Skip`);
                 continue;
@@ -183,6 +239,19 @@ export function parseJSON(input: JsonTheme): GravityTheme {
         } else {
             console.error(`Unsupported css variable ${variable}. Skip`);
         }
+    }
+
+    theme.utilityColors = replaceReferencesInUtilityColors(
+        theme.utilityColors,
+        theme.privateColors,
+    );
+
+    if (theme.libraries?.illustrations) {
+        theme.libraries.illustrations = replaceReferencesInIllustrationColors(
+            theme.libraries.illustrations,
+            theme.privateColors,
+            theme.utilityColors,
+        );
     }
 
     theme.baseColors = restoreBaseColorsFromPrivateColors(theme.baseColors, theme.privateColors);

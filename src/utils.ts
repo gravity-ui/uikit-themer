@@ -82,6 +82,7 @@ export function parseInternalPrivateColorReference(privateColorReference: string
  * @example
  * isColorCssVariable('--g-color-text-link-visited') === true
  * isColorCssVariable('--g-color-private-brand-200') === true
+ * isColorCssVariable('--gil-color-object-base') === true
  * isColorCssVariable('--g-spacing-0') === false
  *
  * @param variable - CSS variable name
@@ -215,9 +216,11 @@ export function isUtilityColorCssVariable(variable: string) {
  * @returns Utility color type or undefined if invalid
  */
 export function getUtilityColorTypeFromCssVariable(variable: string): UtilityColor | undefined {
-    return isUtilityColorCssVariable(variable)
-        ? (variable.split(`${THEME_COLOR_VARIABLE_PREFIX}-`)[1] as UtilityColor)
-        : undefined;
+    if (!isUtilityColorCssVariable(variable)) {
+        return undefined;
+    }
+
+    return variable.split(`${THEME_COLOR_VARIABLE_PREFIX}-`)[1] as UtilityColor;
 }
 
 /**
@@ -651,5 +654,27 @@ export function parseCssReferenceVariable(value: string) {
         return refCssVariable;
     }
 
+    return undefined;
+}
+
+/**
+ * Creates an internal color reference from a CSS color variable.
+ * @param refCssVariable - CSS variable reference (e.g., '--g-color-private-brand-50', '--g-color-text-info')
+ * @returns Internal reference string, or undefined if not a color reference
+ * @example
+ * createInternalColorReference('--g-color-private-brand-50') === 'private.brand.50'
+ * @example
+ * createInternalColorReference('--g-color-text-info') === 'utility.text-info'
+ */
+export function createInternalColorReference(refCssVariable: string): string | undefined {
+    if (isPrivateColorCssVariable(refCssVariable)) {
+        const {mainColorToken, privateColorToken} = parsePrivateColorCssVariable(refCssVariable);
+        return createInternalPrivateColorReference(mainColorToken, privateColorToken);
+    } else if (isUtilityColorCssVariable(refCssVariable)) {
+        const utilityColorType = getUtilityColorTypeFromCssVariable(refCssVariable);
+        if (utilityColorType) {
+            return createInternalUtilityColorReference(utilityColorType);
+        }
+    }
     return undefined;
 }

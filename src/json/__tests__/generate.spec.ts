@@ -69,4 +69,30 @@ describe('generateJSON', () => {
         const result = generateJSON({theme: newTheme});
         expect(result).toMatchSnapshot();
     });
+
+    it('generate with illustrations library', async () => {
+        const result = generateJSON({theme: DEFAULT_THEME, libraries: ['illustrations']});
+        expect(result).toMatchSnapshot();
+    });
+
+    it('generate with illustrations  when set reference in utility colors', async () => {
+        const newTheme = cloneDeep(DEFAULT_THEME);
+        if (newTheme.libraries?.illustrations) {
+            newTheme.libraries.illustrations['object-base'] = {
+                light: {
+                    ref: createInternalUtilityColorReference('text-info'),
+                    value: 'rgb(52, 139, 220))',
+                },
+                dark: {
+                    ref: createInternalUtilityColorReference('text-info'),
+                    value: 'rgb(52, 139, 220))',
+                },
+            };
+        }
+        const result = generateJSON({
+            theme: newTheme,
+            libraries: ['illustrations'],
+        });
+        expect(result).toMatchSnapshot();
+    });
 });
