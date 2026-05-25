@@ -3,16 +3,16 @@ import type {IllustrationColors} from './types.js';
 
 export const DEFAULT_ILLUSTRATION_COLORS: IllustrationColors = {
     'object-base': {
-        dark: {value: createInternalPrivateColorReference('yellow', '550-solid')},
-        light: {value: createInternalPrivateColorReference('yellow', '550-solid')},
+        dark: {value: createInternalPrivateColorReference('brand', '550-solid')},
+        light: {value: createInternalPrivateColorReference('brand', '550-solid')},
     },
     'object-hightlight': {
-        dark: {value: createInternalPrivateColorReference('yellow', '700-solid')},
-        light: {value: createInternalPrivateColorReference('yellow', '350-solid')},
+        dark: {value: createInternalPrivateColorReference('brand', '700-solid')},
+        light: {value: createInternalPrivateColorReference('brand', '350-solid')},
     },
     'object-accent-heavy': {
-        dark: {value: createInternalPrivateColorReference('orange', '650-solid')},
-        light: {value: createInternalPrivateColorReference('orange', '650-solid')},
+        dark: {value: createInternalPrivateColorReference('brand', '350-solid')},
+        light: {value: createInternalPrivateColorReference('brand', '650-solid')},
     },
     'object-accent-light': {
         dark: {value: createInternalPrivateColorReference('white', '1000-solid')},
@@ -23,15 +23,15 @@ export const DEFAULT_ILLUSTRATION_COLORS: IllustrationColors = {
         light: {value: createInternalPrivateColorReference('red', '550-solid')},
     },
     'shadow-over-object': {
-        dark: {value: createInternalPrivateColorReference('yellow', '500-solid')},
-        light: {value: createInternalPrivateColorReference('yellow', '650-solid')},
+        dark: {value: createInternalPrivateColorReference('brand', '500-solid')},
+        light: {value: createInternalPrivateColorReference('brand', '650-solid')},
     },
     'background-lines': {
-        dark: {value: createInternalPrivateColorReference('white', '550-solid')},
-        light: {value: createInternalPrivateColorReference('black', '450-solid')},
+        dark: {value: createInternalPrivateColorReference('brand', '650-solid')},
+        light: {value: createInternalPrivateColorReference('brand', '650-solid')},
     },
     'background-shapes': {
-        dark: {value: createInternalPrivateColorReference('white', '200-solid')},
-        light: {value: createInternalPrivateColorReference('black', '50-solid')},
+        dark: {value: createInternalPrivateColorReference('brand', '200-solid')},
+        light: {value: createInternalPrivateColorReference('brand', '100-solid')},
     },
 };

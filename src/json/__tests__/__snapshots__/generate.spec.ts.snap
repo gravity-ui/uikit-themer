@@ -20085,32 +20085,32 @@ exports[`generateJSON generate with illustrations  when set reference in utility
   },
   "--gil-color-background-lines": {
     "dark": {
-      "ref": "--g-color-private-white-550-solid",
-      "value": "rgb(156 153 156)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-black-450-solid",
-      "value": "rgb(140 140 140)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
   },
   "--gil-color-background-shapes": {
     "dark": {
-      "ref": "--g-color-private-white-200-solid",
-      "value": "rgb(78 74 78)",
+      "ref": "--g-color-private-brand-200-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-black-50-solid",
-      "value": "rgb(242 242 242)",
+      "ref": "--g-color-private-brand-100-solid",
+      "value": "",
     },
   },
   "--gil-color-object-accent-heavy": {
     "dark": {
-      "ref": "--g-color-private-orange-650-solid",
-      "value": "rgb(211 130 61)",
+      "ref": "--g-color-private-brand-350-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-orange-650-solid",
-      "value": "rgb(211 101 7)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
   },
   "--gil-color-object-accent-light": {
@@ -20145,22 +20145,22 @@ exports[`generateJSON generate with illustrations  when set reference in utility
   },
   "--gil-color-object-hightlight": {
     "dark": {
-      "ref": "--g-color-private-yellow-700-solid",
-      "value": "rgb(255 210 141)",
+      "ref": "--g-color-private-brand-700-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-yellow-350-solid",
-      "value": "rgb(255 216 157)",
+      "ref": "--g-color-private-brand-350-solid",
+      "value": "",
     },
   },
   "--gil-color-shadow-over-object": {
     "dark": {
-      "ref": "--g-color-private-yellow-500-solid",
-      "value": "rgb(233 174 86)",
+      "ref": "--g-color-private-brand-500-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-yellow-650-solid",
-      "value": "rgb(211 158 80)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
   },
 }
@@ -24083,32 +24083,32 @@ exports[`generateJSON generate with illustrations library 1`] = `
   },
   "--gil-color-background-lines": {
     "dark": {
-      "ref": "--g-color-private-white-550-solid",
-      "value": "rgb(156 153 156)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-black-450-solid",
-      "value": "rgb(140 140 140)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
   },
   "--gil-color-background-shapes": {
     "dark": {
-      "ref": "--g-color-private-white-200-solid",
-      "value": "rgb(78 74 78)",
+      "ref": "--g-color-private-brand-200-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-black-50-solid",
-      "value": "rgb(242 242 242)",
+      "ref": "--g-color-private-brand-100-solid",
+      "value": "",
     },
   },
   "--gil-color-object-accent-heavy": {
     "dark": {
-      "ref": "--g-color-private-orange-650-solid",
-      "value": "rgb(211 130 61)",
+      "ref": "--g-color-private-brand-350-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-orange-650-solid",
-      "value": "rgb(211 101 7)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
   },
   "--gil-color-object-accent-light": {
@@ -24123,12 +24123,12 @@ exports[`generateJSON generate with illustrations library 1`] = `
   },
   "--gil-color-object-base": {
     "dark": {
-      "ref": "--g-color-private-yellow-550-solid",
-      "value": "rgb(255 190 92)",
+      "ref": "--g-color-private-brand-550-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-yellow-550-solid",
-      "value": "rgb(255 190 92)",
+      "ref": "--g-color-private-brand-550-solid",
+      "value": "",
     },
   },
   "--gil-color-object-danger": {
@@ -24143,22 +24143,22 @@ exports[`generateJSON generate with illustrations library 1`] = `
   },
   "--gil-color-object-hightlight": {
     "dark": {
-      "ref": "--g-color-private-yellow-700-solid",
-      "value": "rgb(255 210 141)",
+      "ref": "--g-color-private-brand-700-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-yellow-350-solid",
-      "value": "rgb(255 216 157)",
+      "ref": "--g-color-private-brand-350-solid",
+      "value": "",
     },
   },
   "--gil-color-shadow-over-object": {
     "dark": {
-      "ref": "--g-color-private-yellow-500-solid",
-      "value": "rgb(233 174 86)",
+      "ref": "--g-color-private-brand-500-solid",
+      "value": "",
     },
     "light": {
-      "ref": "--g-color-private-yellow-650-solid",
-      "value": "rgb(211 158 80)",
+      "ref": "--g-color-private-brand-650-solid",
+      "value": "",
     },
   },
 }
