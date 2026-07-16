@@ -74,7 +74,7 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
         light: {value: createInternalPrivateColorReference('orange', '700-solid')},
     },
     'text-brand-contrast': {
-        dark: {value: createInternalUtilityColorReference('text-light-primary')},
+        dark: {value: createInternalUtilityColorReference('text-dark-primary')},
         light: {value: createInternalUtilityColorReference('text-dark-primary')},
     },
     'text-link': {
@@ -529,7 +529,7 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
     },
     'line-warning': {
         dark: {value: createInternalPrivateColorReference('yellow', '450')},
-        light: {value: createInternalPrivateColorReference('yellow', '450')},
+        light: {value: createInternalPrivateColorReference('yellow', '600-solid')},
     },
     'line-danger': {
         dark: {value: createInternalPrivateColorReference('red', '450')},
