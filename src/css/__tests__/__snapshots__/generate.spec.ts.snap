@@ -472,7 +472,7 @@ exports[`generateCSS generate full theme 1`] = `
     --g-color-line-light: var(--g-color-private-white-500);
     --g-color-line-info: var(--g-color-private-blue-450);
     --g-color-line-positive: var(--g-color-private-green-450);
-    --g-color-line-warning: var(--g-color-private-yellow-450);
+    --g-color-line-warning: var(--g-color-private-yellow-600-solid);
     --g-color-line-danger: var(--g-color-private-red-450);
     --g-color-line-utility: var(--g-color-private-purple-450);
     --g-color-line-misc: var(--g-color-private-cool-grey-450);
@@ -784,7 +784,7 @@ exports[`generateCSS generate full theme 1`] = `
 
     --g-color-text-brand: var(--g-color-private-yellow-600-solid);
     --g-color-text-brand-heavy: var(--g-color-private-yellow-700-solid);
-    --g-color-text-brand-contrast: var(--g-color-text-light-primary);
+    --g-color-text-brand-contrast: var(--g-color-text-dark-primary);
     --g-color-text-link: var(--g-color-private-yellow-550-solid);
     --g-color-text-link-hover: var(--g-color-private-orange-550-solid);
     --g-color-text-link-visited: var(--g-color-private-purple-600-solid);
@@ -1535,7 +1535,7 @@ exports[`generateCSS generate with illustrations library 1`] = `
     --g-color-line-light: var(--g-color-private-white-500);
     --g-color-line-info: var(--g-color-private-blue-450);
     --g-color-line-positive: var(--g-color-private-green-450);
-    --g-color-line-warning: var(--g-color-private-yellow-450);
+    --g-color-line-warning: var(--g-color-private-yellow-600-solid);
     --g-color-line-danger: var(--g-color-private-red-450);
     --g-color-line-utility: var(--g-color-private-purple-450);
     --g-color-line-misc: var(--g-color-private-cool-grey-450);
@@ -1856,7 +1856,7 @@ exports[`generateCSS generate with illustrations library 1`] = `
 
     --g-color-text-brand: var(--g-color-private-yellow-600-solid);
     --g-color-text-brand-heavy: var(--g-color-private-yellow-700-solid);
-    --g-color-text-brand-contrast: var(--g-color-text-light-primary);
+    --g-color-text-brand-contrast: var(--g-color-text-dark-primary);
     --g-color-text-link: var(--g-color-private-yellow-550-solid);
     --g-color-text-link-hover: var(--g-color-private-orange-550-solid);
     --g-color-text-link-visited: var(--g-color-private-purple-600-solid);
