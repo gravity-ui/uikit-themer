@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/gravity-ui/uikit-themer/compare/v1.8.0...v1.8.1) (2026-07-16)
+
+
+### Bug Fixes
+
+* **DEFAULT_THEME:** fix differences from the default theme in uikit ([5e73bff](https://github.com/gravity-ui/uikit-themer/commit/5e73bffbfad46a8dd3df3a4b107d2216f10597bd))
+
 ## [1.8.0](https://github.com/gravity-ui/uikit-themer/compare/v1.7.0...v1.8.0) (2026-04-21)
 
 
