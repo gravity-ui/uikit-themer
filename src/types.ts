@@ -155,11 +155,25 @@ export const UTILITY_BASE_COLORS = [
     'base-misc-heavy',
     'base-misc-heavy-hover',
 
-    'base-light',
-    'base-light-hover',
-    'base-light-simple-hover',
-    'base-light-disabled',
-    'base-light-accent-disabled',
+    'base-contrast',
+    'base-contrast-hover',
+    'base-contrast-simple-hover',
+    'base-contrast-accent-disabled',
+
+    'base-contrast-inverted',
+    'base-contrast-inverted-hover',
+    'base-contrast-inverted-simple-hover',
+    'base-contrast-inverted-accent-disabled',
+
+    'base-contrast-light',
+    'base-contrast-light-hover',
+    'base-contrast-light-simple-hover',
+    'base-contrast-light-accent-disabled',
+
+    'base-contrast-dark',
+    'base-contrast-dark-hover',
+    'base-contrast-dark-simple-hover',
+    'base-contrast-dark-accent-disabled',
 
     'base-float',
     'base-float-hover',
@@ -179,6 +193,11 @@ export const UTILITY_LINE_COLORS = [
     'line-generic-accent',
     'line-generic-accent-hover',
     'line-generic-solid',
+
+    'line-contrast',
+    'line-contrast-inverted',
+    'line-contrast-light',
+    'line-contrast-dark',
 
     'line-brand',
     'line-focus',

@@ -430,29 +430,73 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
         dark: {value: createInternalPrivateColorReference('cool-grey', '700-solid')},
         light: {value: createInternalPrivateColorReference('cool-grey', '700-solid')},
     },
-    'base-light': {
+    'base-contrast': {
+        dark: {value: createInternalPrivateColorReference('white', '850')},
+        light: {value: createInternalPrivateColorReference('black', '1000-solid')},
+    },
+    'base-contrast-hover': {
+        dark: {value: createInternalPrivateColorReference('white', '700')},
+        light: {value: createInternalPrivateColorReference('black', '750')},
+    },
+    'base-contrast-simple-hover': {
+        dark: {value: createInternalPrivateColorReference('white', '150')},
+        light: {value: createInternalPrivateColorReference('black', '50')},
+    },
+    'base-contrast-accent-disabled': {
+        dark: {value: createInternalPrivateColorReference('white', '70')},
+        light: {value: createInternalPrivateColorReference('black', '70')},
+    },
+    'base-contrast-inverted': {
+        dark: {value: createInternalPrivateColorReference('black', '850')},
+        light: {value: createInternalPrivateColorReference('white', '1000-solid')},
+    },
+    'base-contrast-inverted-hover': {
+        dark: {value: createInternalPrivateColorReference('black', '700')},
+        light: {value: createInternalPrivateColorReference('white', '850')},
+    },
+    'base-contrast-inverted-simple-hover': {
+        dark: {value: createInternalPrivateColorReference('black', '50')},
+        light: {value: createInternalPrivateColorReference('white', '150')},
+    },
+    'base-contrast-inverted-accent-disabled': {
+        dark: {value: createInternalPrivateColorReference('black', '70')},
+        light: {value: createInternalPrivateColorReference('white', '70')},
+    },
+    'base-contrast-light': {
         dark: {value: createInternalPrivateColorReference('white', '850')},
         light: {value: createInternalPrivateColorReference('white', '1000-solid')},
     },
-    'base-light-hover': {
+    'base-contrast-light-hover': {
         dark: {value: createInternalPrivateColorReference('white', '700')},
         light: {value: createInternalPrivateColorReference('white', '850')},
     },
-    'base-light-simple-hover': {
+    'base-contrast-light-simple-hover': {
         dark: {value: createInternalPrivateColorReference('white', '150')},
         light: {value: createInternalPrivateColorReference('white', '150')},
     },
-    'base-light-disabled': {
-        dark: {value: createInternalPrivateColorReference('white', '150')},
-        light: {value: createInternalPrivateColorReference('white', '150')},
+    'base-contrast-light-accent-disabled': {
+        dark: {value: createInternalPrivateColorReference('white', '70')},
+        light: {value: createInternalPrivateColorReference('white', '70')},
     },
-    'base-light-accent-disabled': {
-        dark: {value: createInternalPrivateColorReference('white', '300')},
-        light: {value: createInternalPrivateColorReference('white', '300')},
+    'base-contrast-dark': {
+        dark: {value: createInternalPrivateColorReference('black', '850')},
+        light: {value: createInternalPrivateColorReference('black', '1000-solid')},
+    },
+    'base-contrast-dark-hover': {
+        dark: {value: createInternalPrivateColorReference('black', '700')},
+        light: {value: createInternalPrivateColorReference('black', '750')},
+    },
+    'base-contrast-dark-simple-hover': {
+        dark: {value: createInternalPrivateColorReference('black', '50')},
+        light: {value: createInternalPrivateColorReference('black', '50')},
+    },
+    'base-contrast-dark-accent-disabled': {
+        dark: {value: createInternalPrivateColorReference('black', '70')},
+        light: {value: createInternalPrivateColorReference('black', '70')},
     },
     'base-float': {
         dark: {value: createInternalPrivateColorReference('white', '100-solid')},
-        light: {value: createInternalPrivateColorReference('white', '1000-solid')},
+        light: {value: createInternalPrivateColorReference('white', '200-solid')},
     },
     'base-float-hover': {
         dark: {value: createInternalPrivateColorReference('white', '150-solid')},
@@ -506,6 +550,22 @@ const DEFAULT_UTILITY_COLORS: UtilityColors = {
     'line-generic-solid': {
         dark: {value: createInternalPrivateColorReference('white', '150-solid')},
         light: {value: createInternalPrivateColorReference('black', '100-solid')},
+    },
+    'line-contrast': {
+        dark: {value: createInternalPrivateColorReference('white', '250')},
+        light: {value: createInternalPrivateColorReference('black', '100')},
+    },
+    'line-contrast-inverted': {
+        dark: {value: createInternalPrivateColorReference('black', '100')},
+        light: {value: createInternalPrivateColorReference('white', '250')},
+    },
+    'line-contrast-light': {
+        dark: {value: createInternalPrivateColorReference('white', '250')},
+        light: {value: createInternalPrivateColorReference('white', '250')},
+    },
+    'line-contrast-dark': {
+        dark: {value: createInternalPrivateColorReference('black', '100')},
+        light: {value: createInternalPrivateColorReference('black', '100')},
     },
     'line-brand': {
         dark: {value: createInternalPrivateColorReference('yellow', '600-solid')},
