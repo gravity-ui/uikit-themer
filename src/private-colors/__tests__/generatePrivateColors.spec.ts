@@ -1,4 +1,10 @@
 import {generatePrivateColors} from '../generatePrivateColors.js';
+import {DEFAULT_THEME} from '../../constants.js';
+import {generateCSS} from '../../css/generate.js';
+import {parseCSS} from '../../css/parse.js';
+import {generateJSON} from '../../json/generate.js';
+import {parseJSON} from '../../json/parse.js';
+import {updateBaseColor, updateUtilityColor} from '../../utils.js';
 
 const backgroundColors = {
     dark: 'rgb(34,29,34)',
@@ -11,6 +17,106 @@ const orange = {
 };
 
 describe('generatePrivateColors', () => {
+    it.each([
+        ['white', 'light', 240, [122, 128, 186]],
+        ['white', 'dark', 240, [44, 54, 150]],
+        ['black', 'light', 16, [118, 113, 63]],
+        ['black', 'dark', 16, [40, 38, 27]],
+    ] as const)(
+        '%s in %s mixes with the current theme background',
+        (colorToken, theme, base, values) => {
+            const palette = generatePrivateColors({
+                colorToken,
+                theme,
+                colorValue: `rgb(${base} ${base} ${base})`,
+                lightBg: 'rgb(120 120 120)',
+                darkBg: 'rgb(40 40 40)',
+            });
+            const solidTokens = [20, 70, ...Array.from({length: 20}, (_, i) => (i + 1) * 50)].map(
+                (step) => `${step}-solid`,
+            );
+
+            expect(
+                Object.keys(palette)
+                    .filter((token) => token.endsWith('-solid'))
+                    .sort(),
+            ).toEqual(solidTokens.sort());
+            for (const [i, step] of ([20, 70, 550] as const).entries()) {
+                const value = values[i];
+                expect(palette[`${step}-solid`]).toBe(`rgb(${value} ${value} ${value})`);
+            }
+            expect(palette['1000-solid']).toBe(`rgb(${base} ${base} ${base})`);
+        },
+    );
+
+    it.each([
+        ['white', 'light', 240, 186, 168],
+        ['white', 'dark', 240, 150, 168],
+        ['black', 'light', 16, 63, 45],
+        ['black', 'dark', 16, 27, 45],
+    ] as const)(
+        '%s in %s regenerates and survives CSS/JSON export',
+        (colorToken, themeVariant, base, mixed, remixed) => {
+            let theme = updateUtilityColor({
+                theme: DEFAULT_THEME,
+                themeVariant: 'light',
+                colorToken: 'base-background',
+                value: 'rgb(120 120 120)',
+            });
+            theme = updateUtilityColor({
+                theme,
+                themeVariant: 'dark',
+                colorToken: 'base-background',
+                value: 'rgb(40 40 40)',
+            });
+            const updatedBase = updateBaseColor({
+                theme,
+                colorToken,
+                themeVariant,
+                value: `rgb(${base} ${base} ${base})`,
+            });
+            expect(updatedBase.privateColors[colorToken][themeVariant]['550-solid']).toEqual({
+                value: `rgb(${mixed} ${mixed} ${mixed})`,
+            });
+            const updatedBackground = updateUtilityColor({
+                theme: updatedBase,
+                themeVariant,
+                colorToken: 'base-background',
+                value: 'rgb(80 80 80)',
+            });
+            expect(updatedBackground.privateColors[colorToken][themeVariant]['550-solid']).toEqual({
+                value: `rgb(${remixed} ${remixed} ${remixed})`,
+            });
+            const otherVariant = themeVariant === 'light' ? 'dark' : 'light';
+            expect(updatedBackground.privateColors[colorToken][otherVariant]).toEqual(
+                updatedBase.privateColors[colorToken][otherVariant],
+            );
+
+            for (const source of [updatedBase, updatedBackground]) {
+                const json = generateJSON({theme: source});
+                const css = generateCSS({theme: source});
+                const palette = source.privateColors[colorToken][themeVariant];
+                expect(
+                    Object.keys(palette).filter((token) => token.endsWith('-solid')),
+                ).toHaveLength(22);
+                expect(css).toContain(
+                    `--g-color-private-${colorToken}-550-solid: ${palette['550-solid']?.value};`,
+                );
+                expect(generateCSS({theme: source, ignoreDefaultValues: true})).toContain(
+                    `--g-color-private-${colorToken}-550-solid: ${palette['550-solid']?.value};`,
+                );
+                for (const restored of [parseCSS(css), parseJSON(json)]) {
+                    expect(restored.privateColors[colorToken]).toMatchObject(
+                        source.privateColors[colorToken],
+                    );
+                    expect(restored.baseColors[colorToken][themeVariant]).toEqual(
+                        source.baseColors[colorToken][themeVariant],
+                    );
+                }
+            }
+        },
+    );
+
     it('white in light theme', async () => {
         expect(
             generatePrivateColors({
@@ -34,6 +140,27 @@ describe('generatePrivateColors', () => {
             '500': 'rgb(255 255 255 / 0.5)',
             '550': 'rgb(255 255 255 / 0.55)',
             '1000-solid': 'rgb(255 255 255)',
+            '20-solid': 'rgb(255 255 255)',
+            '50-solid': 'rgb(255 255 255)',
+            '70-solid': 'rgb(255 255 255)',
+            '100-solid': 'rgb(255 255 255)',
+            '150-solid': 'rgb(255 255 255)',
+            '200-solid': 'rgb(255 255 255)',
+            '250-solid': 'rgb(255 255 255)',
+            '300-solid': 'rgb(255 255 255)',
+            '350-solid': 'rgb(255 255 255)',
+            '400-solid': 'rgb(255 255 255)',
+            '450-solid': 'rgb(255 255 255)',
+            '500-solid': 'rgb(255 255 255)',
+            '550-solid': 'rgb(255 255 255)',
+            '600-solid': 'rgb(255 255 255)',
+            '650-solid': 'rgb(255 255 255)',
+            '700-solid': 'rgb(255 255 255)',
+            '750-solid': 'rgb(255 255 255)',
+            '800-solid': 'rgb(255 255 255)',
+            '850-solid': 'rgb(255 255 255)',
+            '900-solid': 'rgb(255 255 255)',
+            '950-solid': 'rgb(255 255 255)',
             '600': 'rgb(255 255 255 / 0.6)',
             '650': 'rgb(255 255 255 / 0.65)',
             '70': 'rgb(255 255 255 / 0.07)',
@@ -116,6 +243,7 @@ describe('generatePrivateColors', () => {
             '20': 'rgb(0 0 0 / 0.02)',
             '20-solid': 'rgb(250 250 250)',
             '70': 'rgb(0 0 0 / 0.07)',
+            '70-solid': 'rgb(237 237 237)',
             '100': 'rgb(0 0 0 / 0.1)',
             '100-solid': 'rgb(230 230 230)',
             '1000-solid': 'rgb(0 0 0)',
@@ -170,6 +298,27 @@ describe('generatePrivateColors', () => {
         ).toEqual({
             '100': 'rgb(0 0 0 / 0.1)',
             '1000-solid': 'rgb(0 0 0)',
+            '20-solid': 'rgb(33 28 33)',
+            '50-solid': 'rgb(32 28 32)',
+            '70-solid': 'rgb(32 27 32)',
+            '100-solid': 'rgb(31 26 31)',
+            '150-solid': 'rgb(29 25 29)',
+            '200-solid': 'rgb(27 23 27)',
+            '250-solid': 'rgb(26 22 26)',
+            '300-solid': 'rgb(24 20 24)',
+            '350-solid': 'rgb(22 19 22)',
+            '400-solid': 'rgb(20 17 20)',
+            '450-solid': 'rgb(19 16 19)',
+            '500-solid': 'rgb(17 15 17)',
+            '550-solid': 'rgb(15 13 15)',
+            '600-solid': 'rgb(14 12 14)',
+            '650-solid': 'rgb(12 10 12)',
+            '700-solid': 'rgb(10 9 10)',
+            '750-solid': 'rgb(9 7 9)',
+            '800-solid': 'rgb(7 6 7)',
+            '850-solid': 'rgb(5 4 5)',
+            '900-solid': 'rgb(3 3 3)',
+            '950-solid': 'rgb(2 1 2)',
             '150': 'rgb(0 0 0 / 0.15)',
             '20': 'rgb(0 0 0 / 0.02)',
             '70': 'rgb(0 0 0 / 0.07)',
