@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/gravity-ui/uikit-themer/compare/v1.8.1...v2.0.0) (2026-10-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* update theme tokens
+
+### Features
+
+* update theme tokens ([f45cc7d](https://github.com/gravity-ui/uikit-themer/commit/f45cc7db1086ac53954407476ebb437063098452))
+
 ## [1.8.1](https://github.com/gravity-ui/uikit-themer/compare/v1.8.0...v1.8.1) (2026-07-16)
 
 
