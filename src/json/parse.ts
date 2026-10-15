@@ -156,9 +156,23 @@ const applyTextVariable = (
         const {property, variant} = parseResult;
         theme.typography.variants[variant][property] = parameters.value;
     } else {
-        const {property, group} = parseResult;
-        // TODO parse ref for font family
-        theme.typography.groups[group][property] = parameters.value;
+        const {group, property} = parseResult;
+        if (property === 'font-family') {
+            const cssReference = parameters.ref;
+            if (cssReference) {
+                if (!isFontCssVariable(cssReference)) {
+                    throw Error(
+                        `Text group font-family can reference only to font-families. ${cssReference} is not gravity font-family`,
+                    );
+                }
+
+                theme.typography.groups[group][property] = getKeyFromCssFontVariable(cssReference);
+            } else {
+                theme.typography.groups[group][property] = parameters.value;
+            }
+        } else {
+            theme.typography.groups[group][property] = parameters.value;
+        }
     }
 };
 
