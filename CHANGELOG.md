@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/gravity-ui/uikit-themer/compare/v2.0.0...v2.1.0) (2026-10-22)
+
+
+### Features
+
+* resolve font-family refs for text groups in JSON parser ([607fe02](https://github.com/gravity-ui/uikit-themer/commit/607fe02df0d16cb483044c142fb31b3437a27532))
+
 ## [2.0.0](https://github.com/gravity-ui/uikit-themer/compare/v1.8.1...v2.0.0) (2026-10-07)
 
 
