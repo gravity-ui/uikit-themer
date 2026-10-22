@@ -266,4 +266,40 @@ describe('parseJSON', () => {
             },
         });
     });
+
+    it('text group font-family', async () => {
+        const result = parseJSON({
+            '--g-text-body-font-family': {
+                value: "'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                ref: '--g-font-family-sans',
+            },
+            '--g-text-caption-font-family': {
+                value: "'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                ref: '--g-font-family-sans',
+            },
+            '--g-text-code-font-family': {
+                value: "'Roboto Mono', 'Menlo', 'Monaco', monospace",
+                ref: '--g-font-family-monospace',
+            },
+            '--g-text-display-font-family': {
+                value: "'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                ref: '--g-font-family-sans',
+            },
+            '--g-text-header-font-family': {
+                value: "'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                ref: '--g-font-family-sans',
+            },
+            '--g-text-subheader-font-family': {
+                value: "'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                ref: '--g-font-family-sans',
+            },
+        });
+
+        expect(result.typography.groups.body['font-family']).toEqual('sans');
+        expect(result.typography.groups.caption['font-family']).toEqual('sans');
+        expect(result.typography.groups.code['font-family']).toEqual('monospace');
+        expect(result.typography.groups.display['font-family']).toEqual('sans');
+        expect(result.typography.groups.header['font-family']).toEqual('sans');
+        expect(result.typography.groups.subheader['font-family']).toEqual('sans');
+    });
 });
